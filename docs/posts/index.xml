@@ -1,13 +1,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on uint256_t&#39;s blog</title>
+        <title>Posts on Hello</title>
         <link>https://maekawatoshiki.github.io/posts/</link>
-        <description>Recent content in Posts on uint256_t&#39;s blog</description>
+        <description>Recent content in Posts on Hello</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-jp</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sun, 28 Feb 2021 14:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Sun, 28 Feb 2021 23:30:39 +0900</lastBuildDate>
         <atom:link href="https://maekawatoshiki.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Third</title>
+            <link>https://maekawatoshiki.github.io/posts/third/</link>
+            <pubDate>Sun, 28 Feb 2021 23:30:39 +0900</pubDate>
+            
+            <guid>https://maekawatoshiki.github.io/posts/third/</guid>
+            <description></description>
+            <content type="html"><![CDATA[]]></content>
+        </item>
+        
+        <item>
+            <title>Second</title>
+            <link>https://maekawatoshiki.github.io/posts/second/</link>
+            <pubDate>Sun, 28 Feb 2021 23:26:09 +0900</pubDate>
+            
+            <guid>https://maekawatoshiki.github.io/posts/second/</guid>
+            <description>my second page</description>
+            <content type="html"><![CDATA[<p>my second page</p>
+]]></content>
+        </item>
         
         <item>
             <title>Welcome!!</title>

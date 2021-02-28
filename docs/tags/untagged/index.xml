@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hello</title>
-    <link>https://maekawatoshiki.github.io/</link>
-    <description>Recent content on Hello</description>
+    <title>untagged on Hello</title>
+    <link>https://maekawatoshiki.github.io/tags/untagged/</link>
+    <description>Recent content in untagged on Hello</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 28 Feb 2021 23:30:39 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Feb 2021 23:30:39 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Third</title>
       <link>https://maekawatoshiki.github.io/posts/third/</link>
@@ -18,30 +18,12 @@
     </item>
     
     <item>
-      <title>About</title>
-      <link>https://maekawatoshiki.github.io/about/</link>
-      <pubDate>Sun, 28 Feb 2021 23:27:03 +0900</pubDate>
-      
-      <guid>https://maekawatoshiki.github.io/about/</guid>
-      <description>Who am I? </description>
-    </item>
-    
-    <item>
       <title>Second</title>
       <link>https://maekawatoshiki.github.io/posts/second/</link>
       <pubDate>Sun, 28 Feb 2021 23:26:09 +0900</pubDate>
       
       <guid>https://maekawatoshiki.github.io/posts/second/</guid>
       <description>my second page</description>
-    </item>
-    
-    <item>
-      <title>Welcome!!</title>
-      <link>https://maekawatoshiki.github.io/posts/welcome/</link>
-      <pubDate>Sun, 28 Feb 2021 14:00:00 +0000</pubDate>
-      
-      <guid>https://maekawatoshiki.github.io/posts/welcome/</guid>
-      <description>hello world</description>
     </item>
     
   </channel>

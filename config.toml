@@ -12,17 +12,17 @@ publishDir   = "docs"
   dateformNumTime = "2006-01-02 15:04"
 
   # Subtitle for home
-  homeSubtitle = "uint256_t's blog"
+  # homeSubtitle = "uint256_t's blog"
 
   # Set disableReadOtherPosts to true in order to hide the links to other posts.
   disableReadOtherPosts = false
 
   # Enable sharing buttons, if you like
-  enableSharingButtons = true
+  enableSharingButtons = false
 
   # Metadata mostly used in document's head
-  description = "My new homepage or blog"
-  keywords = "homepage, blog"
+  description = "my blog"
+  keywords = "blog"
   images = [""]
 
 [taxonomies]
@@ -32,8 +32,8 @@ publishDir   = "docs"
 
 [languages]
   [languages.en]
-    title = "uint256_t's blog"
-    subtitle = "uint256_t's blog"
+    title = "Hello"
+    # subtitle = "uint256_t's blog"
     keywords = ""
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
     readOtherPosts = "Read other posts"
@@ -51,4 +51,8 @@ publishDir   = "docs"
     identifier = "blog"
     name       = "Blog"
     url        = "/posts"
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "/about"
 
