@@ -21,7 +21,7 @@ publishDir   = "docs"
   enableSharingButtons = false
 
   # Metadata mostly used in document's head
-  description = "my blog"
+  description = "blog"
   keywords = "blog"
   images = [""]
 
