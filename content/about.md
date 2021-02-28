@@ -17,6 +17,7 @@ I strongly love systems programming, especially making compilers.
 
 # $ projects
 
+- (for Japanese) [プログラミング言語処理系が好きな人の集まり](https://prog-lang-sys-ja-slack.github.io/wiki/) − owner
 - [vicis](https://github.com/maekawatoshiki/vicis) − An experimental project to clone LLVM in pure Rust
 - [naglfar](https://github.com/maekawatoshiki/naglfar) − A toy web browser implementation from scratch in Rust
 - [rapidus](https://github.com/maekawatoshiki/rapidus) − JavaScript engine implementation in Rust
