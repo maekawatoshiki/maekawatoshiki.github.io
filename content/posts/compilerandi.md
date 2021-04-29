@@ -1,7 +1,7 @@
 ---
 title: "コンパイラと私"
 date: 2021-04-29T22:42:05+09:00
-draft: true
+draft: false
 toc: false
 images:
 tags:
