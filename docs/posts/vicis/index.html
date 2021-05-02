@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
+そうだ、LLVMをRustで実装して、同じようなことをしよう
+というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
+とりあえずプロジェクトを作る 記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。
+cargo new viewer --bin # viewerというプロジェクトにします プロジェクトを作ったら、Cargo.tomlにVicisを追加しておきましょう。
+... [dependencies] vicis = { path = &amp;quot;/path/to/vicis&amp;quot; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&amp;hellip;)
+src/main.rsを以下のように変更します。
+use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&amp;lt;String&amp;gt; = env::args().collect(); let file = &amp;amp;args[1]; let asm = read_to_string(file).expect(&amp;#34;failed to read .ll file&amp;#34;); let module = module::parse_assembly(asm." />
+<meta name="keywords" content=", untagged" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://maekawatoshiki.github.io/posts/vicis/" />
+
+
+    <title>
+        
+            Play with LLVM-IR, without LLVM :: Hello 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.d7bdd8ee18bfbf4c605488a7e5b1b92cd980dfeed2bdaeab4dd5e931a7a78bc0.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Play with LLVM-IR, without LLVM">
+<meta itemprop="description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
+そうだ、LLVMをRustで実装して、同じようなことをしよう
+というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
+とりあえずプロジェクトを作る 記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。
+cargo new viewer --bin # viewerというプロジェクトにします プロジェクトを作ったら、Cargo.tomlにVicisを追加しておきましょう。
+... [dependencies] vicis = { path = &quot;/path/to/vicis&quot; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&hellip;)
+src/main.rsを以下のように変更します。
+use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm."><meta itemprop="datePublished" content="2021-05-02T22:04:08&#43;09:00" />
+<meta itemprop="dateModified" content="2021-05-02T22:04:08&#43;09:00" />
+<meta itemprop="wordCount" content="281"><meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
+<meta itemprop="keywords" content="untagged," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://maekawatoshiki.github.io/"/>
+
+<meta name="twitter:title" content="Play with LLVM-IR, without LLVM"/>
+<meta name="twitter:description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
+そうだ、LLVMをRustで実装して、同じようなことをしよう
+というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
+とりあえずプロジェクトを作る 記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。
+cargo new viewer --bin # viewerというプロジェクトにします プロジェクトを作ったら、Cargo.tomlにVicisを追加しておきましょう。
+... [dependencies] vicis = { path = &quot;/path/to/vicis&quot; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&hellip;)
+src/main.rsを以下のように変更します。
+use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm."/>
+
+
+
+
+    <meta property="og:title" content="Play with LLVM-IR, without LLVM" />
+<meta property="og:description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
+そうだ、LLVMをRustで実装して、同じようなことをしよう
+というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
+とりあえずプロジェクトを作る 記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。
+cargo new viewer --bin # viewerというプロジェクトにします プロジェクトを作ったら、Cargo.tomlにVicisを追加しておきましょう。
+... [dependencies] vicis = { path = &quot;/path/to/vicis&quot; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&hellip;)
+src/main.rsを以下のように変更します。
+use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://maekawatoshiki.github.io/posts/vicis/" /><meta property="og:image" content="https://maekawatoshiki.github.io/"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-02T22:04:08&#43;09:00" />
+<meta property="article:modified_time" content="2021-05-02T22:04:08&#43;09:00" /><meta property="og:site_name" content="Hello" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2021-05-02 22:04:08 &#43;0900 JST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">uint256_t&#39;s blog</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        2 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://maekawatoshiki.github.io/posts/vicis/">Play with LLVM-IR, without LLVM</a>
+      </h1>
+
+      
+
+      
+
+      <div class="post-content">
+        <h1 id="tldr">TL;DR</h1>
+<p><a href="https://github.com/maekawatoshiki/vicis">LLVMの代替実装</a>をRustで作っています。(ただの趣味)
+これを使って LLVM-IR とじゃれ合ってみよう、という記事です。</p>
+<h1 id="llvm-irに触れるllvm抜きで">LLVM-IRに触れる。LLVM抜きで。</h1>
+<p>インターネットで放浪してたら、このような記事を見つけました。
+<a href="https://toyamaguchi.hatenablog.com/entry/2019/12/22/080000">RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary</a></p>
+<p>私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。</p>
+<p><em>そうだ、LLVMをRustで実装して、同じようなことをしよう</em></p>
+<p>というわけで、趣味として <a href="https://github.com/maekawatoshiki/vicis">LLVMをRustで再実装し始めました。(Vicisと名付けた)</a>
+この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。</p>
+<h2 id="とりあえずプロジェクトを作る">とりあえずプロジェクトを作る</h2>
+<p>記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。</p>
+<pre><code>cargo new viewer --bin # viewerというプロジェクトにします
+</code></pre><p>プロジェクトを作ったら、<code>Cargo.toml</code>にVicisを追加しておきましょう。</p>
+<pre><code>...
+[dependencies]
+vicis = { path = &quot;/path/to/vicis&quot; }
+</code></pre><h2 id="irを読み込む">IRを読み込む</h2>
+<p>Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&hellip;)</p>
+<p><code>src/main.rs</code>を以下のように変更します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">use</span> std::{env, fs::read_to_string};
+<span style="color:#66d9ef">use</span> vicis::ir::module;
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> args: Vec<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> env::args().collect();
+    <span style="color:#66d9ef">let</span> file <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>args[<span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">let</span> asm <span style="color:#f92672">=</span> read_to_string(file).expect(<span style="color:#e6db74">&#34;failed to read .ll file&#34;</span>);
+
+    <span style="color:#66d9ef">let</span> module <span style="color:#f92672">=</span> module::parse_assembly(asm.as_str()).expect(<span style="color:#e6db74">&#34;failed to parse module&#34;</span>);
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{:?}&#34;</span>, module);
+}
+</code></pre></div><p>これだけで、コマンドライン引数として渡した <code>*.ll</code>ファイルの中身をパースして、内部表現としての<code>Module</code>に変換できます。
+さっそく動かしてみましょう。</p>
+<h2 id="hello-world">Hello World</h2>
+<p>RustでHello Worldを書いて、そのIRを見てましょう。<code>hello.rs</code>というファイルを用意します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#75715e">// hello.rs
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+	println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>)
+}
+</code></pre></div><p>そして、<code>rustc</code>でコンパイルします。IRを出力する点に注意。</p>
+<pre><code>rustc +stable hello.rs -o hello.ll --emit llvm-ir
+</code></pre><p>できあがった <code>hello.ll</code> を引数として渡してみましょう。</p>
+<pre><code>cargo run hello.ll 
+</code></pre><p>おそらくとっても長いIRが出力されたと思います。成功です。</p>
+<h2 id="解析">解析</h2>
+<p>長いIRを目grepするのは大変なので、関数名と関数の引数の数を出力するパスを作ってみます。</p>
+<p><code>main.rs</code>を以下のように修正します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">use</span> std::{any::Any, env, fs::read_to_string};
+<span style="color:#66d9ef">use</span> vicis::{
+    ir::{function, module},
+    pass::{AnalysisPass, PassManager},
+};
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> args: Vec<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> env::args().collect();
+    <span style="color:#66d9ef">let</span> file <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>args[<span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">let</span> asm <span style="color:#f92672">=</span> read_to_string(file).expect(<span style="color:#e6db74">&#34;failed to read .ll file&#34;</span>);
+
+    <span style="color:#66d9ef">let</span> module <span style="color:#f92672">=</span> module::parse_assembly(asm.as_str()).expect(<span style="color:#e6db74">&#34;failed to parse module&#34;</span>);
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> pm <span style="color:#f92672">=</span> PassManager::new();
+    pm.add_analysis(FunctionPrinterPass);
+
+    <span style="color:#66d9ef">for</span> (_, func) <span style="color:#66d9ef">in</span> module.functions() {
+        pm.run_analyses_on(func);
+    }
+}
+
+<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FunctionPrinterPass</span>;
+
+<span style="color:#66d9ef">impl</span> AnalysisPass<span style="color:#f92672">&lt;</span>function::Function<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">for</span> FunctionPrinterPass {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">run_on</span>(<span style="color:#f92672">&amp;</span>self, func: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">function</span>::Function, _result: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">mut</span> Box<span style="color:#f92672">&lt;</span>dyn Any<span style="color:#f92672">&gt;</span>) {
+        println<span style="color:#f92672">!</span>(
+            <span style="color:#e6db74">&#34;Visit: {} (takes {} args)&#34;</span>,
+            func.name(),
+            func.params().len()
+        );
+    }
+}
+</code></pre></div><p>パスマネージャとかの実装がまだまだ適当です。それはさておいて、実行すると以下のように表示されるはずです。</p>
+<pre><code>Visit: _ZN3std10sys_common9backtrace28__rust_begin_short_backtrace17h2840e0051141d5fcE (takes 1 args)
+Visit: _ZN3std2rt10lang_start17h2fcf2a95611b6d93E (takes 3 args)
+Visit: &quot;_ZN3std2rt10lang_start28_$u7b$$u7b$closure$u7d$$u7d$17h642830c734a0a093E&quot; (takes 1 args)
+Visit: _ZN3std3sys4unix7process14process_common8ExitCode6as_i3217he311503d36a1dd10E (takes 1 args)
+Visit: _ZN4core3fmt9Arguments6new_v117h8a113b20b098f88cE (takes 5 args)
+Visit: &quot;_ZN4core3ops8function6FnOnce40call_once$u7b$$u7b$vtable.shim$u7d$$u7d$17h32e55b47309d557aE&quot; (takes 1 args)
+Visit: _ZN4core3ops8function6FnOnce9call_once17h2daf67ca1036ee98E (takes 1 args)
+Visit: _ZN4core3ops8function6FnOnce9call_once17hcf10f9084cb14a26E (takes 1 args)
+Visit: &quot;_ZN4core3ptr85drop_in_place$LT$std..rt..lang_start$LT$$LP$$RP$$GT$..$u7b$$u7b$closure$u7d$$u7d$$GT$17h74f0928264863a31E&quot; (takes 1 args)
+Visit: _ZN4core4hint9black_box17h5fe2e550e252fbc3E (takes 0 args)
+Visit: &quot;_ZN54_$LT$$LP$$RP$$u20$as$u20$std..process..Termination$GT$6report17h8ac75e0172be52beE&quot; (takes 0 args)
+Visit: &quot;_ZN68_$LT$std..process..ExitCode$u20$as$u20$std..process..Termination$GT$6report17h63a57c0453f08cd5E&quot; (takes 1 args)
+Visit: _ZN5hello4main17h391fdbb81e062d23E (takes 0 args)
+Visit: rust_eh_personality (takes 5 args)
+Visit: _ZN3std2rt19lang_start_internal17hd5b67df56ca01daeE (takes 4 args)
+Visit: _ZN3std2io5stdio6_print17hfdac4ecf8a146755E (takes 1 args)
+Visit: main (takes 2 args)
+</code></pre><p>ちゃんと関数名と引数の数が表示されました。成功です。</p>
+<h1 id="終わりに">終わりに</h1>
+<p>Vicisはまだまだ実装されていない機能が沢山あります。Issue&amp;PR いつでも歓迎です。</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://maekawatoshiki.github.io/tags/untagged/">untagged</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        281 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2021-05-02 22:04
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+
+          
+            <span class="button next">
+              <a href="https://maekawatoshiki.github.io/posts/compilerandi/">
+                <span class="button__text">コンパイラと私</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span><span><a href="https://maekawatoshiki.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59523618-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-59523618-3');
+</script>
+
+</div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.2ce64ea6ea44a72b13dd812fc2eb5cca3efe878cce258a47c137c17edf46e0602a05e422b618a5b80b5939c731b7a293351c2f2222a21f6ee27e54a8448dd20e.js" integrity="sha512-LOZOpupEpysT3YEvwutcyj7&#43;h4zOJYpHwTfBft9G4GAqBeQithiluAtZOccxt6KTNRwvIiKiH27iflSoRI3SDg=="></script>
+
+
+
+    </body>
+</html>

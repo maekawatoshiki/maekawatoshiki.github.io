@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 29 Apr 2021 22:42:05 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 May 2021 22:04:08 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Play with LLVM-IR, without LLVM</title>
+      <link>https://maekawatoshiki.github.io/posts/vicis/</link>
+      <pubDate>Sun, 02 May 2021 22:04:08 +0900</pubDate>
+      
+      <guid>https://maekawatoshiki.github.io/posts/vicis/</guid>
+      <description>TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
+そうだ、LLVMをRustで実装して、同じようなことをしよう
+というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
+とりあえずプロジェクトを作る 記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。
+cargo new viewer --bin # viewerというプロジェクトにします プロジェクトを作ったら、Cargo.tomlにVicisを追加しておきましょう。
+... [dependencies] vicis = { path = &amp;quot;/path/to/vicis&amp;quot; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&amp;hellip;)
+src/main.rsを以下のように変更します。
+use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&amp;lt;String&amp;gt; = env::args().collect(); let file = &amp;amp;args[1]; let asm = read_to_string(file).expect(&amp;#34;failed to read .ll file&amp;#34;); let module = module::parse_assembly(asm.</description>
+    </item>
+    
     <item>
       <title>コンパイラと私</title>
       <link>https://maekawatoshiki.github.io/posts/compilerandi/</link>
