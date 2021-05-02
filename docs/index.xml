@@ -14,8 +14,10 @@
       <pubDate>Sun, 02 May 2021 22:04:08 +0900</pubDate>
       
       <guid>https://maekawatoshiki.github.io/posts/vicis/</guid>
-      <description>TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
-LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+      <description>TL;DR LLVMの代替実装をRustで作っています。(ただの趣味)
+これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。
+RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
 私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
 そうだ、LLVMをRustで実装して、同じようなことをしよう
 というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。

@@ -11,11 +11,13 @@ tags:
 # TL;DR
 
 [LLVMの代替実装](https://github.com/maekawatoshiki/vicis)をRustで作っています。(ただの趣味)
+
 これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
 
 # LLVM-IRに触れる。LLVM抜きで。
 
 インターネットで放浪してたら、このような記事を見つけました。
+
 [RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary](https://toyamaguchi.hatenablog.com/entry/2019/12/22/080000)
 
 私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
@@ -110,10 +112,7 @@ fn main() {
     let module = module::parse_assembly(asm.as_str()).expect("failed to parse module");
     let mut pm = PassManager::new();
     pm.add_analysis(FunctionPrinterPass);
-
-    for (_, func) in module.functions() {
-        pm.run_analyses_on(func);
-    }
+	pm.run_analyses_on_module(&module);
 }
 
 pub struct FunctionPrinterPass;

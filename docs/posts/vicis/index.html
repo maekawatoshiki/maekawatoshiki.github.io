@@ -5,8 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
-LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+<meta name="description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味)
+これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。
+RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
 私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
 そうだ、LLVMをRustで実装して、同じようなことをしよう
 というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
@@ -42,8 +44,10 @@ use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args:
 
 
 <meta itemprop="name" content="Play with LLVM-IR, without LLVM">
-<meta itemprop="description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
-LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+<meta itemprop="description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味)
+これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。
+RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
 私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
 そうだ、LLVMをRustで実装して、同じようなことをしよう
 というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
@@ -53,14 +57,16 @@ cargo new viewer --bin # viewerというプロジェクトにします プロジ
 src/main.rsを以下のように変更します。
 use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm."><meta itemprop="datePublished" content="2021-05-02T22:04:08&#43;09:00" />
 <meta itemprop="dateModified" content="2021-05-02T22:04:08&#43;09:00" />
-<meta itemprop="wordCount" content="281"><meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
+<meta itemprop="wordCount" content="274"><meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
 <meta itemprop="keywords" content="untagged," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://maekawatoshiki.github.io/"/>
 
 <meta name="twitter:title" content="Play with LLVM-IR, without LLVM"/>
-<meta name="twitter:description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
-LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+<meta name="twitter:description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味)
+これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。
+RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
 私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
 そうだ、LLVMをRustで実装して、同じようなことをしよう
 というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
@@ -74,8 +80,10 @@ use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args:
 
 
     <meta property="og:title" content="Play with LLVM-IR, without LLVM" />
-<meta property="og:description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味) これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
-LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。 RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
+<meta property="og:description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味)
+これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
+LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。
+RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
 私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
 そうだ、LLVMをRustで実装して、同じようなことをしよう
 というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
@@ -174,11 +182,11 @@ use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args:
 
       <div class="post-content">
         <h1 id="tldr">TL;DR</h1>
-<p><a href="https://github.com/maekawatoshiki/vicis">LLVMの代替実装</a>をRustで作っています。(ただの趣味)
-これを使って LLVM-IR とじゃれ合ってみよう、という記事です。</p>
+<p><a href="https://github.com/maekawatoshiki/vicis">LLVMの代替実装</a>をRustで作っています。(ただの趣味)</p>
+<p>これを使って LLVM-IR とじゃれ合ってみよう、という記事です。</p>
 <h1 id="llvm-irに触れるllvm抜きで">LLVM-IRに触れる。LLVM抜きで。</h1>
-<p>インターネットで放浪してたら、このような記事を見つけました。
-<a href="https://toyamaguchi.hatenablog.com/entry/2019/12/22/080000">RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary</a></p>
+<p>インターネットで放浪してたら、このような記事を見つけました。</p>
+<p><a href="https://toyamaguchi.hatenablog.com/entry/2019/12/22/080000">RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary</a></p>
 <p>私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。</p>
 <p><em>そうだ、LLVMをRustで実装して、同じようなことをしよう</em></p>
 <p>というわけで、趣味として <a href="https://github.com/maekawatoshiki/vicis">LLVMをRustで再実装し始めました。(Vicisと名付けた)</a>
@@ -234,10 +242,7 @@ vicis = { path = &quot;/path/to/vicis&quot; }
     <span style="color:#66d9ef">let</span> module <span style="color:#f92672">=</span> module::parse_assembly(asm.as_str()).expect(<span style="color:#e6db74">&#34;failed to parse module&#34;</span>);
     <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> pm <span style="color:#f92672">=</span> PassManager::new();
     pm.add_analysis(FunctionPrinterPass);
-
-    <span style="color:#66d9ef">for</span> (_, func) <span style="color:#66d9ef">in</span> module.functions() {
-        pm.run_analyses_on(func);
-    }
+	pm.run_analyses_on_module(<span style="color:#f92672">&amp;</span>module);
 }
 
 <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FunctionPrinterPass</span>;
@@ -297,7 +302,7 @@ Visit: main (takes 2 args)
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        281 Words
+        274 Words
       </p>
 
       <p>
