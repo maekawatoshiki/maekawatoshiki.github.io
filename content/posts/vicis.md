@@ -49,7 +49,7 @@ Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(b
 
 `src/main.rs`を以下のように変更します。
 
-```rs
+```rust
 use std::{env, fs::read_to_string};
 use vicis::ir::module;
 
@@ -70,7 +70,7 @@ fn main() {
 
 RustでHello Worldを書いて、そのIRを見てましょう。`hello.rs`というファイルを用意します。
 
-```rs
+```rust
 // hello.rs
 fn main() {
 	println!("hello world")
@@ -97,7 +97,7 @@ cargo run hello.ll
 
 `main.rs`を以下のように修正します。
 
-```rs
+```rust
 use std::{any::Any, env, fs::read_to_string};
 use vicis::{
     ir::{function, module},
@@ -112,7 +112,7 @@ fn main() {
     let module = module::parse_assembly(asm.as_str()).expect("failed to parse module");
     let mut pm = PassManager::new();
     pm.add_analysis(FunctionPrinterPass);
-	pm.run_analyses_on_module(&module);
+  pm.run_analyses_on_module(&module);
 }
 
 pub struct FunctionPrinterPass;

@@ -201,7 +201,7 @@ vicis = { path = &quot;/path/to/vicis&quot; }
 </code></pre><h2 id="irを読み込む">IRを読み込む</h2>
 <p>Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&hellip;)</p>
 <p><code>src/main.rs</code>を以下のように変更します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">use</span> std::{env, fs::read_to_string};
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::{env, fs::read_to_string};
 <span style="color:#66d9ef">use</span> vicis::ir::module;
 
 <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
@@ -216,7 +216,7 @@ vicis = { path = &quot;/path/to/vicis&quot; }
 さっそく動かしてみましょう。</p>
 <h2 id="hello-world">Hello World</h2>
 <p>RustでHello Worldを書いて、そのIRを見てましょう。<code>hello.rs</code>というファイルを用意します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#75715e">// hello.rs
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// hello.rs
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
 	println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>)
 }
@@ -228,7 +228,7 @@ vicis = { path = &quot;/path/to/vicis&quot; }
 <h2 id="解析">解析</h2>
 <p>長いIRを目grepするのは大変なので、関数名と関数の引数の数を出力するパスを作ってみます。</p>
 <p><code>main.rs</code>を以下のように修正します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">use</span> std::{any::Any, env, fs::read_to_string};
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::{any::Any, env, fs::read_to_string};
 <span style="color:#66d9ef">use</span> vicis::{
     ir::{function, module},
     pass::{AnalysisPass, PassManager},
@@ -242,7 +242,7 @@ vicis = { path = &quot;/path/to/vicis&quot; }
     <span style="color:#66d9ef">let</span> module <span style="color:#f92672">=</span> module::parse_assembly(asm.as_str()).expect(<span style="color:#e6db74">&#34;failed to parse module&#34;</span>);
     <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> pm <span style="color:#f92672">=</span> PassManager::new();
     pm.add_analysis(FunctionPrinterPass);
-	pm.run_analyses_on_module(<span style="color:#f92672">&amp;</span>module);
+  pm.run_analyses_on_module(<span style="color:#f92672">&amp;</span>module);
 }
 
 <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FunctionPrinterPass</span>;
