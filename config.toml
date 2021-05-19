@@ -4,6 +4,7 @@ languageCode = "ja-jp"
 theme        = "hello"
 paginate     = 10
 publishDir   = "docs"
+enableRobotsTXT = true
 
 [markup]
   [markup.goldmark]
