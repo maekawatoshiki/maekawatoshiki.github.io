@@ -6,8 +6,63 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-jp</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sun, 02 May 2021 22:04:08 +0900</lastBuildDate>
+        <lastBuildDate>Wed, 19 May 2021 15:56:20 +0900</lastBuildDate>
         <atom:link href="https://maekawatoshiki.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Google Summer of Code 2021 に参加します</title>
+            <link>https://maekawatoshiki.github.io/posts/gsoc1/</link>
+            <pubDate>Wed, 19 May 2021 15:56:20 +0900</pubDate>
+            
+            <guid>https://maekawatoshiki.github.io/posts/gsoc1/</guid>
+            <description>TL;DR  Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい  Google Summer of Codeとは  Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
+(https://summerofcode.withgoogle.com/)
+ Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h+/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
+Proposal採択までの流れ 3月の初めから、以下の作業を始めました。
+参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。</description>
+            <content type="html"><![CDATA[<h1 id="tldr">TL;DR</h1>
+<ul>
+<li>Google Summer of Code に提出したProposalが採択されました</li>
+<li>晴れてGSoCに参加できることとなりました</li>
+<li>参加団体はLLVMです</li>
+<li>嬉しい</li>
+</ul>
+<h1 id="google-summer-of-codeとは">Google Summer of Codeとは</h1>
+<blockquote>
+<p>Google Summer of Code is a global program focused on bringing more  student developers into open source software development. Students work  with an open source organization on a 10 week programming project during their break from school.</p>
+<p>(<a href="https://summerofcode.withgoogle.com/">https://summerofcode.withgoogle.com/</a>)</p>
+</blockquote>
+<p>Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。
+その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。
+本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h+/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)</p>
+<h1 id="proposal採択までの流れ">Proposal採択までの流れ</h1>
+<p>3月の初めから、以下の作業を始めました。</p>
+<h2 id="参加団体を選ぶ">参加団体を選ぶ</h2>
+<p><a href="https://summerofcode.withgoogle.com/organizations/">公式サイト</a>を見れば、様々な団体がGSoCに参加しているとわかります。
+私は、ずっと <a href="https://llvm.org/">LLVM</a> に貢献したかったので、無論それを選びました。</p>
+<h2 id="参加プロジェクトを選ぶ">参加プロジェクトを選ぶ</h2>
+<p>各団体のほぼすべてが、学生向けのプロジェクト一覧を公開しているはずです。LLVM なら<a href="https://llvm.org/OpenProjects.html">ここ</a>。
+興味のあるプロジェクトは、初めのうちは複数個選んでおいた方がいいと思います。後になって、選んだプロジェクトが想像以上に難しいものだと判明すると、Proposalを書くのが大変ですし、不必要に自分を追い込んでしまいます。</p>
+<h2 id="メーリングリストと奮闘する">メーリングリストと奮闘する</h2>
+<p>興味のあるプロジェクトを選んだら、各団体のメンターと連絡を取ります。ここから先は各団体の指示に従うべきです。
+私の場合は、メーリングリストでメンターの方にプロジェクトの詳しい説明を聞いていました。<a href="https://lists.llvm.org/pipermail/llvm-dev/2021-March/149058.html">このあたり</a>から辿れます。</p>
+<p>(英語のメールを書くのがかなり久しぶりだったので少し緊張しました。)</p>
+<h2 id="proposalを書く">Proposalを書く</h2>
+<p>各団体に提出するためのProposalを書きます。ネット上には過去GSoCに参加した方のProposalの例が沢山公開されています。</p>
+<p><a href="https://docs.google.com/document/d/1UhKyBsVCwuN7VCbaQRVdklY9CCsGM04EcvhLHO0A-UQ/edit?usp=sharing">もちろん私も公開します。</a></p>
+<p>Proposalは、ある程度書いたらメンターの人に見てもらって、アドバイスを貰ったりしました。</p>
+<h2 id="と同時並行で-小さめのパッチを送る">(↑と同時並行で) 小さめのパッチを送る</h2>
+<p>Proposalの内容と関係のある<a href="https://reviews.llvm.org/D99149">小さめのパッチ</a>を送ったりもしました。
+自分の能力を示すためにも、Issueを立てたり、PRを投げたりするのは重要だと思います。</p>
+<h1 id="your-proposal-has-been-accepted">Your proposal has been accepted!</h1>
+<p>May/18/2021 (JST) の深夜に、以下のメールが届きました。</p>
+<!-- raw HTML omitted -->
+<p>受験が終わった時のような気分でした。
+頑張ります。</p>
+<h1 id="次回予告">次回予告</h1>
+<p>丁度今日の深夜にメンターの方と話すので、何か面白い話題が生まれたら書きたい。</p>
+]]></content>
+        </item>
         
         <item>
             <title>Play with LLVM-IR, without LLVM</title>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="TL;DR  Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい  Google Summer of Codeとは  Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
+(https://summerofcode.withgoogle.com/)
+ Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h&#43;/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
+Proposal採択までの流れ 3月の初めから、以下の作業を始めました。
+参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。" />
+<meta name="keywords" content=", gsoc" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://maekawatoshiki.github.io/posts/gsoc1/" />
+
+
+    <title>
+        
+            Google Summer of Code 2021 に参加します :: Hello 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.d7bdd8ee18bfbf4c605488a7e5b1b92cd980dfeed2bdaeab4dd5e931a7a78bc0.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Google Summer of Code 2021 に参加します">
+<meta itemprop="description" content="TL;DR  Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい  Google Summer of Codeとは  Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
+(https://summerofcode.withgoogle.com/)
+ Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h&#43;/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
+Proposal採択までの流れ 3月の初めから、以下の作業を始めました。
+参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。"><meta itemprop="datePublished" content="2021-05-19T15:56:20&#43;09:00" />
+<meta itemprop="dateModified" content="2021-05-19T15:56:20&#43;09:00" />
+<meta itemprop="wordCount" content="97"><meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
+<meta itemprop="keywords" content="gsoc," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://maekawatoshiki.github.io/"/>
+
+<meta name="twitter:title" content="Google Summer of Code 2021 に参加します"/>
+<meta name="twitter:description" content="TL;DR  Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい  Google Summer of Codeとは  Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
+(https://summerofcode.withgoogle.com/)
+ Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h&#43;/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
+Proposal採択までの流れ 3月の初めから、以下の作業を始めました。
+参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。"/>
+
+
+
+
+    <meta property="og:title" content="Google Summer of Code 2021 に参加します" />
+<meta property="og:description" content="TL;DR  Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい  Google Summer of Codeとは  Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
+(https://summerofcode.withgoogle.com/)
+ Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h&#43;/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
+Proposal採択までの流れ 3月の初めから、以下の作業を始めました。
+参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://maekawatoshiki.github.io/posts/gsoc1/" /><meta property="og:image" content="https://maekawatoshiki.github.io/"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-19T15:56:20&#43;09:00" />
+<meta property="article:modified_time" content="2021-05-19T15:56:20&#43;09:00" /><meta property="og:site_name" content="Hello" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2021-05-19 15:56:20 &#43;0900 JST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">uint256_t&#39;s blog</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://maekawatoshiki.github.io/posts/gsoc1/">Google Summer of Code 2021 に参加します</a>
+      </h1>
+
+      
+
+      
+
+      <div class="post-content">
+        <h1 id="tldr">TL;DR</h1>
+<ul>
+<li>Google Summer of Code に提出したProposalが採択されました</li>
+<li>晴れてGSoCに参加できることとなりました</li>
+<li>参加団体はLLVMです</li>
+<li>嬉しい</li>
+</ul>
+<h1 id="google-summer-of-codeとは">Google Summer of Codeとは</h1>
+<blockquote>
+<p>Google Summer of Code is a global program focused on bringing more  student developers into open source software development. Students work  with an open source organization on a 10 week programming project during their break from school.</p>
+<p>(<a href="https://summerofcode.withgoogle.com/">https://summerofcode.withgoogle.com/</a>)</p>
+</blockquote>
+<p>Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。
+その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。
+本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h+/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)</p>
+<h1 id="proposal採択までの流れ">Proposal採択までの流れ</h1>
+<p>3月の初めから、以下の作業を始めました。</p>
+<h2 id="参加団体を選ぶ">参加団体を選ぶ</h2>
+<p><a href="https://summerofcode.withgoogle.com/organizations/">公式サイト</a>を見れば、様々な団体がGSoCに参加しているとわかります。
+私は、ずっと <a href="https://llvm.org/">LLVM</a> に貢献したかったので、無論それを選びました。</p>
+<h2 id="参加プロジェクトを選ぶ">参加プロジェクトを選ぶ</h2>
+<p>各団体のほぼすべてが、学生向けのプロジェクト一覧を公開しているはずです。LLVM なら<a href="https://llvm.org/OpenProjects.html">ここ</a>。
+興味のあるプロジェクトは、初めのうちは複数個選んでおいた方がいいと思います。後になって、選んだプロジェクトが想像以上に難しいものだと判明すると、Proposalを書くのが大変ですし、不必要に自分を追い込んでしまいます。</p>
+<h2 id="メーリングリストと奮闘する">メーリングリストと奮闘する</h2>
+<p>興味のあるプロジェクトを選んだら、各団体のメンターと連絡を取ります。ここから先は各団体の指示に従うべきです。
+私の場合は、メーリングリストでメンターの方にプロジェクトの詳しい説明を聞いていました。<a href="https://lists.llvm.org/pipermail/llvm-dev/2021-March/149058.html">このあたり</a>から辿れます。</p>
+<p>(英語のメールを書くのがかなり久しぶりだったので少し緊張しました。)</p>
+<h2 id="proposalを書く">Proposalを書く</h2>
+<p>各団体に提出するためのProposalを書きます。ネット上には過去GSoCに参加した方のProposalの例が沢山公開されています。</p>
+<p><a href="https://docs.google.com/document/d/1UhKyBsVCwuN7VCbaQRVdklY9CCsGM04EcvhLHO0A-UQ/edit?usp=sharing">もちろん私も公開します。</a></p>
+<p>Proposalは、ある程度書いたらメンターの人に見てもらって、アドバイスを貰ったりしました。</p>
+<h2 id="と同時並行で-小さめのパッチを送る">(↑と同時並行で) 小さめのパッチを送る</h2>
+<p>Proposalの内容と関係のある<a href="https://reviews.llvm.org/D99149">小さめのパッチ</a>を送ったりもしました。
+自分の能力を示すためにも、Issueを立てたり、PRを投げたりするのは重要だと思います。</p>
+<h1 id="your-proposal-has-been-accepted">Your proposal has been accepted!</h1>
+<p>May/18/2021 (JST) の深夜に、以下のメールが届きました。</p>
+<!-- raw HTML omitted -->
+<p>受験が終わった時のような気分でした。
+頑張ります。</p>
+<h1 id="次回予告">次回予告</h1>
+<p>丁度今日の深夜にメンターの方と話すので、何か面白い話題が生まれたら書きたい。</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://maekawatoshiki.github.io/tags/gsoc/">gsoc</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        97 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2021-05-19 15:56
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+
+          
+            <span class="button next">
+              <a href="https://maekawatoshiki.github.io/posts/vicis/">
+                <span class="button__text">Play with LLVM-IR, without LLVM</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span><span><a href="https://maekawatoshiki.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59523618-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-59523618-3');
+</script>
+
+</div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.2ce64ea6ea44a72b13dd812fc2eb5cca3efe878cce258a47c137c17edf46e0602a05e422b618a5b80b5939c731b7a293351c2f2222a21f6ee27e54a8448dd20e.js" integrity="sha512-LOZOpupEpysT3YEvwutcyj7&#43;h4zOJYpHwTfBft9G4GAqBeQithiluAtZOccxt6KTNRwvIiKiH27iflSoRI3SDg=="></script>
+
+
+
+    </body>
+</html>

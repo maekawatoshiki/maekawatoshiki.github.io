@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gsoc on Hello</title>
+    <link>https://maekawatoshiki.github.io/tags/gsoc/</link>
+    <description>Recent content in gsoc on Hello</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 19 May 2021 15:56:20 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/tags/gsoc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Google Summer of Code 2021 に参加します</title>
+      <link>https://maekawatoshiki.github.io/posts/gsoc1/</link>
+      <pubDate>Wed, 19 May 2021 15:56:20 +0900</pubDate>
+      
+      <guid>https://maekawatoshiki.github.io/posts/gsoc1/</guid>
+      <description>TL;DR  Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい  Google Summer of Codeとは  Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
+(https://summerofcode.withgoogle.com/)
+ Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h+/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
+Proposal採択までの流れ 3月の初めから、以下の作業を始めました。
+参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。</description>
+    </item>
+    
+  </channel>
+</rss>
