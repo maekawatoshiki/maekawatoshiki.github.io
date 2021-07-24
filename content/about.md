@@ -9,7 +9,7 @@ comments: false
 
 - GitHub: [maekawatoshiki (uint256_t)](https://github.com/maekawatoshiki)
 - Twitter: [uint256_t](https://twitter.com/uint256_t)
-- Student at Nagoya Institute of Technology
+- Undergraduate student at Nagoya Institute of Technology
 
 # $ interests
 
@@ -24,4 +24,10 @@ I strongly love systems programming, especially making compilers.
 - [sericum (renamed from *cilk*)](https://github.com/maekawatoshiki/sericum) − An experimental compiler infrastructure
 
 ... and more at [GitHub](https://github.com/maekawatoshiki)
+
+# $ wishlist
+
+I appreciate your support. 
+
+- [Amazon Wishlist](https://www.amazon.jp/hz/wishlist/ls/30976B5S3ID35?ref_=wl_share)
 

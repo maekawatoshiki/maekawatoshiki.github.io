@@ -11,7 +11,6 @@
         <div class="footer__content">
             <span>{{ .Site.Params.footerLeft | default "Powered by <a href=\"http://gohugo.io\">Hugo</a>" | safeHTML }}</span>
             <span>{{ .Site.Params.footerRight | default "Made with &#10084; by <a href=\"https://github.com/rhazdon\">Djordje Atlialp</a>" | safeHTML }}</span>
-            {{- partial "analytics" . -}}
           </div>
     </div>
 </footer>
