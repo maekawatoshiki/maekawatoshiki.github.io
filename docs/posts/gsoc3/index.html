@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="TL;DR  Google Summer of Code 2021 を終えました  First, Final Evaluation ともに通りました、という意味   LLVM むずかしい 成果  Google Summer of Code とは 前に書いた記事を参照してください。
+何をしたのか 2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。 （まだマージされていないパッチがあるんですけどね&amp;hellip;）
+正確には、コーディングをはじめたのは６月くらいからみたいです。
+LLVM?  The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
+ clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
+（以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）
+テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。" />
+<meta name="keywords" content=", gsoc" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://maekawatoshiki.github.io/posts/gsoc3/" />
+
+
+    <title>
+        
+            Google Summer of Code 2021 を終えました :: Hello 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.d7bdd8ee18bfbf4c605488a7e5b1b92cd980dfeed2bdaeab4dd5e931a7a78bc0.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Google Summer of Code 2021 を終えました">
+<meta itemprop="description" content="TL;DR  Google Summer of Code 2021 を終えました  First, Final Evaluation ともに通りました、という意味   LLVM むずかしい 成果  Google Summer of Code とは 前に書いた記事を参照してください。
+何をしたのか 2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。 （まだマージされていないパッチがあるんですけどね&hellip;）
+正確には、コーディングをはじめたのは６月くらいからみたいです。
+LLVM?  The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
+ clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
+（以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）
+テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。"><meta itemprop="datePublished" content="2021-09-09T00:08:57&#43;09:00" />
+<meta itemprop="dateModified" content="2021-09-09T00:08:57&#43;09:00" />
+<meta itemprop="wordCount" content="320"><meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
+<meta itemprop="keywords" content="gsoc," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://maekawatoshiki.github.io/"/>
+
+<meta name="twitter:title" content="Google Summer of Code 2021 を終えました"/>
+<meta name="twitter:description" content="TL;DR  Google Summer of Code 2021 を終えました  First, Final Evaluation ともに通りました、という意味   LLVM むずかしい 成果  Google Summer of Code とは 前に書いた記事を参照してください。
+何をしたのか 2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。 （まだマージされていないパッチがあるんですけどね&hellip;）
+正確には、コーディングをはじめたのは６月くらいからみたいです。
+LLVM?  The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
+ clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
+（以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）
+テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。"/>
+
+
+
+
+    <meta property="og:title" content="Google Summer of Code 2021 を終えました" />
+<meta property="og:description" content="TL;DR  Google Summer of Code 2021 を終えました  First, Final Evaluation ともに通りました、という意味   LLVM むずかしい 成果  Google Summer of Code とは 前に書いた記事を参照してください。
+何をしたのか 2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。 （まだマージされていないパッチがあるんですけどね&hellip;）
+正確には、コーディングをはじめたのは６月くらいからみたいです。
+LLVM?  The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
+ clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
+（以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）
+テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://maekawatoshiki.github.io/posts/gsoc3/" /><meta property="og:image" content="https://maekawatoshiki.github.io/"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-09T00:08:57&#43;09:00" />
+<meta property="article:modified_time" content="2021-09-09T00:08:57&#43;09:00" /><meta property="og:site_name" content="Hello" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2021-09-09 00:08:57 &#43;0900 JST" />
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59523618-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-59523618-3');
+</script>
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">uint256_t&#39;s blog</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        2 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://maekawatoshiki.github.io/posts/gsoc3/">Google Summer of Code 2021 を終えました</a>
+      </h1>
+
+      
+
+      
+
+      <div class="post-content">
+        <h1 id="tldr">TL;DR</h1>
+<ul>
+<li>Google Summer of Code 2021 を終えました
+<ul>
+<li>First, Final Evaluation ともに通りました、という意味</li>
+</ul>
+</li>
+<li>LLVM むずかしい</li>
+<li><a href="https://docs.google.com/document/d/1ASGejJIL7rzEDwX2qZZqT4ATR2x3sd_aOTuMSCh2YTE/edit#heading=h.qv3zfxev18ag">成果</a></li>
+</ul>
+<h1 id="google-summer-of-code-とは">Google Summer of Code とは</h1>
+<p><a href="../gsoc1">前に書いた記事</a>を参照してください。</p>
+<h1 id="何をしたのか">何をしたのか</h1>
+<p>2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。
+（まだマージされていないパッチがあるんですけどね&hellip;）</p>
+<p>正確には、コーディングをはじめたのは６月くらいからみたいです。</p>
+<h1 id="llvm">LLVM?</h1>
+<blockquote>
+<p>The LLVM Project is a collection of modular and reusable compiler and toolchain technologies.
+<a href="https://llvm.org/">The LLVM Compiler Infrastructure</a></p>
+</blockquote>
+<p>clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。</p>
+<p>（以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）</p>
+<h1 id="テーマ">テーマ</h1>
+<p>提出した Proposal のタイトルは <strong>Utilize LoopNest Pass</strong> でした。</p>
+<p>Pass というと、Module Pass, Function Pass, Loop Pass, &hellip; など色々あります。
+その中に、最近追加されたばかりの <strong>LoopNest Pass</strong> (New Pass Manager でのみ動作) というものがあります。
+これは、ネストしたループを扱うための Pass なのですが、
+まだほとんど使われていません（でした）。
+私がこの夏にやったことは、LoopNest Pass として実装されている Pass を増やすことです。</p>
+<p>Loop Pass とは別に LoopNest Pass が作られた理由にはいくつかあります。
+例えば、ネストしたループ向けの最適化手法には、Loop Pass (や Function Pass) として実装するとコード量が増えてしまうものや、そもそも
+うまく実装できないものが存在します。そのような最適化手法は、LoopNest Pass として簡単に実装できる可能性が高いです。</p>
+<h2 id="loopnest-pass-と-loop-pass-の違い">LoopNest Pass と Loop Pass の違い</h2>
+<p>Loop Pass Pipeline <em>X</em> に、Loop Pass <em>A, B</em> が順番に並んでいるとします。
+ここで、<em>X</em> に以下のループを流してみます。（<em>X</em> に <code>outerL</code> に対応する <code>Loop</code> オブジェクトを渡す、の意）</p>
+<pre><code>outerL:
+  innerL:
+    body
+</code></pre><p>すると、まず <code>innerL</code> が <em>A, B</em> によって最適化され、その後に <code>outerL</code> が <em>A, B</em> によって最適化されます。
+要するに、最内ループから最外ループへ向かって最適化が行われるというわけです。</p>
+<p>特に問題なさそうに見えますが、これはあくまで個別のループに個別の最適化を施す場合には問題がない、というだけです。</p>
+<p>例えば、<code>outerL</code> と <code>innerL</code> を見比べてからループネスト全体に何らかの操作を施したい場合はどうしればいいのでしょうか。
+（単純な解決法：<code>innerL</code> を無視して <code>outerL</code> の順番がやってきたらループネスト全体を見渡せば良い；
+問題：<code>innerL</code> を飛ばすためのコードが必要になる。そもそも Loop Pass に渡される <code>Loop</code> オブジェクトはループネストを扱うのには適していない）</p>
+<p>ここで LoopNest Pass の登場です。</p>
+<p>Loop Pass Pipeline <em>Y</em> に、Loop Pass <em>A, B</em> と LoopNest Pass <em>C</em> が順番に並んでいるとします。
+ここで、<em>Y</em> に先程のループを流してみます。</p>
+<p>すると、まず <code>innerL</code> が <em>A, B</em> によって最適化され、その後に <code>outerL</code> が <em>A, B, <strong>C</strong></em> によって最適化されます。
+要するに、<strong>LoopNest Pass は最外ループにのみ適用される</strong>のです。
+しかも、LoopNest Pass は <code>Loop</code> オブジェクトではなく <code>LoopNest</code> オブジェクトを受けとります。
+これにより、Loop Pass として実装する場合と比べて、ループネストを扱いやすくなります。</p>
+<h2 id="もうちょっと具体例-loop-interchange">もうちょっと具体例: loop-interchange</h2>
+<p>以下のようなループネストを考えます。</p>
+<pre><code>for k = 0, 10:
+  for i = 0, 10:
+    for j = 0, 10:
+      A[i, j, k] += B[i, j, k]
+</code></pre><p>見るからに何かがおかしいですよね？最外ループの添字が <code>k</code> となっていますが、これではキャッシュに当たる気がしません。</p>
+<p>このようなループネストには、それぞれのループの順番を入れ替える loop-interchange という最適化を施すと良いです。</p>
+<pre><code># loop-interchange 後
+for i = 0, 10:
+  for j = 0, 10:
+    for k = 0, 10:
+      A[i, j, k] += B[i, j, k]
+</code></pre><p>このような最適化は、ループネスト全体を見渡す必要があります。そのため LoopNest Pass として実装すると良いです。
+（でないと、for-k を飛ばして・for-j を飛ばして、という処理を個々の Loop Pass 内に記述する必要が出てきます）</p>
+<h1 id="何を学んだのか">何を学んだのか</h1>
+<p>LLVM という大きな OSS プロジェクトに貢献する中で、色々なことを学びました。</p>
+<p>例えば、私はいつも大きなソースツリーを見ると上から下まで読みたくなるのですが、
+そんなことを LLVM に対してしていたら一生が終わってしまいます。
+なので今回の GSoC ではそんなことはせず、自分の担当する部分に関連する部分だけを集中的に読みました。
+大きなソフトウェアはその一部分のみを理解しているだけで十分（であることが望ましい…）なんだと実感しました。</p>
+<p>もう一つ、痛感したことがあります。
+それは、コーディング能力は確かに重要だけれども、それ以上にコミュニケーション能力が重要だということです。
+パッチを投げる、レビューを受ける、変更の意図を説明する…、すべての過程で（英語での）わかりやすい説明を求められます。
+自分の意図を正確に伝えられないと、相手に無駄な時間を取らせてしまうこともあります。</p>
+<p>英語でのテキスト（&amp;できれば口頭での）コミュニケーション能力は身につけておかないと痛い目に合います。</p>
+<h1 id="どうでもいいこと一覧">どうでもいいこと一覧</h1>
+<ul>
+<li>メンター２人（１人とはあんまり話さなかったけど）、プロジェクトメンバー２人、私の合計５人でプロジェクトを進めた
+<ul>
+<li>私とプロジェクトメンバーの１人がほとんどのパッチを作ったと思う</li>
+</ul>
+</li>
+<li>連絡は Discord で行った</li>
+<li>毎週 Webex でミーティングを行った。口頭での英語にほんの少しだけ慣れた。</li>
+<li>LLVM のコミット権をもらえて嬉しかった</li>
+<li>2700USD 貰った （<a href="https://developers.google.com/open-source/gsoc/help/student-stipends">国ごとに貰える量は違うみたい</a>）</li>
+<li>お金は <a href="https://www.payoneer.com/ja/">Payoneer</a>ってやつで受け取った</li>
+<li>CI が落ちると怖い（メールが来る）</li>
+<li>Address/Memory Sanitizer は偉い</li>
+<li>初めて master にコミットしたときは手が震えた
+<ul>
+<li>そしてそのコミットを何度も revert する羽目になって辛かった</li>
+</ul>
+</li>
+</ul>
+<p>以上。来年以降に参加する人の助けになればいいなあ。</p>
+<p>（質問があれば twitter@uint256_t へ DM とか投げてください）</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://maekawatoshiki.github.io/tags/gsoc/">gsoc</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        320 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2021-09-09 00:08
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+
+          
+            <span class="button next">
+              <a href="https://maekawatoshiki.github.io/posts/gsoc2/">
+                <span class="button__text">GSoC 2021 の First Evaluation に通りました</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span><span><a href="https://maekawatoshiki.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+          </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.2ce64ea6ea44a72b13dd812fc2eb5cca3efe878cce258a47c137c17edf46e0602a05e422b618a5b80b5939c731b7a293351c2f2222a21f6ee27e54a8448dd20e.js" integrity="sha512-LOZOpupEpysT3YEvwutcyj7&#43;h4zOJYpHwTfBft9G4GAqBeQithiluAtZOccxt6KTNRwvIiKiH27iflSoRI3SDg=="></script>
+
+
+
+    </body>
+</html>

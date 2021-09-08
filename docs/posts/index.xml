@@ -6,8 +6,124 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-jp</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sun, 25 Jul 2021 01:16:16 +0900</lastBuildDate>
+        <lastBuildDate>Thu, 09 Sep 2021 00:08:57 +0900</lastBuildDate>
         <atom:link href="https://maekawatoshiki.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Google Summer of Code 2021 を終えました</title>
+            <link>https://maekawatoshiki.github.io/posts/gsoc3/</link>
+            <pubDate>Thu, 09 Sep 2021 00:08:57 +0900</pubDate>
+            
+            <guid>https://maekawatoshiki.github.io/posts/gsoc3/</guid>
+            <description>TL;DR  Google Summer of Code 2021 を終えました  First, Final Evaluation ともに通りました、という意味   LLVM むずかしい 成果  Google Summer of Code とは 前に書いた記事を参照してください。
+何をしたのか 2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。 （まだマージされていないパッチがあるんですけどね&amp;hellip;）
+正確には、コーディングをはじめたのは６月くらいからみたいです。
+LLVM?  The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
+ clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
+（以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）
+テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。</description>
+            <content type="html"><![CDATA[<h1 id="tldr">TL;DR</h1>
+<ul>
+<li>Google Summer of Code 2021 を終えました
+<ul>
+<li>First, Final Evaluation ともに通りました、という意味</li>
+</ul>
+</li>
+<li>LLVM むずかしい</li>
+<li><a href="https://docs.google.com/document/d/1ASGejJIL7rzEDwX2qZZqT4ATR2x3sd_aOTuMSCh2YTE/edit#heading=h.qv3zfxev18ag">成果</a></li>
+</ul>
+<h1 id="google-summer-of-code-とは">Google Summer of Code とは</h1>
+<p><a href="../gsoc1">前に書いた記事</a>を参照してください。</p>
+<h1 id="何をしたのか">何をしたのか</h1>
+<p>2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。
+（まだマージされていないパッチがあるんですけどね&hellip;）</p>
+<p>正確には、コーディングをはじめたのは６月くらいからみたいです。</p>
+<h1 id="llvm">LLVM?</h1>
+<blockquote>
+<p>The LLVM Project is a collection of modular and reusable compiler and toolchain technologies.
+<a href="https://llvm.org/">The LLVM Compiler Infrastructure</a></p>
+</blockquote>
+<p>clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。</p>
+<p>（以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）</p>
+<h1 id="テーマ">テーマ</h1>
+<p>提出した Proposal のタイトルは <strong>Utilize LoopNest Pass</strong> でした。</p>
+<p>Pass というと、Module Pass, Function Pass, Loop Pass, &hellip; など色々あります。
+その中に、最近追加されたばかりの <strong>LoopNest Pass</strong> (New Pass Manager でのみ動作) というものがあります。
+これは、ネストしたループを扱うための Pass なのですが、
+まだほとんど使われていません（でした）。
+私がこの夏にやったことは、LoopNest Pass として実装されている Pass を増やすことです。</p>
+<p>Loop Pass とは別に LoopNest Pass が作られた理由にはいくつかあります。
+例えば、ネストしたループ向けの最適化手法には、Loop Pass (や Function Pass) として実装するとコード量が増えてしまうものや、そもそも
+うまく実装できないものが存在します。そのような最適化手法は、LoopNest Pass として簡単に実装できる可能性が高いです。</p>
+<h2 id="loopnest-pass-と-loop-pass-の違い">LoopNest Pass と Loop Pass の違い</h2>
+<p>Loop Pass Pipeline <em>X</em> に、Loop Pass <em>A, B</em> が順番に並んでいるとします。
+ここで、<em>X</em> に以下のループを流してみます。（<em>X</em> に <code>outerL</code> に対応する <code>Loop</code> オブジェクトを渡す、の意）</p>
+<pre><code>outerL:
+  innerL:
+    body
+</code></pre><p>すると、まず <code>innerL</code> が <em>A, B</em> によって最適化され、その後に <code>outerL</code> が <em>A, B</em> によって最適化されます。
+要するに、最内ループから最外ループへ向かって最適化が行われるというわけです。</p>
+<p>特に問題なさそうに見えますが、これはあくまで個別のループに個別の最適化を施す場合には問題がない、というだけです。</p>
+<p>例えば、<code>outerL</code> と <code>innerL</code> を見比べてからループネスト全体に何らかの操作を施したい場合はどうしればいいのでしょうか。
+（単純な解決法：<code>innerL</code> を無視して <code>outerL</code> の順番がやってきたらループネスト全体を見渡せば良い；
+問題：<code>innerL</code> を飛ばすためのコードが必要になる。そもそも Loop Pass に渡される <code>Loop</code> オブジェクトはループネストを扱うのには適していない）</p>
+<p>ここで LoopNest Pass の登場です。</p>
+<p>Loop Pass Pipeline <em>Y</em> に、Loop Pass <em>A, B</em> と LoopNest Pass <em>C</em> が順番に並んでいるとします。
+ここで、<em>Y</em> に先程のループを流してみます。</p>
+<p>すると、まず <code>innerL</code> が <em>A, B</em> によって最適化され、その後に <code>outerL</code> が <em>A, B, <strong>C</strong></em> によって最適化されます。
+要するに、<strong>LoopNest Pass は最外ループにのみ適用される</strong>のです。
+しかも、LoopNest Pass は <code>Loop</code> オブジェクトではなく <code>LoopNest</code> オブジェクトを受けとります。
+これにより、Loop Pass として実装する場合と比べて、ループネストを扱いやすくなります。</p>
+<h2 id="もうちょっと具体例-loop-interchange">もうちょっと具体例: loop-interchange</h2>
+<p>以下のようなループネストを考えます。</p>
+<pre><code>for k = 0, 10:
+  for i = 0, 10:
+    for j = 0, 10:
+      A[i, j, k] += B[i, j, k]
+</code></pre><p>見るからに何かがおかしいですよね？最外ループの添字が <code>k</code> となっていますが、これではキャッシュに当たる気がしません。</p>
+<p>このようなループネストには、それぞれのループの順番を入れ替える loop-interchange という最適化を施すと良いです。</p>
+<pre><code># loop-interchange 後
+for i = 0, 10:
+  for j = 0, 10:
+    for k = 0, 10:
+      A[i, j, k] += B[i, j, k]
+</code></pre><p>このような最適化は、ループネスト全体を見渡す必要があります。そのため LoopNest Pass として実装すると良いです。
+（でないと、for-k を飛ばして・for-j を飛ばして、という処理を個々の Loop Pass 内に記述する必要が出てきます）</p>
+<h1 id="何を学んだのか">何を学んだのか</h1>
+<p>LLVM という大きな OSS プロジェクトに貢献する中で、色々なことを学びました。</p>
+<p>例えば、私はいつも大きなソースツリーを見ると上から下まで読みたくなるのですが、
+そんなことを LLVM に対してしていたら一生が終わってしまいます。
+なので今回の GSoC ではそんなことはせず、自分の担当する部分に関連する部分だけを集中的に読みました。
+大きなソフトウェアはその一部分のみを理解しているだけで十分（であることが望ましい…）なんだと実感しました。</p>
+<p>もう一つ、痛感したことがあります。
+それは、コーディング能力は確かに重要だけれども、それ以上にコミュニケーション能力が重要だということです。
+パッチを投げる、レビューを受ける、変更の意図を説明する…、すべての過程で（英語での）わかりやすい説明を求められます。
+自分の意図を正確に伝えられないと、相手に無駄な時間を取らせてしまうこともあります。</p>
+<p>英語でのテキスト（&amp;できれば口頭での）コミュニケーション能力は身につけておかないと痛い目に合います。</p>
+<h1 id="どうでもいいこと一覧">どうでもいいこと一覧</h1>
+<ul>
+<li>メンター２人（１人とはあんまり話さなかったけど）、プロジェクトメンバー２人、私の合計５人でプロジェクトを進めた
+<ul>
+<li>私とプロジェクトメンバーの１人がほとんどのパッチを作ったと思う</li>
+</ul>
+</li>
+<li>連絡は Discord で行った</li>
+<li>毎週 Webex でミーティングを行った。口頭での英語にほんの少しだけ慣れた。</li>
+<li>LLVM のコミット権をもらえて嬉しかった</li>
+<li>2700USD 貰った （<a href="https://developers.google.com/open-source/gsoc/help/student-stipends">国ごとに貰える量は違うみたい</a>）</li>
+<li>お金は <a href="https://www.payoneer.com/ja/">Payoneer</a>ってやつで受け取った</li>
+<li>CI が落ちると怖い（メールが来る）</li>
+<li>Address/Memory Sanitizer は偉い</li>
+<li>初めて master にコミットしたときは手が震えた
+<ul>
+<li>そしてそのコミットを何度も revert する羽目になって辛かった</li>
+</ul>
+</li>
+</ul>
+<p>以上。来年以降に参加する人の助けになればいいなあ。</p>
+<p>（質問があれば twitter@uint256_t へ DM とか投げてください）</p>
+]]></content>
+        </item>
         
         <item>
             <title>GSoC 2021 の First Evaluation に通りました</title>
