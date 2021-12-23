@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dnn on Hello</title>
+    <link>https://maekawatoshiki.github.io/tags/dnn/</link>
+    <description>Recent content in dnn on Hello</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 23 Dec 2021 19:47:09 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/tags/dnn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DNN雑記</title>
+      <link>https://maekawatoshiki.github.io/posts/ml/</link>
+      <pubDate>Thu, 23 Dec 2021 19:47:09 +0900</pubDate>
+      
+      <guid>https://maekawatoshiki.github.io/posts/ml/</guid>
+      <description>この記事は何？  いきなりDeep Neural Networkの世界に足を踏み入れた人がいろいろ語るだけ あまり細かい話はしない  丸と矢印 深層学習だとかニューラルネットワーク（以下NN）だとか検索すると、以下のような画像をよく見かけると思う。全結合層があって、多分最後の方に活性化関数が挟んである。
+入力にデータを流し込んであげると出力を得ることができる、とてもシンプルな構造をしている。
+丸と矢印と… しかし、近年実際に使われているDNNはこれほど簡単な構造はしていない。
+例えば、以下は文字認識を行うモデル(MNIST1)をONNX2形式としてエクスポートしてnetron3で表示したもの。
+一目瞭然だが、先ほどの画像のNNとはだいぶ見た目が違う。丸くないし、いや、でも矢印はある。 丸の代わりに角丸の四角が現れた。矢印の横には謎の数字の列が書いてある。
+ぱっと見、グラフ（DAG）であることはわかると思う。
+軽く説明すると以下の通り。
+ 角丸の四角: 命令（Operator; ONNX用語？真に受けないでほしい）。命令はデータに対してなんらかの操作を行う。  例えば、上の画像中の Relu はデータの一要素づつ（数値一つ一つ）に ReLU4 を適用する 一方、Conv はデータ全体に対して畳み込み5 を行う  命令ごとに、一要素づつ(element-wise)に操作を行なうのか、部分的に({layer,channel,row,&amp;hellip;}-wise)操作を行なうのか違ってややこしい     矢印: データの流れる方向。データというのは画像だったり文字列だったり… 謎の数字の列: テンソル6のshape。要するにデータがどのような形（のテンソル）なのかを表す。  なんと静的じゃないこともある。画像中ではすべての矢印の横に数字の列（＝shape)が書いてあるが、これは運がいいだけ。shape inference（=shapeを推論する）しても静的に shape が決まらないこともある。でもそのおかげで文字列とか複数のbounding boxを扱えたりする。    より複雑なモデル（画像を分類したりとか）は、もちろんより複雑な構造をしている。netron で表示すると重い。
+グラフを計算機が理解するまで DNN はネットワークであり、グラフであり、そのままでは計算機上で動かない。
+PyTorch, TensorFlow, Chainer, &amp;hellip; などの機械学習フレームワークは、設計思想の差こそあれ結局はNNモデルを計算機上で実際に動作させるためのものである。そこにはコンパイラと呼べるものが必ずある。いわゆる機械学習コンパイラである。
+機械学習コンパイラのやることは、簡単に言えば以下の通りである。
+ NNモデルのグラフをより簡単な表現に変換する。命令（ノード）同士をくっつけたり分離したり、大胆に順番を入れ替えたり。（数学的に正しくなくてもいい！） 命令の実行順序を決定する。動的に変える場合もある。グラフ中には並列に実行できる命令が含まれるので気を付ける。 CPU, GPU, 独自アクセラレータなどごとに命令列を機械語へ変換。アセンブリを吐いたり、（サボって）LLVMとかOpenCLとかでカーネル吐いたり。CUDAで頑張る？  このあと、CPU, GPU, &amp;hellip; などが複雑に絡み合うヘテロジニアスな環境でどうやって高速にデータを受け渡すか、などの話もあるけどコンパイラの役割じゃない気がしたので省略。</description>
+    </item>
+    
+  </channel>
+</rss>

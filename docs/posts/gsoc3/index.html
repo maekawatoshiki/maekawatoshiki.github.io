@@ -31,7 +31,7 @@ LLVM?  The LLVM Project is a collection of modular and reusable compiler and too
 
 
 
-<link rel="stylesheet" href="/main.d7bdd8ee18bfbf4c605488a7e5b1b92cd980dfeed2bdaeab4dd5e931a7a78bc0.css">
+<link rel="stylesheet" href="/main.de188b3201233c251f4fd6306dbd2cb41e408fb8846c09781b2925de7df5025c.css">
 
 
 
@@ -45,8 +45,8 @@ LLVM?  The LLVM Project is a collection of modular and reusable compiler and too
 LLVM?  The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
  clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
 （以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）
-テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。"><meta itemprop="datePublished" content="2021-09-09T00:08:57&#43;09:00" />
-<meta itemprop="dateModified" content="2021-09-09T00:08:57&#43;09:00" />
+テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。"><meta itemprop="datePublished" content="2021-09-09T00:08:57+09:00" />
+<meta itemprop="dateModified" content="2021-09-09T00:08:57+09:00" />
 <meta itemprop="wordCount" content="320"><meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
 <meta itemprop="keywords" content="gsoc," />
 <meta name="twitter:card" content="summary_large_image"/>
@@ -74,8 +74,8 @@ LLVM?  The LLVM Project is a collection of modular and reusable compiler and too
 テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://maekawatoshiki.github.io/posts/gsoc3/" /><meta property="og:image" content="https://maekawatoshiki.github.io/"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-09T00:08:57&#43;09:00" />
-<meta property="article:modified_time" content="2021-09-09T00:08:57&#43;09:00" /><meta property="og:site_name" content="Hello" />
+<meta property="article:published_time" content="2021-09-09T00:08:57+09:00" />
+<meta property="article:modified_time" content="2021-09-09T00:08:57+09:00" /><meta property="og:site_name" content="Hello" />
 
 
 
@@ -206,7 +206,7 @@ LLVM?  The LLVM Project is a collection of modular and reusable compiler and too
 <h2 id="loopnest-pass-と-loop-pass-の違い">LoopNest Pass と Loop Pass の違い</h2>
 <p>Loop Pass Pipeline <em>X</em> に、Loop Pass <em>A, B</em> が順番に並んでいるとします。
 ここで、<em>X</em> に以下のループを流してみます。（<em>X</em> に <code>outerL</code> に対応する <code>Loop</code> オブジェクトを渡す、の意）</p>
-<pre><code>outerL:
+<pre tabindex="0"><code>outerL:
   innerL:
     body
 </code></pre><p>すると、まず <code>innerL</code> が <em>A, B</em> によって最適化され、その後に <code>outerL</code> が <em>A, B</em> によって最適化されます。
@@ -224,13 +224,13 @@ LLVM?  The LLVM Project is a collection of modular and reusable compiler and too
 これにより、Loop Pass として実装する場合と比べて、ループネストを扱いやすくなります。</p>
 <h2 id="もうちょっと具体例-loop-interchange">もうちょっと具体例: loop-interchange</h2>
 <p>以下のようなループネストを考えます。</p>
-<pre><code>for k = 0, 10:
+<pre tabindex="0"><code>for k = 0, 10:
   for i = 0, 10:
     for j = 0, 10:
       A[i, j, k] += B[i, j, k]
 </code></pre><p>見るからに何かがおかしいですよね？最外ループの添字が <code>k</code> となっていますが、これではキャッシュに当たる気がしません。</p>
 <p>このようなループネストには、それぞれのループの順番を入れ替える loop-interchange という最適化を施すと良いです。</p>
-<pre><code># loop-interchange 後
+<pre tabindex="0"><code># loop-interchange 後
 for i = 0, 10:
   for j = 0, 10:
     for k = 0, 10:
@@ -323,6 +323,13 @@ for i = 0, 10:
         </div>
 
         <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://maekawatoshiki.github.io/posts/ml/">
+                <span class="button__icon">←</span>
+                <span class="button__text">DNN雑記</span>
+              </a>
+            </span>
           
 
           

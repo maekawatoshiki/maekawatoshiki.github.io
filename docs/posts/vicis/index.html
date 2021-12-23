@@ -36,7 +36,7 @@ use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args:
 
 
 
-<link rel="stylesheet" href="/main.d7bdd8ee18bfbf4c605488a7e5b1b92cd980dfeed2bdaeab4dd5e931a7a78bc0.css">
+<link rel="stylesheet" href="/main.de188b3201233c251f4fd6306dbd2cb41e408fb8846c09781b2925de7df5025c.css">
 
 
 
@@ -55,8 +55,8 @@ RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s 
 cargo new viewer --bin # viewerというプロジェクトにします プロジェクトを作ったら、Cargo.tomlにVicisを追加しておきましょう。
 ... [dependencies] vicis = { path = &quot;/path/to/vicis&quot; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&hellip;)
 src/main.rsを以下のように変更します。
-use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm."><meta itemprop="datePublished" content="2021-05-02T22:04:08&#43;09:00" />
-<meta itemprop="dateModified" content="2021-05-02T22:04:08&#43;09:00" />
+use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm."><meta itemprop="datePublished" content="2021-05-02T22:04:08+09:00" />
+<meta itemprop="dateModified" content="2021-05-02T22:04:08+09:00" />
 <meta itemprop="wordCount" content="274"><meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
 <meta itemprop="keywords" content="untagged," />
 <meta name="twitter:card" content="summary_large_image"/>
@@ -94,8 +94,8 @@ src/main.rsを以下のように変更します。
 use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://maekawatoshiki.github.io/posts/vicis/" /><meta property="og:image" content="https://maekawatoshiki.github.io/"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-05-02T22:04:08&#43;09:00" />
-<meta property="article:modified_time" content="2021-05-02T22:04:08&#43;09:00" /><meta property="og:site_name" content="Hello" />
+<meta property="article:published_time" content="2021-05-02T22:04:08+09:00" />
+<meta property="article:modified_time" content="2021-05-02T22:04:08+09:00" /><meta property="og:site_name" content="Hello" />
 
 
 
@@ -202,15 +202,15 @@ use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args:
 この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。</p>
 <h2 id="とりあえずプロジェクトを作る">とりあえずプロジェクトを作る</h2>
 <p>記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。</p>
-<pre><code>cargo new viewer --bin # viewerというプロジェクトにします
+<pre tabindex="0"><code>cargo new viewer --bin # viewerというプロジェクトにします
 </code></pre><p>プロジェクトを作ったら、<code>Cargo.toml</code>にVicisを追加しておきましょう。</p>
-<pre><code>...
+<pre tabindex="0"><code>...
 [dependencies]
 vicis = { path = &quot;/path/to/vicis&quot; }
 </code></pre><h2 id="irを読み込む">IRを読み込む</h2>
 <p>Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&hellip;)</p>
 <p><code>src/main.rs</code>を以下のように変更します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::{env, fs::read_to_string};
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::{env, fs::read_to_string};
 <span style="color:#66d9ef">use</span> vicis::ir::module;
 
 <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
@@ -219,25 +219,25 @@ vicis = { path = &quot;/path/to/vicis&quot; }
     <span style="color:#66d9ef">let</span> asm <span style="color:#f92672">=</span> read_to_string(file).expect(<span style="color:#e6db74">&#34;failed to read .ll file&#34;</span>);
 
     <span style="color:#66d9ef">let</span> module <span style="color:#f92672">=</span> module::parse_assembly(asm.as_str()).expect(<span style="color:#e6db74">&#34;failed to parse module&#34;</span>);
-    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{:?}&#34;</span>, module);
+    println!(<span style="color:#e6db74">&#34;{:?}&#34;</span>, module);
 }
 </code></pre></div><p>これだけで、コマンドライン引数として渡した <code>*.ll</code>ファイルの中身をパースして、内部表現としての<code>Module</code>に変換できます。
 さっそく動かしてみましょう。</p>
 <h2 id="hello-world">Hello World</h2>
 <p>RustでHello Worldを書いて、そのIRを見てましょう。<code>hello.rs</code>というファイルを用意します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// hello.rs
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// hello.rs
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
-	println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>)
+	println!(<span style="color:#e6db74">&#34;hello world&#34;</span>)
 }
 </code></pre></div><p>そして、<code>rustc</code>でコンパイルします。IRを出力する点に注意。</p>
-<pre><code>rustc +stable hello.rs -o hello.ll --emit llvm-ir
+<pre tabindex="0"><code>rustc +stable hello.rs -o hello.ll --emit llvm-ir
 </code></pre><p>できあがった <code>hello.ll</code> を引数として渡してみましょう。</p>
-<pre><code>cargo run hello.ll 
+<pre tabindex="0"><code>cargo run hello.ll 
 </code></pre><p>おそらくとっても長いIRが出力されたと思います。成功です。</p>
 <h2 id="解析">解析</h2>
 <p>長いIRを目grepするのは大変なので、関数名と関数の引数の数を出力するパスを作ってみます。</p>
 <p><code>main.rs</code>を以下のように修正します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::{any::Any, env, fs::read_to_string};
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::{any::Any, env, fs::read_to_string};
 <span style="color:#66d9ef">use</span> vicis::{
     ir::{function, module},
     pass::{AnalysisPass, PassManager},
@@ -257,8 +257,8 @@ vicis = { path = &quot;/path/to/vicis&quot; }
 <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FunctionPrinterPass</span>;
 
 <span style="color:#66d9ef">impl</span> AnalysisPass<span style="color:#f92672">&lt;</span>function::Function<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">for</span> FunctionPrinterPass {
-    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">run_on</span>(<span style="color:#f92672">&amp;</span>self, func: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">function</span>::Function, _result: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">mut</span> Box<span style="color:#f92672">&lt;</span>dyn Any<span style="color:#f92672">&gt;</span>) {
-        println<span style="color:#f92672">!</span>(
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">run_on</span>(<span style="color:#f92672">&amp;</span>self, func: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">function</span>::Function, _result: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">mut</span> Box<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">dyn</span> Any<span style="color:#f92672">&gt;</span>) {
+        println!(
             <span style="color:#e6db74">&#34;Visit: {} (takes {} args)&#34;</span>,
             func.name(),
             func.params().len()
@@ -266,7 +266,7 @@ vicis = { path = &quot;/path/to/vicis&quot; }
     }
 }
 </code></pre></div><p>パスマネージャとかの実装がまだまだ適当です。それはさておいて、実行すると以下のように表示されるはずです。</p>
-<pre><code>Visit: _ZN3std10sys_common9backtrace28__rust_begin_short_backtrace17h2840e0051141d5fcE (takes 1 args)
+<pre tabindex="0"><code>Visit: _ZN3std10sys_common9backtrace28__rust_begin_short_backtrace17h2840e0051141d5fcE (takes 1 args)
 Visit: _ZN3std2rt10lang_start17h2fcf2a95611b6d93E (takes 3 args)
 Visit: &quot;_ZN3std2rt10lang_start28_$u7b$$u7b$closure$u7d$$u7d$17h642830c734a0a093E&quot; (takes 1 args)
 Visit: _ZN3std3sys4unix7process14process_common8ExitCode6as_i3217he311503d36a1dd10E (takes 1 args)
