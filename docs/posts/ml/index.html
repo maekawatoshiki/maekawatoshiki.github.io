@@ -55,9 +55,14 @@ PyTorch, TensorFlow, Chainer, &amp;hellip; などの機械学習フレームワ�
 グラフを計算機が理解するまで DNN はネットワークであり、グラフであり、そのままでは計算機上で動かない。
 PyTorch, TensorFlow, Chainer, &hellip; などの機械学習フレームワークは、設計思想の差こそあれ結局はNNモデルを計算機上で実際に動作させるためのものである。そこにはコンパイラと呼べるものが必ずある。いわゆる機械学習コンパイラである。
 機械学習コンパイラのやることは、簡単に言えば以下の通りである。
- NNモデルのグラフをより簡単な表現に変換する。命令（ノード）同士をくっつけたり分離したり、大胆に順番を入れ替えたり。（数学的に正しくなくてもいい！） 命令の実行順序を決定する。動的に変える場合もある。グラフ中には並列に実行できる命令が含まれるので気を付ける。 CPU, GPU, 独自アクセラレータなどごとに命令列を機械語へ変換。アセンブリを吐いたり、（サボって）LLVMとかOpenCLとかでカーネル吐いたり。CUDAで頑張る？  このあと、CPU, GPU, &hellip; などが複雑に絡み合うヘテロジニアスな環境でどうやって高速にデータを受け渡すか、などの話もあるけどコンパイラの役割じゃない気がしたので省略。"><meta itemprop="datePublished" content="2021-12-23T19:47:09+09:00" />
-<meta itemprop="dateModified" content="2021-12-23T19:47:09+09:00" />
-<meta itemprop="wordCount" content="76"><meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
+ NNモデルのグラフをより簡単な表現に変換する。命令（ノード）同士をくっつけたり分離したり、大胆に順番を入れ替えたり。（数学的に正しくなくてもいい！） 命令の実行順序を決定する。動的に変える場合もある。グラフ中には並列に実行できる命令が含まれるので気を付ける。 CPU, GPU, 独自アクセラレータなどごとに命令列を機械語へ変換。アセンブリを吐いたり、（サボって）LLVMとかOpenCLとかでカーネル吐いたり。CUDAで頑張る？  このあと、CPU, GPU, &hellip; などが複雑に絡み合うヘテロジニアスな環境でどうやって高速にデータを受け渡すか、などの話もあるけどコンパイラの役割じゃない気がしたので省略。">
+<meta itemprop="datePublished" content="2021-12-23T19:47:09&#43;09:00" />
+<meta itemprop="dateModified" content="2021-12-23T19:47:09&#43;09:00" />
+<meta itemprop="wordCount" content="82">
+<meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
+
+
+
 <meta itemprop="keywords" content="dnn," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://maekawatoshiki.github.io/"/>
@@ -93,10 +98,10 @@ PyTorch, TensorFlow, Chainer, &hellip; などの機械学習フレームワー�
 機械学習コンパイラのやることは、簡単に言えば以下の通りである。
  NNモデルのグラフをより簡単な表現に変換する。命令（ノード）同士をくっつけたり分離したり、大胆に順番を入れ替えたり。（数学的に正しくなくてもいい！） 命令の実行順序を決定する。動的に変える場合もある。グラフ中には並列に実行できる命令が含まれるので気を付ける。 CPU, GPU, 独自アクセラレータなどごとに命令列を機械語へ変換。アセンブリを吐いたり、（サボって）LLVMとかOpenCLとかでカーネル吐いたり。CUDAで頑張る？  このあと、CPU, GPU, &hellip; などが複雑に絡み合うヘテロジニアスな環境でどうやって高速にデータを受け渡すか、などの話もあるけどコンパイラの役割じゃない気がしたので省略。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://maekawatoshiki.github.io/posts/ml/" /><meta property="og:image" content="https://maekawatoshiki.github.io/"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://maekawatoshiki.github.io/posts/ml/" />
+<meta property="og:image" content="https://maekawatoshiki.github.io/"/>
 <meta property="article:published_time" content="2021-12-23T19:47:09+09:00" />
 <meta property="article:modified_time" content="2021-12-23T19:47:09+09:00" /><meta property="og:site_name" content="Hello" />
-
 
 
 
@@ -245,22 +250,22 @@ PyTorch, TensorFlow, Chainer, &hellip; などの機械学習フレームワー�
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p><a href="https://ja.wikipedia.org/wiki/MNIST%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">MNISTデータセット</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://ja.wikipedia.org/wiki/MNIST%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">MNISTデータセット</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p><a href="https://onnx.ai/">Open Neural Network Exchange</a> の略。ここでは ONNX の定める、NNのモデルを表現するためのフォーマットを指す。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://onnx.ai/">Open Neural Network Exchange</a> の略。ここでは ONNX の定める、NNのモデルを表現するためのフォーマットを指す。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p><a href="https://github.com/lutzroeder/netron">netron</a>。NNのモデルを可視化してくれる。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://github.com/lutzroeder/netron">netron</a>。NNのモデルを可視化してくれる。 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p><a href="https://ja.wikipedia.org/wiki/%E6%AD%A3%E8%A6%8F%E5%8C%96%E7%B7%9A%E5%BD%A2%E9%96%A2%E6%95%B0">ReLU</a>。角が尖ってる。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://ja.wikipedia.org/wiki/%E6%AD%A3%E8%A6%8F%E5%8C%96%E7%B7%9A%E5%BD%A2%E9%96%A2%E6%95%B0">ReLU</a>。角が尖ってる。 <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:5" role="doc-endnote">
-<p><a href="https://ja.wikipedia.org/wiki/%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF">Convolution</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://ja.wikipedia.org/wiki/%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF">Convolution</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:6" role="doc-endnote">
-<p>行列は2階のテンソル。要するに高次元の行列だと思えばわかりやすい。 <a href="https://qiita.com/enoughspacefor/items/66982f595e2c71502062#%E8%B3%87%E6%96%993tensor">これがわかりやすい？</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>行列は2階のテンソル。要するに高次元の行列だと思えばわかりやすい。 <a href="https://qiita.com/enoughspacefor/items/66982f595e2c71502062#%E8%B3%87%E6%96%993tensor">これがわかりやすい？</a> <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -289,7 +294,7 @@ PyTorch, TensorFlow, Chainer, &hellip; などの機械学習フレームワー�
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        76 Words
+        82 Words
       </p>
 
       <p>
@@ -344,7 +349,7 @@ PyTorch, TensorFlow, Chainer, &hellip; などの機械学習フレームワー�
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2021</span>
+            <span>&copy; 2022</span>
             
             <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span><span><a href="https://maekawatoshiki.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
         </div>
@@ -364,7 +369,7 @@ PyTorch, TensorFlow, Chainer, &hellip; などの機械学習フレームワー�
 
 
 
-<script type="text/javascript" src="/bundle.min.2ce64ea6ea44a72b13dd812fc2eb5cca3efe878cce258a47c137c17edf46e0602a05e422b618a5b80b5939c731b7a293351c2f2222a21f6ee27e54a8448dd20e.js" integrity="sha512-LOZOpupEpysT3YEvwutcyj7&#43;h4zOJYpHwTfBft9G4GAqBeQithiluAtZOccxt6KTNRwvIiKiH27iflSoRI3SDg=="></script>
+<script type="text/javascript" src="/bundle.min.af435e44374f1e99a669ea8cd5bb9a2fceed80588941a451bfddb66b86a67c9f40b0f417e9543a763f809aa7e9300d7b1d69bf99615810ba02ac70396d50fad5.js" integrity="sha512-r0NeRDdPHpmmaeqM1buaL87tgFiJQaRRv922a4amfJ9AsPQX6VQ6dj&#43;AmqfpMA17HWm/mWFYELoCrHA5bVD61Q=="></script>
 
 
 
