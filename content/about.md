@@ -29,6 +29,7 @@ I strongly love systems programming, especially making compilers.
 
 - [Security Camp](https://www.security-camp.or.jp/camp/index.html) 2018
 - [Google Summer of Code 2021](https://summerofcode.withgoogle.com/archive/2021/projects/6011558420807680)
+- [Security Camp](https://www.security-camp.or.jp/camp/index.html) 2022 Instructor
 
 # $ wishlist
 

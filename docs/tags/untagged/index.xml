@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 02 May 2021 22:04:08 +0900</lastBuildDate>
-    
-	<atom:link href="https://maekawatoshiki.github.io/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 02 May 2021 22:04:08 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Play with LLVM-IR, without LLVM</title>
       <link>https://maekawatoshiki.github.io/posts/vicis/</link>

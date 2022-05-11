@@ -56,14 +56,15 @@ cargo new viewer --bin # viewerというプロジェクトにします プロジ
 ... [dependencies] vicis = { path = &quot;/path/to/vicis&quot; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&hellip;)
 src/main.rsを以下のように変更します。
 use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm.">
-<meta itemprop="datePublished" content="2021-05-02T22:04:08&#43;09:00" />
-<meta itemprop="dateModified" content="2021-05-02T22:04:08&#43;09:00" />
+<meta itemprop="datePublished" content="2021-05-02T22:04:08+09:00" />
+<meta itemprop="dateModified" content="2021-05-02T22:04:08+09:00" />
 <meta itemprop="wordCount" content="274">
 <meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
 
 
 
 <meta itemprop="keywords" content="untagged," />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://maekawatoshiki.github.io/"/>
 
@@ -108,7 +109,7 @@ use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args:
 
 
 
-    <meta property="article:published_time" content="2021-05-02 22:04:08 &#43;0900 JST" />
+    <meta property="article:published_time" content="2021-05-02 22:04:08 &#43;0900 &#43;0900" />
 
 
 
@@ -327,7 +328,7 @@ Visit: main (takes 2 args)
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021-05-02 22:04
+          2021-05-02 13:04
         
 
          
