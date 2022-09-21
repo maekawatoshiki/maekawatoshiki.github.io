@@ -14,13 +14,14 @@
       <pubDate>Thu, 09 Sep 2021 00:08:57 +0900</pubDate>
       
       <guid>https://maekawatoshiki.github.io/posts/gsoc3/</guid>
-      <description>TL;DR  Google Summer of Code 2021 を終えました  First, Final Evaluation ともに通りました、という意味   LLVM むずかしい 成果  Google Summer of Code とは 前に書いた記事を参照してください。
+      <description>TL;DR Google Summer of Code 2021 を終えました First, Final Evaluation ともに通りました、という意味 LLVM むずかしい 成果 Google Summer of Code とは 前に書いた記事を参照してください。
 何をしたのか 2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。 （まだマージされていないパッチがあるんですけどね&amp;hellip;）
 正確には、コーディングをはじめたのは６月くらいからみたいです。
-LLVM?  The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
- clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
+LLVM? The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
+clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
 （以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）
-テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。</description>
+テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。
+Pass というと、Module Pass, Function Pass, Loop Pass, &amp;hellip; など色々あります。 その中に、最近追加されたばかりの LoopNest Pass (New Pass Manager でのみ動作) というものがあります。 これは、ネストしたループを扱うための Pass なのですが、 まだほとんど使われていません（でした）。 私がこの夏にやったことは、LoopNest Pass として実装されている Pass を増やすことです。</description>
     </item>
     
     <item>
@@ -29,7 +30,7 @@ LLVM?  The LLVM Project is a collection of modular and reusable compiler and too
       <pubDate>Sun, 25 Jul 2021 01:16:16 +0900</pubDate>
       
       <guid>https://maekawatoshiki.github.io/posts/gsoc2/</guid>
-      <description>TL;DR  Google Summer of Code 2021 の First Evaluation に通りました 2700USD * 0.45 = 1215USD = 13万円くらい貰えました  詳しいこと あとで書きます</description>
+      <description>TL;DR Google Summer of Code 2021 の First Evaluation に通りました 2700USD * 0.45 = 1215USD = 13万円くらい貰えました 詳しいこと あとで書きます</description>
     </item>
     
     <item>
@@ -38,11 +39,12 @@ LLVM?  The LLVM Project is a collection of modular and reusable compiler and too
       <pubDate>Wed, 19 May 2021 15:56:20 +0900</pubDate>
       
       <guid>https://maekawatoshiki.github.io/posts/gsoc1/</guid>
-      <description>TL;DR  Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい  Google Summer of Codeとは  Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
+      <description>TL;DR Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい Google Summer of Codeとは Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
 (https://summerofcode.withgoogle.com/)
- Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h+/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
+Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h+/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
 Proposal採択までの流れ 3月の初めから、以下の作業を始めました。
-参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。</description>
+参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。
+参加プロジェクトを選ぶ 各団体のほぼすべてが、学生向けのプロジェクト一覧を公開しているはずです。LLVM ならここ。 興味のあるプロジェクトは、初めのうちは複数個選んでおいた方がいいと思います。後になって、選んだプロジェクトが想像以上に難しいものだと判明すると、Proposalを書くのが大変ですし、不必要に自分を追い込んでしまいます。</description>
     </item>
     
   </channel>

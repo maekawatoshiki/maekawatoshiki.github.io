@@ -23,7 +23,7 @@ RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s 
 というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
 とりあえずプロジェクトを作る 記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。
 cargo new viewer --bin # viewerというプロジェクトにします プロジェクトを作ったら、Cargo.tomlにVicisを追加しておきましょう。
-... [dependencies] vicis = { path = &amp;quot;/path/to/vicis&amp;quot; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&amp;hellip;)
+... [dependencies] vicis = { path = &amp;#34;/path/to/vicis&amp;#34; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&amp;hellip;)
 src/main.rsを以下のように変更します。
 use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&amp;lt;String&amp;gt; = env::args().collect(); let file = &amp;amp;args[1]; let asm = read_to_string(file).expect(&amp;#34;failed to read .ll file&amp;#34;); let module = module::parse_assembly(asm.</description>
     </item>

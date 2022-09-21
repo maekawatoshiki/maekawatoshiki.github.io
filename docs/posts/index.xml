@@ -15,18 +15,23 @@
             <pubDate>Thu, 23 Dec 2021 19:47:09 +0900</pubDate>
             
             <guid>https://maekawatoshiki.github.io/posts/ml/</guid>
-            <description>この記事は何？  いきなりDeep Neural Networkの世界に足を踏み入れた人がいろいろ語るだけ あまり細かい話はしない  丸と矢印 深層学習だとかニューラルネットワーク（以下NN）だとか検索すると、以下のような画像をよく見かけると思う。全結合層があって、多分最後の方に活性化関数が挟んである。
+            <description>この記事は何？ いきなりDeep Neural Networkの世界に足を踏み入れた人がいろいろ語るだけ あまり細かい話はしない 丸と矢印 深層学習だとかニューラルネットワーク（以下NN）だとか検索すると、以下のような画像をよく見かけると思う。全結合層があって、多分最後の方に活性化関数が挟んである。
 入力にデータを流し込んであげると出力を得ることができる、とてもシンプルな構造をしている。
 丸と矢印と… しかし、近年実際に使われているDNNはこれほど簡単な構造はしていない。
 例えば、以下は文字認識を行うモデル(MNIST1)をONNX2形式としてエクスポートしてnetron3で表示したもの。
 一目瞭然だが、先ほどの画像のNNとはだいぶ見た目が違う。丸くないし、いや、でも矢印はある。 丸の代わりに角丸の四角が現れた。矢印の横には謎の数字の列が書いてある。
 ぱっと見、グラフ（DAG）であることはわかると思う。
 軽く説明すると以下の通り。
- 角丸の四角: 命令（Operator; ONNX用語？真に受けないでほしい）。命令はデータに対してなんらかの操作を行う。  例えば、上の画像中の Relu はデータの一要素づつ（数値一つ一つ）に ReLU4 を適用する 一方、Conv はデータ全体に対して畳み込み5 を行う  命令ごとに、一要素づつ(element-wise)に操作を行なうのか、部分的に({layer,channel,row,&amp;hellip;}-wise)操作を行なうのか違ってややこしい     矢印: データの流れる方向。データというのは画像だったり文字列だったり… 謎の数字の列: テンソル6のshape。要するにデータがどのような形（のテンソル）なのかを表す。  なんと静的じゃないこともある。画像中ではすべての矢印の横に数字の列（＝shape)が書いてあるが、これは運がいいだけ。shape inference（=shapeを推論する）しても静的に shape が決まらないこともある。でもそのおかげで文字列とか複数のbounding boxを扱えたりする。    より複雑なモデル（画像を分類したりとか）は、もちろんより複雑な構造をしている。netron で表示すると重い。
+角丸の四角: 命令（Operator; ONNX用語？真に受けないでほしい）。命令はデータに対してなんらかの操作を行う。 例えば、上の画像中の Relu はデータの一要素づつ（数値一つ一つ）に ReLU4 を適用する 一方、Conv はデータ全体に対して畳み込み5 を行う 命令ごとに、一要素づつ(element-wise)に操作を行なうのか、部分的に({layer,channel,row,&amp;hellip;}-wise)操作を行なうのか違ってややこしい 矢印: データの流れる方向。データというのは画像だったり文字列だったり… 謎の数字の列: テンソル6のshape。要するにデータがどのような形（のテンソル）なのかを表す。 なんと静的じゃないこともある。画像中ではすべての矢印の横に数字の列（＝shape)が書いてあるが、これは運がいいだけ。shape inference（=shapeを推論する）しても静的に shape が決まらないこともある。でもそのおかげで文字列とか複数のbounding boxを扱えたりする。 より複雑なモデル（画像を分類したりとか）は、もちろんより複雑な構造をしている。netron で表示すると重い。
 グラフを計算機が理解するまで DNN はネットワークであり、グラフであり、そのままでは計算機上で動かない。
 PyTorch, TensorFlow, Chainer, &amp;hellip; などの機械学習フレームワークは、設計思想の差こそあれ結局はNNモデルを計算機上で実際に動作させるためのものである。そこにはコンパイラと呼べるものが必ずある。いわゆる機械学習コンパイラである。
 機械学習コンパイラのやることは、簡単に言えば以下の通りである。
- NNモデルのグラフをより簡単な表現に変換する。命令（ノード）同士をくっつけたり分離したり、大胆に順番を入れ替えたり。（数学的に正しくなくてもいい！） 命令の実行順序を決定する。動的に変える場合もある。グラフ中には並列に実行できる命令が含まれるので気を付ける。 CPU, GPU, 独自アクセラレータなどごとに命令列を機械語へ変換。アセンブリを吐いたり、（サボって）LLVMとかOpenCLとかでカーネル吐いたり。CUDAで頑張る？  このあと、CPU, GPU, &amp;hellip; などが複雑に絡み合うヘテロジニアスな環境でどうやって高速にデータを受け渡すか、などの話もあるけどコンパイラの役割じゃない気がしたので省略。</description>
+NNモデルのグラフをより簡単な表現に変換する。命令（ノード）同士をくっつけたり分離したり、大胆に順番を入れ替えたり。（数学的に正しくなくてもいい！） 命令の実行順序を決定する。動的に変える場合もある。グラフ中には並列に実行できる命令が含まれるので気を付ける。 CPU, GPU, 独自アクセラレータなどごとに命令列を機械語へ変換。アセンブリを吐いたり、（サボって）LLVMとかOpenCLとかでカーネル吐いたり。CUDAで頑張る？ このあと、CPU, GPU, &amp;hellip; などが複雑に絡み合うヘテロジニアスな環境でどうやって高速にデータを受け渡すか、などの話もあるけどコンパイラの役割じゃない気がしたので省略。
+現実 DNN は実際はただのグラフで、そこにデータを流し込んでるだけ。学習時はちょっと違うのかもしれないけど、少なくとも推論時はそう。
+計算機をいかに高速に・効率的に動かすかを考えるのは面白い。けど、これが人工知能って呼ばれてるのをみるとなんか微妙な気持ちになるね。
+（p.s. DNNの量子化の話聞きたい人いるかな？モデルのパラメータ数を減らしたり、モデル自体を小さくコンパクトにする系の話）
+脚注 MNISTデータセット&amp;#160;&amp;#x21a9;&amp;#xfe0e;
+Open Neural Network Exchange の略。ここでは ONNX の定める、NNのモデルを表現するためのフォーマットを指す。&amp;#160;&amp;#x21a9;&amp;#xfe0e;</description>
             <content type="html"><![CDATA[<h1 id="この記事は何">この記事は何？</h1>
 <ul>
 <li>いきなりDeep Neural Networkの世界に足を踏み入れた人がいろいろ語るだけ</li>
@@ -78,29 +83,29 @@ PyTorch, TensorFlow, Chainer, &amp;hellip; などの機械学習フレームワ�
 <p>計算機をいかに高速に・効率的に動かすかを考えるのは面白い。けど、これが人工知能って呼ばれてるのをみるとなんか微妙な気持ちになるね。</p>
 <p>（p.s. DNNの量子化の話聞きたい人いるかな？モデルのパラメータ数を減らしたり、モデル自体を小さくコンパクトにする系の話）</p>
 <h1 id="脚注">脚注</h1>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p><a href="https://ja.wikipedia.org/wiki/MNIST%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">MNISTデータセット</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p><a href="https://ja.wikipedia.org/wiki/MNIST%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">MNISTデータセット</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
-<p><a href="https://onnx.ai/">Open Neural Network Exchange</a> の略。ここでは ONNX の定める、NNのモデルを表現するためのフォーマットを指す。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:2">
+<p><a href="https://onnx.ai/">Open Neural Network Exchange</a> の略。ここでは ONNX の定める、NNのモデルを表現するためのフォーマットを指す。&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
-<p><a href="https://github.com/lutzroeder/netron">netron</a>。NNのモデルを可視化してくれる。 <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:3">
+<p><a href="https://github.com/lutzroeder/netron">netron</a>。NNのモデルを可視化してくれる。&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:4" role="doc-endnote">
-<p><a href="https://ja.wikipedia.org/wiki/%E6%AD%A3%E8%A6%8F%E5%8C%96%E7%B7%9A%E5%BD%A2%E9%96%A2%E6%95%B0">ReLU</a>。角が尖ってる。 <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:4">
+<p><a href="https://ja.wikipedia.org/wiki/%E6%AD%A3%E8%A6%8F%E5%8C%96%E7%B7%9A%E5%BD%A2%E9%96%A2%E6%95%B0">ReLU</a>。角が尖ってる。&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:5" role="doc-endnote">
-<p><a href="https://ja.wikipedia.org/wiki/%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF">Convolution</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:5">
+<p><a href="https://ja.wikipedia.org/wiki/%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF">Convolution</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:6" role="doc-endnote">
-<p>行列は2階のテンソル。要するに高次元の行列だと思えばわかりやすい。 <a href="https://qiita.com/enoughspacefor/items/66982f595e2c71502062#%E8%B3%87%E6%96%993tensor">これがわかりやすい？</a> <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:6">
+<p>行列は2階のテンソル。要するに高次元の行列だと思えばわかりやすい。 <a href="https://qiita.com/enoughspacefor/items/66982f595e2c71502062#%E8%B3%87%E6%96%993tensor">これがわかりやすい？</a>&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 ]]></content>
         </item>
         
@@ -110,13 +115,14 @@ PyTorch, TensorFlow, Chainer, &amp;hellip; などの機械学習フレームワ�
             <pubDate>Thu, 09 Sep 2021 00:08:57 +0900</pubDate>
             
             <guid>https://maekawatoshiki.github.io/posts/gsoc3/</guid>
-            <description>TL;DR  Google Summer of Code 2021 を終えました  First, Final Evaluation ともに通りました、という意味   LLVM むずかしい 成果  Google Summer of Code とは 前に書いた記事を参照してください。
+            <description>TL;DR Google Summer of Code 2021 を終えました First, Final Evaluation ともに通りました、という意味 LLVM むずかしい 成果 Google Summer of Code とは 前に書いた記事を参照してください。
 何をしたのか 2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。 （まだマージされていないパッチがあるんですけどね&amp;hellip;）
 正確には、コーディングをはじめたのは６月くらいからみたいです。
-LLVM?  The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
- clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
+LLVM? The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
+clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
 （以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）
-テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。</description>
+テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。
+Pass というと、Module Pass, Function Pass, Loop Pass, &amp;hellip; など色々あります。 その中に、最近追加されたばかりの LoopNest Pass (New Pass Manager でのみ動作) というものがあります。 これは、ネストしたループを扱うための Pass なのですが、 まだほとんど使われていません（でした）。 私がこの夏にやったことは、LoopNest Pass として実装されている Pass を増やすことです。</description>
             <content type="html"><![CDATA[<h1 id="tldr">TL;DR</h1>
 <ul>
 <li>Google Summer of Code 2021 を終えました
@@ -153,7 +159,7 @@ LLVM?  The LLVM Project is a collection of modular and reusable compiler and too
 <h2 id="loopnest-pass-と-loop-pass-の違い">LoopNest Pass と Loop Pass の違い</h2>
 <p>Loop Pass Pipeline <em>X</em> に、Loop Pass <em>A, B</em> が順番に並んでいるとします。
 ここで、<em>X</em> に以下のループを流してみます。（<em>X</em> に <code>outerL</code> に対応する <code>Loop</code> オブジェクトを渡す、の意）</p>
-<pre><code>outerL:
+<pre tabindex="0"><code>outerL:
   innerL:
     body
 </code></pre><p>すると、まず <code>innerL</code> が <em>A, B</em> によって最適化され、その後に <code>outerL</code> が <em>A, B</em> によって最適化されます。
@@ -171,13 +177,13 @@ LLVM?  The LLVM Project is a collection of modular and reusable compiler and too
 これにより、Loop Pass として実装する場合と比べて、ループネストを扱いやすくなります。</p>
 <h2 id="もうちょっと具体例-loop-interchange">もうちょっと具体例: loop-interchange</h2>
 <p>以下のようなループネストを考えます。</p>
-<pre><code>for k = 0, 10:
+<pre tabindex="0"><code>for k = 0, 10:
   for i = 0, 10:
     for j = 0, 10:
       A[i, j, k] += B[i, j, k]
 </code></pre><p>見るからに何かがおかしいですよね？最外ループの添字が <code>k</code> となっていますが、これではキャッシュに当たる気がしません。</p>
 <p>このようなループネストには、それぞれのループの順番を入れ替える loop-interchange という最適化を施すと良いです。</p>
-<pre><code># loop-interchange 後
+<pre tabindex="0"><code># loop-interchange 後
 for i = 0, 10:
   for j = 0, 10:
     for k = 0, 10:
@@ -226,7 +232,7 @@ for i = 0, 10:
             <pubDate>Sun, 25 Jul 2021 01:16:16 +0900</pubDate>
             
             <guid>https://maekawatoshiki.github.io/posts/gsoc2/</guid>
-            <description>TL;DR  Google Summer of Code 2021 の First Evaluation に通りました 2700USD * 0.45 = 1215USD = 13万円くらい貰えました  詳しいこと あとで書きます</description>
+            <description>TL;DR Google Summer of Code 2021 の First Evaluation に通りました 2700USD * 0.45 = 1215USD = 13万円くらい貰えました 詳しいこと あとで書きます</description>
             <content type="html"><![CDATA[<h1 id="tldr">TL;DR</h1>
 <ul>
 <li>Google Summer of Code 2021 の First Evaluation に通りました</li>
@@ -243,11 +249,12 @@ for i = 0, 10:
             <pubDate>Wed, 19 May 2021 15:56:20 +0900</pubDate>
             
             <guid>https://maekawatoshiki.github.io/posts/gsoc1/</guid>
-            <description>TL;DR  Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい  Google Summer of Codeとは  Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
+            <description>TL;DR Google Summer of Code に提出したProposalが採択されました 晴れてGSoCに参加できることとなりました 参加団体はLLVMです 嬉しい Google Summer of Codeとは Google Summer of Code is a global program focused on bringing more student developers into open source software development. Students work with an open source organization on a 10 week programming project during their break from school.
 (https://summerofcode.withgoogle.com/)
- Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h+/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
+Google Summer of Code は、OSSプロジェクトにメンター付きで参加することができ、さらに Google から報酬ももらえるイベントです。 その名の通り夏（休み）に行われるのですが、アメリカ規準であって、日本の大学などでは普通に授業が行われています。 本来であれば、学部2年生の私にとっては参加が少し厳しいはずでしたが、今年は新型コロナの影響でプロジェクトに取り組む時間の制約が緩くなった (40h/w→17h+/w) ので、思い切って参加してみました。(大学もずっとオンラインで、家にこもりっぱなしですし。)
 Proposal採択までの流れ 3月の初めから、以下の作業を始めました。
-参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。</description>
+参加団体を選ぶ 公式サイトを見れば、様々な団体がGSoCに参加しているとわかります。 私は、ずっと LLVM に貢献したかったので、無論それを選びました。
+参加プロジェクトを選ぶ 各団体のほぼすべてが、学生向けのプロジェクト一覧を公開しているはずです。LLVM ならここ。 興味のあるプロジェクトは、初めのうちは複数個選んでおいた方がいいと思います。後になって、選んだプロジェクトが想像以上に難しいものだと判明すると、Proposalを書くのが大変ですし、不必要に自分を追い込んでしまいます。</description>
             <content type="html"><![CDATA[<h1 id="tldr">TL;DR</h1>
 <ul>
 <li>Google Summer of Code に提出したProposalが採択されました</li>
@@ -307,7 +314,7 @@ RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s 
 というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
 とりあえずプロジェクトを作る 記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。
 cargo new viewer --bin # viewerというプロジェクトにします プロジェクトを作ったら、Cargo.tomlにVicisを追加しておきましょう。
-... [dependencies] vicis = { path = &amp;quot;/path/to/vicis&amp;quot; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&amp;hellip;)
+... [dependencies] vicis = { path = &amp;#34;/path/to/vicis&amp;#34; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&amp;hellip;)
 src/main.rsを以下のように変更します。
 use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&amp;lt;String&amp;gt; = env::args().collect(); let file = &amp;amp;args[1]; let asm = read_to_string(file).expect(&amp;#34;failed to read .ll file&amp;#34;); let module = module::parse_assembly(asm.</description>
             <content type="html"><![CDATA[<h1 id="tldr">TL;DR</h1>
@@ -322,82 +329,82 @@ use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args:
 この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。</p>
 <h2 id="とりあえずプロジェクトを作る">とりあえずプロジェクトを作る</h2>
 <p>記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。</p>
-<pre><code>cargo new viewer --bin # viewerというプロジェクトにします
+<pre tabindex="0"><code>cargo new viewer --bin # viewerというプロジェクトにします
 </code></pre><p>プロジェクトを作ったら、<code>Cargo.toml</code>にVicisを追加しておきましょう。</p>
-<pre><code>...
+<pre tabindex="0"><code>...
 [dependencies]
-vicis = { path = &quot;/path/to/vicis&quot; }
+vicis = { path = &#34;/path/to/vicis&#34; }
 </code></pre><h2 id="irを読み込む">IRを読み込む</h2>
 <p>Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&hellip;)</p>
 <p><code>src/main.rs</code>を以下のように変更します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::{env, fs::read_to_string};
-<span style="color:#66d9ef">use</span> vicis::ir::module;
-
-<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
-    <span style="color:#66d9ef">let</span> args: Vec<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> env::args().collect();
-    <span style="color:#66d9ef">let</span> file <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>args[<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">let</span> asm <span style="color:#f92672">=</span> read_to_string(file).expect(<span style="color:#e6db74">&#34;failed to read .ll file&#34;</span>);
-
-    <span style="color:#66d9ef">let</span> module <span style="color:#f92672">=</span> module::parse_assembly(asm.as_str()).expect(<span style="color:#e6db74">&#34;failed to parse module&#34;</span>);
-    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{:?}&#34;</span>, module);
-}
-</code></pre></div><p>これだけで、コマンドライン引数として渡した <code>*.ll</code>ファイルの中身をパースして、内部表現としての<code>Module</code>に変換できます。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::{env, fs::read_to_string};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> vicis::ir::module;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> args: Vec<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> env::args().collect();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> file <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>args[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> asm <span style="color:#f92672">=</span> read_to_string(file).expect(<span style="color:#e6db74">&#34;failed to read .ll file&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> module <span style="color:#f92672">=</span> module::parse_assembly(asm.as_str()).expect(<span style="color:#e6db74">&#34;failed to parse module&#34;</span>);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;{:?}&#34;</span>, module);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>これだけで、コマンドライン引数として渡した <code>*.ll</code>ファイルの中身をパースして、内部表現としての<code>Module</code>に変換できます。
 さっそく動かしてみましょう。</p>
 <h2 id="hello-world">Hello World</h2>
 <p>RustでHello Worldを書いて、そのIRを見てましょう。<code>hello.rs</code>というファイルを用意します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#75715e">// hello.rs
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
-	println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>)
-}
-</code></pre></div><p>そして、<code>rustc</code>でコンパイルします。IRを出力する点に注意。</p>
-<pre><code>rustc +stable hello.rs -o hello.ll --emit llvm-ir
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">// hello.rs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	println!(<span style="color:#e6db74">&#34;hello world&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>そして、<code>rustc</code>でコンパイルします。IRを出力する点に注意。</p>
+<pre tabindex="0"><code>rustc +stable hello.rs -o hello.ll --emit llvm-ir
 </code></pre><p>できあがった <code>hello.ll</code> を引数として渡してみましょう。</p>
-<pre><code>cargo run hello.ll 
+<pre tabindex="0"><code>cargo run hello.ll 
 </code></pre><p>おそらくとっても長いIRが出力されたと思います。成功です。</p>
 <h2 id="解析">解析</h2>
 <p>長いIRを目grepするのは大変なので、関数名と関数の引数の数を出力するパスを作ってみます。</p>
 <p><code>main.rs</code>を以下のように修正します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::{any::Any, env, fs::read_to_string};
-<span style="color:#66d9ef">use</span> vicis::{
-    ir::{function, module},
-    pass::{AnalysisPass, PassManager},
-};
-
-<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
-    <span style="color:#66d9ef">let</span> args: Vec<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> env::args().collect();
-    <span style="color:#66d9ef">let</span> file <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>args[<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">let</span> asm <span style="color:#f92672">=</span> read_to_string(file).expect(<span style="color:#e6db74">&#34;failed to read .ll file&#34;</span>);
-
-    <span style="color:#66d9ef">let</span> module <span style="color:#f92672">=</span> module::parse_assembly(asm.as_str()).expect(<span style="color:#e6db74">&#34;failed to parse module&#34;</span>);
-    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> pm <span style="color:#f92672">=</span> PassManager::new();
-    pm.add_analysis(FunctionPrinterPass);
-  pm.run_analyses_on_module(<span style="color:#f92672">&amp;</span>module);
-}
-
-<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FunctionPrinterPass</span>;
-
-<span style="color:#66d9ef">impl</span> AnalysisPass<span style="color:#f92672">&lt;</span>function::Function<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">for</span> FunctionPrinterPass {
-    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">run_on</span>(<span style="color:#f92672">&amp;</span>self, func: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">function</span>::Function, _result: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">mut</span> Box<span style="color:#f92672">&lt;</span>dyn Any<span style="color:#f92672">&gt;</span>) {
-        println<span style="color:#f92672">!</span>(
-            <span style="color:#e6db74">&#34;Visit: {} (takes {} args)&#34;</span>,
-            func.name(),
-            func.params().len()
-        );
-    }
-}
-</code></pre></div><p>パスマネージャとかの実装がまだまだ適当です。それはさておいて、実行すると以下のように表示されるはずです。</p>
-<pre><code>Visit: _ZN3std10sys_common9backtrace28__rust_begin_short_backtrace17h2840e0051141d5fcE (takes 1 args)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> std::{any::Any, env, fs::read_to_string};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> vicis::{
+</span></span><span style="display:flex;"><span>    ir::{function, module},
+</span></span><span style="display:flex;"><span>    pass::{AnalysisPass, PassManager},
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> args: Vec<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> env::args().collect();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> file <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>args[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> asm <span style="color:#f92672">=</span> read_to_string(file).expect(<span style="color:#e6db74">&#34;failed to read .ll file&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> module <span style="color:#f92672">=</span> module::parse_assembly(asm.as_str()).expect(<span style="color:#e6db74">&#34;failed to parse module&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> pm <span style="color:#f92672">=</span> PassManager::new();
+</span></span><span style="display:flex;"><span>    pm.add_analysis(FunctionPrinterPass);
+</span></span><span style="display:flex;"><span>  pm.run_analyses_on_module(<span style="color:#f92672">&amp;</span>module);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FunctionPrinterPass</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">impl</span> AnalysisPass<span style="color:#f92672">&lt;</span>function::Function<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">for</span> FunctionPrinterPass {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">run_on</span>(<span style="color:#f92672">&amp;</span>self, func: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">function</span>::Function, _result: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">mut</span> Box<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">dyn</span> Any<span style="color:#f92672">&gt;</span>) {
+</span></span><span style="display:flex;"><span>        println!(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Visit: {} (takes {} args)&#34;</span>,
+</span></span><span style="display:flex;"><span>            func.name(),
+</span></span><span style="display:flex;"><span>            func.params().len()
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>パスマネージャとかの実装がまだまだ適当です。それはさておいて、実行すると以下のように表示されるはずです。</p>
+<pre tabindex="0"><code>Visit: _ZN3std10sys_common9backtrace28__rust_begin_short_backtrace17h2840e0051141d5fcE (takes 1 args)
 Visit: _ZN3std2rt10lang_start17h2fcf2a95611b6d93E (takes 3 args)
-Visit: &quot;_ZN3std2rt10lang_start28_$u7b$$u7b$closure$u7d$$u7d$17h642830c734a0a093E&quot; (takes 1 args)
+Visit: &#34;_ZN3std2rt10lang_start28_$u7b$$u7b$closure$u7d$$u7d$17h642830c734a0a093E&#34; (takes 1 args)
 Visit: _ZN3std3sys4unix7process14process_common8ExitCode6as_i3217he311503d36a1dd10E (takes 1 args)
 Visit: _ZN4core3fmt9Arguments6new_v117h8a113b20b098f88cE (takes 5 args)
-Visit: &quot;_ZN4core3ops8function6FnOnce40call_once$u7b$$u7b$vtable.shim$u7d$$u7d$17h32e55b47309d557aE&quot; (takes 1 args)
+Visit: &#34;_ZN4core3ops8function6FnOnce40call_once$u7b$$u7b$vtable.shim$u7d$$u7d$17h32e55b47309d557aE&#34; (takes 1 args)
 Visit: _ZN4core3ops8function6FnOnce9call_once17h2daf67ca1036ee98E (takes 1 args)
 Visit: _ZN4core3ops8function6FnOnce9call_once17hcf10f9084cb14a26E (takes 1 args)
-Visit: &quot;_ZN4core3ptr85drop_in_place$LT$std..rt..lang_start$LT$$LP$$RP$$GT$..$u7b$$u7b$closure$u7d$$u7d$$GT$17h74f0928264863a31E&quot; (takes 1 args)
+Visit: &#34;_ZN4core3ptr85drop_in_place$LT$std..rt..lang_start$LT$$LP$$RP$$GT$..$u7b$$u7b$closure$u7d$$u7d$$GT$17h74f0928264863a31E&#34; (takes 1 args)
 Visit: _ZN4core4hint9black_box17h5fe2e550e252fbc3E (takes 0 args)
-Visit: &quot;_ZN54_$LT$$LP$$RP$$u20$as$u20$std..process..Termination$GT$6report17h8ac75e0172be52beE&quot; (takes 0 args)
-Visit: &quot;_ZN68_$LT$std..process..ExitCode$u20$as$u20$std..process..Termination$GT$6report17h63a57c0453f08cd5E&quot; (takes 1 args)
+Visit: &#34;_ZN54_$LT$$LP$$RP$$u20$as$u20$std..process..Termination$GT$6report17h8ac75e0172be52beE&#34; (takes 0 args)
+Visit: &#34;_ZN68_$LT$std..process..ExitCode$u20$as$u20$std..process..Termination$GT$6report17h63a57c0453f08cd5E&#34; (takes 1 args)
 Visit: _ZN5hello4main17h391fdbb81e062d23E (takes 0 args)
 Visit: rust_eh_personality (takes 5 args)
 Visit: _ZN3std2rt19lang_start_internal17hd5b67df56ca01daeE (takes 4 args)
