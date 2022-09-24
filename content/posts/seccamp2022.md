@@ -1,7 +1,7 @@
 ---
 title: "セキュリティ・キャンプ 2022 参加記（講師視点）"
-date: 2022-09-03T01:42:40Z
-draft: true
+date: 2022-09-24T18:14:08+09:00
+draft: false
 toc: false
 images:
 tags:
