@@ -103,7 +103,7 @@ Cコンパイラゼミも例外ではありません。
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">浮動小数点数を実装していない自作 C コンパイラでも使えるように改造した、整数演算版 donut.c がこちらになります。皆様の自作コンパイラでも是非これを走らせてみてください（「このテストケースでバグを発見できました」という受講生の声を多数頂いております） <a href="https://twitter.com/hashtag/seccamp?src=hash&amp;ref_src=twsrc%5Etfw">#seccamp</a><a href="https://t.co/4zoDSo2pDQ">https://t.co/4zoDSo2pDQ</a> <a href="https://t.co/XFVsoXFqJ6">pic.twitter.com/XFVsoXFqJ6</a></p>&mdash; hsjoihs (はすじょい) @ 年度末まで低浮上 (@hsjoihs) <a href="https://twitter.com/hsjoihs/status/1557956754297655298?ref_src=twsrc%5Etfw">August 12, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 受講生の方に私がどれだけのことを教えられたかはわかりませんが、
-少なくとも皆さん全員は十分すぎるくらいの成果を生み出していました。
+少なくとも彼らは十分すぎるくらいの成果を生み出していました。
 
 # 感想
 
