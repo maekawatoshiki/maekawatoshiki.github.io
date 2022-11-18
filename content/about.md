@@ -9,6 +9,7 @@ comments: false
 
 - GitHub: [maekawatoshiki (uint256_t)](https://github.com/maekawatoshiki)
 - Twitter: [uint256_t](https://twitter.com/uint256_t)
+- Mastodon: <a rel="me" href="https://mstdn.jp/@uint256_t">uint256_t</a>
 - Undergraduate student at Nagoya Institute of Technology
 
 # $ interests
