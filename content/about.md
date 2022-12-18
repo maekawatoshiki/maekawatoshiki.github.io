@@ -23,6 +23,7 @@ I strongly love systems programming, especially making compilers.
 - [naglfar](https://github.com/maekawatoshiki/naglfar) − A toy web browser implementation from scratch in Rust
 - [rapidus](https://github.com/maekawatoshiki/rapidus) − JavaScript engine implementation in Rust
 - [sericum (renamed from *cilk*)](https://github.com/maekawatoshiki/sericum) − An experimental compiler infrastructure
+- [altius](https://github.com/maekawatoshiki/altius) − A small runtime for deep neural networks, written in Rust
 
 ... and more at [GitHub](https://github.com/maekawatoshiki)
 
