@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2022 on Hello</title>
+    <link>https://maekawatoshiki.github.io/tags/2022/</link>
+    <description>Recent content in 2022 on Hello</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 31 Dec 2022 15:52:23 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/tags/2022/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2022年</title>
+      <link>https://maekawatoshiki.github.io/posts/2022/</link>
+      <pubDate>Sat, 31 Dec 2022 15:52:23 +0900</pubDate>
+      
+      <guid>https://maekawatoshiki.github.io/posts/2022/</guid>
+      <description>1 月 海からスタート pic.twitter.com/6fkbYD0CER
+&amp;mdash; uint256_t (@uint256_t) January 1, 2022 まだ vicis をいじってたのかな Module::try_from(&amp;quot;...llvm assembly...&amp;quot;)って書けるようになってかなり良い
+&amp;mdash; uint256_t (@uint256_t) January 30, 2022 2 月 わかる TLを見ていると、CPUからハイパーバイザ、人工衛星あたりまで色々なものが生み出されていてなんかすごい。
+&amp;mdash; uint256_t (@uint256_t) February 12, 2022 pull request その理由はGit誕生以前からある用語だからだったと思いますが、もはやGitHub以前の &amp;quot;pull request&amp;quot; という言葉のユースケースを探すことも困難になっているような…。 https://t.co/C6HvMcHw6f
+&amp;mdash; FUJI Goro (@__gfx__) February 7, 2022 3 月 いつも同じことを考えている 勉強ってどうやってするんだろう。
+&amp;mdash; uint256_t (@uint256_t) March 25, 2022 Asahi Linux お試し Tweet from Asahi Linux! pic.twitter.com/A1rw8iFkuK
+&amp;mdash; uint256_t (@uint256_t) March 20, 2022 いつ見ても好き この画像好きhttps://t.</description>
+    </item>
+    
+  </channel>
+</rss>
