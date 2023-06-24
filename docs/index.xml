@@ -163,7 +163,7 @@ use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args:
       <pubDate>Sun, 28 Feb 2021 23:27:03 +0900</pubDate>
       
       <guid>https://maekawatoshiki.github.io/about/</guid>
-      <description>$ whoami GitHub: maekawatoshiki (uint256_t) Twitter: uint256_t Mastodon: uint256_t Misskey: @uint256_t@misskey.io Undergraduate student at Nagoya Institute of Technology $ interests I strongly love systems programming, especially making compilers.
+      <description>$ whoami GitHub: maekawatoshiki (uint256_t) Twitter: uint256_t Mastodon: uint256_t Misskey: @uint256_t@misskey.io Qiita: uint256_t Zenn.dev: uint256_t Undergraduate student at Nagoya Institute of Technology $ interests I strongly love systems programming, especially making compilers.
 $ projects (for Japanese) プログラミング言語処理系が好きな人の集まり − owner vicis − An experimental project to clone LLVM in pure Rust naglfar − A toy web browser implementation from scratch in Rust rapidus − JavaScript engine implementation in Rust sericum (renamed from cilk) − An experimental compiler infrastructure altius − A small runtime for deep neural networks, written in Rust &amp;hellip; and more at GitHub</description>
     </item>
     

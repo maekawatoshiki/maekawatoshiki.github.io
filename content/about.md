@@ -11,6 +11,8 @@ comments: false
 - Twitter: [uint256_t](https://twitter.com/uint256_t)
 - Mastodon: <a rel="me" href="https://mstdn.jp/@uint256_t">uint256_t</a>
 - Misskey: @uint256_t@misskey.io
+- Qiita: [uint256_t](https://qiita.com/uint256_t)
+- Zenn.dev: [uint256_t](https://zenn.dev/uint256_t)
 - Undergraduate student at Nagoya Institute of Technology
 
 # $ interests
