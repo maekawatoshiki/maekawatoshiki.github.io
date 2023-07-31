@@ -31,10 +31,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background:  linear-gradient(315deg, #b3cdd1 40%, #9fa4c4 74%); 
+        background: linear-gradient(315deg, #b3cdd1 47%, #9fa4c4 84%, #8c92ac 100%, #b3cdd1 100%);
         box-shadow: 0px 0px 12px aqua;
         background-size: 400% 400%;
-        animation: gradient 3s ease-in infinite;
+        animation: gradient 3s ease-in-out infinite;
         box-shadow: 0px 0px 4px #444;
       }
     </style>
@@ -56,7 +56,7 @@
           elem.msRequestFullscreen();
         }
         setTimeout(() => {
-          const max = 0.7 * Math.min(window.screen.width, window.screen.height);
+          const max = 0.45 * Math.min(window.screen.width, window.screen.height);
           new QRious({
             element: document.getElementById("qrcode"),
             background: '#fff',
@@ -67,6 +67,8 @@
             value: link,
           });
           document.getElementById("qrcode").style.display = "block";
+          document.getElementById("qrcode").style.width = max + "px";
+          document.getElementById("qrcode").style.height = max + "px";
         }, 100);
       }
     </script>
