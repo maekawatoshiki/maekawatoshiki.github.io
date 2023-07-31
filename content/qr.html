@@ -31,10 +31,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);
+        background:  linear-gradient(315deg, #b3cdd1 40%, #9fa4c4 74%); 
         box-shadow: 0px 0px 12px aqua;
         background-size: 400% 400%;
-        animation: gradient 2s ease-in infinite;
+        animation: gradient 3s ease-in infinite;
         box-shadow: 0px 0px 4px #444;
       }
     </style>
@@ -42,7 +42,7 @@
   </head>
   <body>
     <div onclick="openFullscreen()" id="full">
-      <canvas id="qrcode"></canvas>
+      <canvas id="qrcode" style="display:none"></canvas>
     </div>
     <script>
       function openFullscreen() {
@@ -50,21 +50,24 @@
         const elem = document.documentElement;
         if (elem.requestFullscreen) {
           elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Safari */
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { /* IE11 */
-            elem.msRequestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
         }
-        const max = 0.7 * Math.min(window.innerWidth, window.innerHeight);
-        new QRious({
-          element: document.getElementById("qrcode"),
-          background: '#fff',
-          backgroundAlpha: 0.0,
-          foreground: '#221',
-          level: 'H',
-          size: max,
-          value: link,
-        });
+        setTimeout(() => {
+          const max = 0.7 * Math.min(window.screen.width, window.screen.height);
+          new QRious({
+            element: document.getElementById("qrcode"),
+            background: '#fff',
+            backgroundAlpha: 0.0,
+            foreground: '#222',
+            level: 'H',
+            size: max,
+            value: link,
+          });
+          document.getElementById("qrcode").style.display = "block";
+        }, 100);
       }
     </script>
   </body>
