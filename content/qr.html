@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #full {
+        width: 100%;
+        height: 100%;
+        background: #222222;
+        font-size: 100px;
+        text-align: center;
+      }
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      #qrcode {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);
+        box-shadow: 0px 0px 12px aqua;
+        background-size: 400% 400%;
+        animation: gradient 2s ease-in infinite;
+        box-shadow: 0px 0px 4px #444;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  </head>
+  <body>
+    <div onclick="openFullscreen()" id="full">
+      <canvas id="qrcode"></canvas>
+    </div>
+    <script>
+      function openFullscreen() {
+        const link = "https://maekawatoshiki.github.io/about";
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+        }
+        const max = 0.7 * Math.min(window.innerWidth, window.innerHeight);
+        new QRious({
+          element: document.getElementById("qrcode"),
+          background: '#fff',
+          backgroundAlpha: 0.0,
+          foreground: '#221',
+          level: 'H',
+          size: max,
+          value: link,
+        });
+      }
+    </script>
+  </body>
+</html>
+

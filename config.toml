@@ -61,4 +61,8 @@ enableRobotsTXT = true
     identifier = "about"
     name       = "About"
     url        = "/about"
+  [[menu.main]]
+    identifier = "QR"
+    name       = "QR"
+    url        = "/qr"
 
