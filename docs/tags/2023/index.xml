@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2023 on Hello</title>
+    <link>https://maekawatoshiki.github.io/tags/2023/</link>
+    <description>Recent content in 2023 on Hello</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 30 Dec 2023 20:42:47 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/tags/2023/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2023</title>
+      <link>https://maekawatoshiki.github.io/posts/2023/</link>
+      <pubDate>Sat, 30 Dec 2023 20:42:47 +0900</pubDate>
+      
+      <guid>https://maekawatoshiki.github.io/posts/2023/</guid>
+      <description>去年 掲げていた「来年の目標」 多少は健康を意識する 意識していたつもりはないが、大きな病気はない。 大学へいけば必然的に~1万歩くらい歩くことになるし。
+おそらく大学院に行くための試験があるので頑張る 推薦のおかげで試験を受けなくて済んだ。 それが本当に良かったのかはよくわからない。
+研究というものと仲良くなる これは全くダメ。仲良くなれていない。
+今年 9年ツイートしているらしい
+Do you remember when you joined X? I do!
+そうなんだ pic.twitter.com/pwjciaOBdg
+&amp;mdash; uint256_t (@uint256_t) August 28, 2023 今年はチューターとしてセキュリティ・キャンプに参加しました
+pic.twitter.com/prLTXTTrD9
+&amp;mdash; uint256_t (@uint256_t) August 7, 2023 Python から GIL がなくなったら嬉しいよね
+GILとも もうすぐさよならなのかしら
+&amp;mdash; uint256_t (@uint256_t) July 30, 2023 薄いキーボードが苦手だということにようやく気づき、結局これはあんまり使ってない
+持ち運べるやつが欲しかったので。 pic.twitter.com/Aby7Uc8PsE
+&amp;mdash; uint256_t (@uint256_t) July 18, 2023 これって今年だったのか
+https://t.co/uBdR998kBk
+「プログラミング言語処理系が好きな人の集まり」は Slack から Zulip へ移行しました。
+&amp;mdash; uint256_t (@uint256_t) June 30, 2023 この頃は SPEC CPU95 を触っていたのかな（今は 2006, 2017 も触っている）</description>
+    </item>
+    
+  </channel>
+</rss>
