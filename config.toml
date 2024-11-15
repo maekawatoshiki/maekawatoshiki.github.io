@@ -29,7 +29,7 @@ enableRobotsTXT = true
   # Metadata mostly used in document's head
   description = "blog"
   keywords = "blog"
-  images = [""]
+  images = ["https://avatars.githubusercontent.com/u/9913176"]
 
 [taxonomies]
     category = "blog"

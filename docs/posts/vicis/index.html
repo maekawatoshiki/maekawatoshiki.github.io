@@ -22,23 +22,12 @@ use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args:
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://maekawatoshiki.github.io/posts/vicis/" />
 
-<meta property="og:type" content="article">
-<meta property="og:title" content="Play with LLVM-IR, without LLVM">
-<meta property="og:url" content="https://maekawatoshiki.github.io/posts/vicis/">
-<meta property="og:site_name" content="Hello">
-<meta property="og:image" content="https://avatars.githubusercontent.com/u/9913176">
-<meta property="og:description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味)
-これを使って LLVM-IR とじゃれ合ってみよう、という記事です。
-LLVM-IRに触れる。LLVM抜きで。 インターネットで放浪してたら、このような記事を見つけました。
-RustのLLVM IRでプログラム分析ことはじめ - Toshihiro YAMAGUCHI’s Diary
-私はこれまでに、rustcの吐くLLVM-IRを直接見たことがほとんどありませんでした。丁度よい機会なので、LLVMの復習がてら記事と同じようなことをしようとしたのですが、ただ真似るだけでは面白くない。
-そうだ、LLVMをRustで実装して、同じようなことをしよう
-というわけで、趣味として LLVMをRustで再実装し始めました。(Vicisと名付けた) この記事では Vicis を使って、LLVM-IRを、LLVM抜きで触っていきます。
-とりあえずプロジェクトを作る 記事の中では、モジュールに含まれる関数を列挙していました。これと同じことをやってみます。
-cargo new viewer --bin # viewerというプロジェクトにします プロジェクトを作ったら、Cargo.tomlにVicisを追加しておきましょう。
-... [dependencies] vicis = { path = &amp;#34;/path/to/vicis&amp;#34; } IRを読み込む Vicisは現在、LLVM Assemblyの一部にしか対応できていません。(bitcode対応など頑張ります&amp;hellip;)
-src/main.rsを以下のように変更します。
-use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&amp;lt;String&amp;gt; = env::args().collect(); let file = &amp;amp;args[1]; let asm = read_to_string(file).expect(&amp;#34;failed to read .ll file&amp;#34;); let module = module::parse_assembly(asm." />
+
+
+
+
+
+
 
 
     <title>
@@ -75,10 +64,10 @@ cargo new viewer --bin # viewerというプロジェクトにします プロジ
 src/main.rsを以下のように変更します。
 use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm."><meta itemprop="datePublished" content="2021-05-02T22:04:08+09:00" />
 <meta itemprop="dateModified" content="2021-05-02T22:04:08+09:00" />
-<meta itemprop="wordCount" content="274"><meta itemprop="image" content="https://maekawatoshiki.github.io/"/>
+<meta itemprop="wordCount" content="274"><meta itemprop="image" content="https://avatars.githubusercontent.com/u/9913176"/>
 <meta itemprop="keywords" content="untagged," />
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://maekawatoshiki.github.io/"/>
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/9913176"/>
 
 <meta name="twitter:title" content="Play with LLVM-IR, without LLVM"/>
 <meta name="twitter:description" content="TL;DR LLVMの代替実装をRustで作っています。(ただの趣味)
@@ -110,7 +99,7 @@ cargo new viewer --bin # viewerというプロジェクトにします プロジ
 src/main.rsを以下のように変更します。
 use std::{env, fs::read_to_string}; use vicis::ir::module; fn main() { let args: Vec&lt;String&gt; = env::args().collect(); let file = &amp;args[1]; let asm = read_to_string(file).expect(&#34;failed to read .ll file&#34;); let module = module::parse_assembly(asm." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://maekawatoshiki.github.io/posts/vicis/" /><meta property="og:image" content="https://maekawatoshiki.github.io/"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://maekawatoshiki.github.io/posts/vicis/" /><meta property="og:image" content="https://avatars.githubusercontent.com/u/9913176"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-05-02T22:04:08+09:00" />
 <meta property="article:modified_time" content="2021-05-02T22:04:08+09:00" /><meta property="og:site_name" content="Hello" />
 
