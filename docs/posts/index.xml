@@ -6,8 +6,132 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-jp</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sat, 30 Dec 2023 20:42:47 +0900</lastBuildDate>
+        <lastBuildDate>Fri, 15 Nov 2024 14:58:50 +0900</lastBuildDate>
         <atom:link href="https://maekawatoshiki.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Tabbyによるコーディング支援を試した</title>
+            <link>https://maekawatoshiki.github.io/posts/tabby/</link>
+            <pubDate>Fri, 15 Nov 2024 14:58:50 +0900</pubDate>
+            
+            <guid>https://maekawatoshiki.github.io/posts/tabby/</guid>
+            <description>これは，名工大 Advent Calendar 2024 - 3日目の記事です．
+長らくこのブログに書き込んでいませんでしたね．2024年が終わってしまいそうです．
+はじめに 昨今，GitHub Copilot 等の高度なコーディング支援ツールが普及しつつあります． 私もサービス開始当初から使っていますが，非常に賢いコード補完機能として，もはや手放せないほど手に馴染んでいます．
+さて，GitHub Copilot は（ほとんどの人にとって）有料ですから，毎月（毎年）一定の金額を支払う必要があります． 加えて，GitHub の判断によって，明日から使えなくなる可能性もあります． 手放せないツールが突然使えなくなっては困りますよね．
+世の中には，似たようなサービスを自らセルフホスティングするためのプロジェクトが存在します． 本記事では，その中でも Tabby というプロジェクトを実際に試してみます．
+Tabby とは 以下に，リポジトリから引用した説明を載せておきます． 要約すると，お手元の GPU と Tabby さえあれば，GitHub Copilot に代わるコーディング支援環境を構築できるわけです．
+Tabby is a self-hosted AI coding assistant, offering an open-source and on-premises alternative to GitHub Copilot. It boasts several key features:
+Self-contained, with no need for a DBMS or cloud service. OpenAPI interface, easy to integrate with existing infrastructure (e.</description>
+            <content type="html"><![CDATA[<p><strong>これは，<a href="https://adventar.org/calendars/10625">名工大 Advent Calendar 2024</a> - 3日目の記事です．</strong></p>
+<p>長らくこのブログに書き込んでいませんでしたね．2024年が終わってしまいそうです．</p>
+<h1 id="はじめに">はじめに</h1>
+<p>昨今，GitHub Copilot 等の高度なコーディング支援ツールが普及しつつあります．
+私もサービス開始当初から使っていますが，非常に賢いコード補完機能として，もはや手放せないほど手に馴染んでいます．</p>
+<p>さて，GitHub Copilot は（ほとんどの人にとって）有料ですから，毎月（毎年）一定の金額を支払う必要があります．
+加えて，GitHub の判断によって，明日から使えなくなる可能性もあります．
+手放せないツールが突然使えなくなっては困りますよね．</p>
+<p>世の中には，似たようなサービスを自らセルフホスティングするためのプロジェクトが存在します．
+本記事では，その中でも Tabby というプロジェクトを実際に試してみます．</p>
+<h1 id="tabbyhttpsgithubcomtabbymltabby-とは"><a href="https://github.com/TabbyML/tabby">Tabby</a> とは</h1>
+<p>以下に，リポジトリから引用した説明を載せておきます．
+要約すると，お手元の GPU と Tabby さえあれば，GitHub Copilot に代わるコーディング支援環境を構築できるわけです．</p>
+<blockquote>
+<p>Tabby is a self-hosted AI coding assistant, offering an open-source and on-premises alternative to GitHub Copilot. It boasts several key features:</p>
+<ul>
+<li>Self-contained, with no need for a DBMS or cloud service.</li>
+<li>OpenAPI interface, easy to integrate with existing infrastructure (e.g Cloud IDE).</li>
+<li>Supports consumer-grade GPUs.</li>
+</ul>
+</blockquote>
+<h1 id="環境構築">環境構築</h1>
+<p><a href="https://tabby.tabbyml.com/docs/quick-start/installation/docker/">ドキュメント</a>によると，Docker イメージが提供されており，以下のコマンドで Tabby サーバーを起動できるようです．
+Docker から GPU を使えるよう設定しておく必要があります．</p>
+<p>利用できるモデルは<a href="https://tabby.tabbyml.com/docs/models/">こちらにリストされています</a>．
+また，リストされていない <code>Qwen2.5-Coder-1.5B</code> 等も，どうやら利用可能のようです（リストが更新されていない？）．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 初回起動時は巨大なファイル（=LLM）をダウンロードする</span>
+</span></span><span style="display:flex;"><span>docker run -it <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --gpus all -p 8080:8080 -v $HOME/.tabby:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  tabbyml/tabby <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  serve --model StarCoder-1B --device cuda <span style="color:#75715e"># --chat-model &lt;いらないかな&gt;</span>
+</span></span></code></pre></div><p>うまく行けば，以下のような出力を得られます．
+<strong>表示されているURLへアクセスし，初期設定を行ってください（トークンを得られます）．</strong></p>
+<pre tabindex="0"><code>Writing to new file.
+🎯 Downloaded https://huggingface.co/ikw/Qwen2.5-Coder-1.5B-GGUF/resolve/main/qwen2.5-coder-1.5b-q8_0.gguf to /data/models/TabbyML/Qwen2.5-Coder-1.5B/ggml/model-00001-of-00001.gguf.tmp
+   00:05:00 ▕████████████████████▏ 1.53 GiB/1.53 GiB  5.22 MiB/s  ETA 0s.            ✅ Checksum OK.
+
+
+████████╗ █████╗ ██████╗ ██████╗ ██╗   ██╗
+╚══██╔══╝██╔══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝
+   ██║   ███████║██████╔╝██████╔╝ ╚████╔╝
+   ██║   ██╔══██║██╔══██╗██╔══██╗  ╚██╔╝
+   ██║   ██║  ██║██████╔╝██████╔╝   ██║
+   ╚═╝   ╚═╝  ╚═╝╚═════╝ ╚═════╝    ╚═╝
+
+📄 Version 0.20.0
+🚀 Listening at http://0.0.0.0:8080
+</code></pre><h3 id="補足サーバー側の計算機環境">（補足）サーバー側の計算機環境</h3>
+<table>
+<thead>
+<tr>
+<th>対象</th>
+<th>バージョン等</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Ubuntu 24.04 LTS</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>Ryzen Threadripper 2990WX</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>NVIDIA RTX 2080Ti 11GB</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>128GB</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>27.2.1 (Server)</td>
+</tr>
+<tr>
+<td>Tabby</td>
+<td>0.20.0</td>
+</tr>
+</tbody>
+</table>
+<h1 id="neovim-から使う">Neovim から使う</h1>
+<h2 id="インストール">インストール</h2>
+<p>私は Neovim をエディタとして使っているため，<a href="https://tabby.tabbyml.com/docs/extensions/installation/vim/">ここに従って</a> Tabby のプラグインをインストールしました．
+VSCode や IntelliJ からも使えるようです．</p>
+<p>プラグインがインストールし終わったら，<a href="https://tabby.tabbyml.com/docs/extensions/configurations/"><code>~/.tabby-client/agent/config.toml</code> へサーバーの設定を追加します</a>．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">server</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">endpoint</span> = <span style="color:#e6db74">&#34;http://localhost:8080&#34;</span> <span style="color:#75715e"># 適切に書き換える</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">token</span> = <span style="color:#e6db74">&#34;auth_...&#34;</span> <span style="color:#75715e"># 適切に書き換える</span>
+</span></span></code></pre></div><h2 id="動作">動作</h2>
+<p>実際にコード補完している様子はこんな感じです（カーソルから下の部分）↓</p>
+<p>モデルには <code>Qwen2.5-Coder-1.5B</code> を使いましたが，
+さすがに GitHub Copilot よりは性能が悪いなぁと感じました．
+意図しない補完を提案する頻度が高いように思います．
+とはいえ，小型のモデルらしく Copilot よりも高速に補完してくれます．</p>
+<p>GPU に余裕がある場合は，もっと巨大なモデルを試しても良いでしょう．</p>
+<p><img src="../assets/vim.png" alt="vim"></p>
+<p>追記：Tabby を有効にしながらこの記事を書いてみましたが，
+小さなモデルであっても Markdown をいい感じに補完してくれるので便利でした．</p>
+<h1 id="まとめ">まとめ</h1>
+<p>GitHub Copilot に代わるコーディング支援ツールとして，Tabby を試してみました．</p>
+<p>モデルの性能や所持している GPU の性能によって補完能力がかなり変化するため，GitHub Copilot の代替品として使えるかは人によると思います．</p>
+<p>ただし，個人的にはほとんどの場合で GitHub Copilot 並の仕事をしてくれそうだと感じました．
+おそらく，私はこういったツールを単なる（けっこう賢い）補完機能としてしか使っておらず，
+コードのロジックや設計は結局自分で考えているからだと思います．
+普段 GitHub Copilot 側へそういった部分を委ねている場合は，ローカルで動作する LLM では性能的に物足りないでしょう．</p>
+]]></content>
+        </item>
         
         <item>
             <title>2023</title>
