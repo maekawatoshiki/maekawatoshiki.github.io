@@ -1,0 +1,24 @@
+#!/bin/bash -eu
+
+if [ ! -f .cache/hugo ]; then
+    printf "\033[0;32mDownloading Hugo...\033[0m\n"
+
+    case $(uname -s) in
+        Darwin)
+            SUFFIX="macOS-ARM64"
+            ;;
+        Linux)
+            SUFFIX="Linux-64bit"
+            ;;
+        *)
+            echo "Unknown OS" && exit 1
+            ;;
+    esac
+
+    wget "https://github.com/gohugoio/hugo/releases/download/v0.100.0/hugo_0.100.0_${SUFFIX}.tar.gz" -O /tmp/hugo.tar.gz
+    tar -xzf /tmp/hugo.tar.gz -C /tmp
+    mkdir -p .cache
+    mv /tmp/hugo .cache/hugo
+fi
+
+.cache/hugo $@
