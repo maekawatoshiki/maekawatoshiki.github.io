@@ -18,6 +18,20 @@ Pass というと、Module Pass, Function Pass, Loop Pass, &amp;hellip; など�
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://maekawatoshiki.github.io/posts/gsoc3/" />
 
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Summer of Code 2021 を終えました">
+<meta property="og:url" content="https://maekawatoshiki.github.io/posts/gsoc3/">
+<meta property="og:site_name" content="Hello">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/9913176">
+<meta property="og:description" content="TL;DR Google Summer of Code 2021 を終えました First, Final Evaluation ともに通りました、という意味 LLVM むずかしい 成果 Google Summer of Code とは 前に書いた記事を参照してください。
+何をしたのか 2021/May/20 から 2021/Aug/28 くらいまで、メンターの方たちと共に LLVM へ貢献していました。 （まだマージされていないパッチがあるんですけどね&amp;hellip;）
+正確には、コーディングをはじめたのは６月くらいからみたいです。
+LLVM? The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The LLVM Compiler Infrastructure
+clang や lld などを傘下に持つ、コンパイラ基盤のプロジェクトです。
+（以下 LLVM についてある程度詳しいことを前提として話を進めていきます；またいつか LLVM 自体の解説もしたい）
+テーマ 提出した Proposal のタイトルは Utilize LoopNest Pass でした。
+Pass というと、Module Pass, Function Pass, Loop Pass, &amp;hellip; など色々あります。 その中に、最近追加されたばかりの LoopNest Pass (New Pass Manager でのみ動作) というものがあります。 これは、ネストしたループを扱うための Pass なのですが、 まだほとんど使われていません（でした）。 私がこの夏にやったことは、LoopNest Pass として実装されている Pass を増やすことです。" />
+
 
     <title>
         
