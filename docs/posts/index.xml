@@ -6,8 +6,43 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-jp</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Fri, 15 Nov 2024 14:58:50 +0900</lastBuildDate>
+        <lastBuildDate>Sat, 28 Dec 2024 22:59:42 +0900</lastBuildDate>
         <atom:link href="https://maekawatoshiki.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>2024</title>
+            <link>https://maekawatoshiki.github.io/posts/2024/</link>
+            <pubDate>Sat, 28 Dec 2024 22:59:42 +0900</pubDate>
+            
+            <guid>https://maekawatoshiki.github.io/posts/2024/</guid>
+            <description>去年 掲げていた「来年の目標」 大学をなんとか卒業する
+卒業できた
+「決断」を下せるようになる
+微妙。多少は決断できるようになったかもしれないが、結局時間が解決してくれた場合が多い。
+将来何をしたいのかを考えるために、より多くの人と関わる
+学会等で様々な人と話すことができた
+来年の目標 健康でいる 研究の最終ゴールを定める なにかしらの尺度で、自立する </description>
+            <content type="html"><![CDATA[<h1 id="去年httpsmaekawatoshikigithubioposts2023-掲げていた来年の目標"><a href="https://maekawatoshiki.github.io/posts/2023/">去年</a> 掲げていた「来年の目標」</h1>
+<blockquote>
+<p>大学をなんとか卒業する</p>
+</blockquote>
+<p>卒業できた</p>
+<blockquote>
+<p>「決断」を下せるようになる</p>
+</blockquote>
+<p>微妙。多少は決断できるようになったかもしれないが、結局時間が解決してくれた場合が多い。</p>
+<blockquote>
+<p>将来何をしたいのかを考えるために、より多くの人と関わる</p>
+</blockquote>
+<p>学会等で様々な人と話すことができた</p>
+<h1 id="来年の目標">来年の目標</h1>
+<ul>
+<li>健康でいる</li>
+<li>研究の最終ゴールを定める</li>
+<li>なにかしらの尺度で、自立する</li>
+</ul>
+]]></content>
+        </item>
         
         <item>
             <title>Tabbyによるコーディング支援を試した</title>
