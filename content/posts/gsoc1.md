@@ -52,7 +52,7 @@ Google Summer of Code は、OSSプロジェクトにメンター付きで参加�
 
 各団体に提出するためのProposalを書きます。ネット上には過去GSoCに参加した方のProposalの例が沢山公開されています。
 
-[もちろん私も公開します。](https://docs.google.com/document/d/1UhKyBsVCwuN7VCbaQRVdklY9CCsGM04EcvhLHO0A-UQ/edit?usp=sharing)
+[もちろん私も公開します。](https://docs.google.com/document/d/1HkpPIgvZ0h7OQSzNN-8OFS71MqwKCmH4QmhKFqOjaxw)
 
 Proposalは、ある程度書いたらメンターの人に見てもらって、アドバイスを貰ったりしました。
 

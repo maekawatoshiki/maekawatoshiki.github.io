@@ -1113,7 +1113,7 @@ Proposal採択までの流れ 3月の初めから、以下の作業を始めま�
 <p>(英語のメールを書くのがかなり久しぶりだったので少し緊張しました。)</p>
 <h2 id="proposalを書く">Proposalを書く</h2>
 <p>各団体に提出するためのProposalを書きます。ネット上には過去GSoCに参加した方のProposalの例が沢山公開されています。</p>
-<p><a href="https://docs.google.com/document/d/1UhKyBsVCwuN7VCbaQRVdklY9CCsGM04EcvhLHO0A-UQ/edit?usp=sharing">もちろん私も公開します。</a></p>
+<p><a href="https://docs.google.com/document/d/1HkpPIgvZ0h7OQSzNN-8OFS71MqwKCmH4QmhKFqOjaxw">もちろん私も公開します。</a></p>
 <p>Proposalは、ある程度書いたらメンターの人に見てもらって、アドバイスを貰ったりしました。</p>
 <h2 id="と同時並行で-小さめのパッチを送る">(↑と同時並行で) 小さめのパッチを送る</h2>
 <p>Proposalの内容と関係のある<a href="https://reviews.llvm.org/D99149">小さめのパッチ</a>を送ったりもしました。
