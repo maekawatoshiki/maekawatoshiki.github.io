@@ -37,7 +37,7 @@ I strongly love systems programming, especially making compilers.
 - [Security Camp](https://www.security-camp.or.jp/camp/index.html) 2022 Instructor
 - [Preferred Networks Internship 2022](https://www.preferred.jp/ja/news/internship2022/), [Blog](https://tech.preferred.jp/ja/blog/jax-on-mncore/)
 - [Security Camp](https://www.security-camp.or.jp/camp/index.html) 2023 Tutor
-- 2 x [IPSJ SIGARC Young Researcher Encouragement Award](https://sigarc.ipsj.or.jp/award/winner/) 2024
+- 2 x [IPSJ SIGARC Young Researcher Encouragement Award](https://www.ipsj.or.jp/award/arc-award1.html) 2024
     - 自動メモ化機構を備えたアウトオブオーダプロセッサの設計とそのサイクル精度シミュレータ開発
     - Entity Component System (ECS)ベースのプロセッサシミュレータにおけるキャッシュシミュレーション
 - [The 6th Championship Branch Prediction (in conjunction with ISCA 2025)](https://ericrotenberg.wordpress.ncsu.edu/cbp2025/)
