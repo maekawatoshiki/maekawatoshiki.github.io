@@ -30,14 +30,18 @@ I strongly love systems programming, especially making compilers.
 
 ... and more at [GitHub](https://github.com/maekawatoshiki)
 
-# $ activities
+# $ activities && publications
 
 - [Security Camp](https://www.security-camp.or.jp/camp/index.html) 2018
 - [Google Summer of Code 2021](https://summerofcode.withgoogle.com/archive/2021/projects/6011558420807680)
 - [Security Camp](https://www.security-camp.or.jp/camp/index.html) 2022 Instructor
 - [Preferred Networks Internship 2022](https://www.preferred.jp/ja/news/internship2022/), [Blog](https://tech.preferred.jp/ja/blog/jax-on-mncore/)
 - [Security Camp](https://www.security-camp.or.jp/camp/index.html) 2023 Tutor
-- [IPSJ SIGARC Young Researcher Encouragement Award](https://sigarc.ipsj.or.jp/award/winner/) 2024 (Title: 自動メモ化機構を備えたアウトオブオーダプロセッサの設計とそのサイクル精度シミュレータ開発）
+- 2 x [IPSJ SIGARC Young Researcher Encouragement Award](https://sigarc.ipsj.or.jp/award/winner/) 2024
+    - 自動メモ化機構を備えたアウトオブオーダプロセッサの設計とそのサイクル精度シミュレータ開発
+    - Entity Component System (ECS)ベースのプロセッサシミュレータにおけるキャッシュシミュレーション
+- [The 6th Championship Branch Prediction (in conjunction with ISCA 2025)](https://ericrotenberg.wordpress.ncsu.edu/cbp2025/)
+    - RUNLTS: Register-value-aware predictor Utilizing Nested Large TableS (second authored)
 
 # $ wishlist
 
