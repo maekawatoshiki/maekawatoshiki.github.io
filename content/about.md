@@ -42,6 +42,7 @@ I strongly love systems programming, especially making compilers.
     - Entity Component System (ECS)ベースのプロセッサシミュレータにおけるキャッシュシミュレーション
 - [The 6th Championship Branch Prediction (in conjunction with ISCA 2025)](https://ericrotenberg.wordpress.ncsu.edu/cbp2025/)
     - RUNLTS: Register-value-aware predictor Utilizing Nested Large TableS (second authored)
+    - **We won 1st place!**
 
 # $ wishlist
 
