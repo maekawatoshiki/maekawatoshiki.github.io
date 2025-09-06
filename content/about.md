@@ -9,6 +9,7 @@ comments: false
 
 - GitHub: [maekawatoshiki (uint256_t)](https://github.com/maekawatoshiki)
 - Twitter: [uint256_t](https://twitter.com/uint256_t)
+- LinkedIn: [Toshiki Maekawa](https://www.linkedin.com/in/toshiki-maekawa-b46599227/)
 - Mastodon: <a rel="me" href="https://mstdn.jp/@uint256_t">uint256_t</a>
 - Misskey: @uint256_t@misskey.io
 - Qiita: [uint256_t](https://qiita.com/uint256_t)
