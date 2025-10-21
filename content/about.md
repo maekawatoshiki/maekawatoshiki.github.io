@@ -41,13 +41,14 @@ I strongly love systems programming, especially making compilers.
 
 # $ publications
 
-- <u>前川 隼輝</u> et al. 自動メモ化機構を備えたアウトオブオーダプロセッサの設計とそのサイクル精度シミュレータ開発. 情報処理学会 研究報告システム・アーキテクチャ（ARC）, 2024-ARC-257, No.31, pp.1–8, 2024.
+- <u>前川 隼輝</u> et al. *自動メモ化機構を備えたアウトオブオーダプロセッサの設計とそのサイクル精度シミュレータ開発.* 情報処理学会 研究報告システム・アーキテクチャ（ARC）, 2024-ARC-257, No.31, pp.1–8, 2024.
     - Awarded the [IPSJ SIGARC Young Researcher Encouragement Award](https://www.ipsj.or.jp/award/arc-award1.html) 2024.
-- <u>前川 隼輝</u> et al. Entity Component System (ECS)ベースのプロセッサシミュレータにおけるキャッシュシミュレーション. 情報処理学会 研究報告システム・アーキテクチャ（ARC）, 2024-ARC-259, No.24, pp.1–9，2024.
+- <u>前川 隼輝</u> et al. *Entity Component System (ECS)ベースのプロセッサシミュレータにおけるキャッシュシミュレーション.* 情報処理学会 研究報告システム・アーキテクチャ（ARC）, 2024-ARC-259, No.24, pp.1–9，2024.
     - Awarded the [IPSJ SIGARC Young Researcher Encouragement Award](https://www.ipsj.or.jp/award/arc-award1.html) 2024.
     - Awarded the [IPSJ Yamashita SIG Research Award 2025](https://www.ipsj.or.jp/award/yamashita2025.html).
-- Toru Koizumi, <u>Toshiki Maekawa</u>, et al. RUNLTS: Register-value-aware predictor Utilizing Nested Large TableS. [The 6th Championship Branch Prediction (in conjunction with ISCA 2025)](https://ericrotenberg.wordpress.ncsu.edu/cbp2025/).
+- Toru Koizumi, <u>Toshiki Maekawa</u>, et al. *RUNLTS: Register-value-aware predictor Utilizing Nested Large TableS.* [The 6th Championship Branch Prediction (in conjunction with ISCA 2025)](https://ericrotenberg.wordpress.ncsu.edu/cbp2025/).
     - **We won 1st place!**
+- <u>Toshiki Maekawa</u>, Akihiko Odaki, Toru Koizumi, Tomoaki Tsumura, and Ryota Shioya. *Phalanx: A Processor Simulator Based on the Entity Component System Architecture.* [The 3rd Workshop on Computer Architecture Modeling and Simulation (CAMS25)](https://sarchlab.org/cams25) in conjunction with IEEE/ACM MICRO 2025, Seoul, Republic of Korea, October 18, 2025.
 - ... and more to come.
 
 # $ wishlist
