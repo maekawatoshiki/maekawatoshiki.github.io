@@ -1,7 +1,7 @@
 ---
 title: "色々なツールを研究で使う際のtips"
 date: 2025-11-22T15:33:00+09:00
-draft: true
+draft: false
 toc: true
 images:
 tags:
