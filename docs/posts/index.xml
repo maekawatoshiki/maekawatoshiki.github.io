@@ -6,8 +6,178 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-jp</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sat, 28 Dec 2024 22:59:42 +0900</lastBuildDate>
+        <lastBuildDate>Sat, 22 Nov 2025 15:33:00 +0900</lastBuildDate>
         <atom:link href="https://maekawatoshiki.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>色々なツールを研究で使う際のtips</title>
+            <link>https://maekawatoshiki.github.io/posts/research-tool-tips/</link>
+            <pubDate>Sat, 22 Nov 2025 15:33:00 +0900</pubDate>
+            
+            <guid>https://maekawatoshiki.github.io/posts/research-tool-tips/</guid>
+            <description>これは，名工大 Advent Calendar 2025 - 11日目の記事です．
+世の中には、ソフトウェア・エンジニアリングを行う上で役立つツール（ツールと言わないものも含む）が様々あります。
+この文書では、それらのツールを研究で使う際のTipsを紹介します。
+きっと、研究に関係なく役立つ内容も多いかと思います。
+シェルスクリプトの書き方 要約: スタイルガイドに従うこと、及び shellcheck を常用することを推奨します。
+スタイルガイドに従う 誤読のなく、ポータブルなシェルスクリプトを書くためには、 Googler によるシェルスクリプトのスタイルガイドは 必読だと思います。
+以下に、私が重要だと思った部分をスタイルガイドから抜粋します。 スタイルガイドにない項目もあるかも。
+シェルとして bash を使う Shebang は #!/bin/bash で始めましょう。
+スタイルガイドはこう述べています。
+&amp;hellip; In particular, this means there is generally no need to strive for POSIX-compatibility or otherwise avoid “bashisms”.
+POSIX 準拠を目指すとかなり書きづらくなるのは想像がつきます。 Bash は実質すべてのマシンで使えますから、このあたりが妥協点なのでしょう。
+set -euxo pipefail オプションを使う Shebang の次の行に set -euxo pipefail と書きましょう。
+set はシェルのビルトインコマンドであり、シェルのオプションを変更することができます。 オプションとは -euxo pipefail （-e -u -x -o pipefail と同じ意味）の部分を指しますが、それぞれの意味は以下の通りです。 以下の説明は荒いので、詳細は 4.</description>
+            <content type="html"><![CDATA[<p><strong>これは，<a href="https://qiita.com/advent-calendar/2025/nitech">名工大 Advent Calendar 2025</a> - 11日目の記事です．</strong></p>
+<hr>
+<p>世の中には、ソフトウェア・エンジニアリングを行う上で役立つツール<small>（ツールと言わないものも含む）</small>が様々あります。</p>
+<p>この文書では、それらのツールを研究で使う際のTipsを紹介します。</p>
+<p>きっと、研究に関係なく役立つ内容も多いかと思います。</p>
+<!-- 特に、一般的な使い方とは異なる、研究活動ならではの使い方に焦点を当てます。 -->
+<h2 id="シェルスクリプトの書き方">シェルスクリプトの書き方</h2>
+<p>要約: スタイルガイドに従うこと、及び shellcheck を常用することを推奨します。</p>
+<h3 id="スタイルガイドに従う">スタイルガイドに従う</h3>
+<p>誤読のなく、ポータブルなシェルスクリプトを書くためには、
+<a href="https://google.github.io/styleguide/shellguide.html">Googler によるシェルスクリプトのスタイルガイド</a>は
+必読だと思います。</p>
+<p>以下に、私が重要だと思った部分をスタイルガイドから抜粋します。
+<small>スタイルガイドにない項目もあるかも</small>。</p>
+<h3 id="シェルとして-bash-を使う">シェルとして <code>bash</code> を使う</h3>
+<p>Shebang は <code>#!/bin/bash</code> で始めましょう。</p>
+<p>スタイルガイドはこう述べています。</p>
+<blockquote>
+<p>&hellip; In particular, this means there is generally no need to strive for POSIX-compatibility or otherwise avoid “bashisms”.</p>
+</blockquote>
+<p>POSIX 準拠を目指すとかなり書きづらくなるのは想像がつきます。
+Bash は実質すべてのマシンで使えますから、このあたりが妥協点なのでしょう。</p>
+<h3 id="set--euxo-pipefail-オプションを使う"><code>set -euxo pipefail</code> オプションを使う</h3>
+<p>Shebang の次の行に <code>set -euxo pipefail</code> と書きましょう。</p>
+<p><code>set</code> はシェルのビルトインコマンドであり、シェルのオプションを変更することができます。
+オプションとは <code>-euxo pipefail</code> （<code>-e -u -x -o pipefail</code> と同じ意味）の部分を指しますが、それぞれの意味は以下の通りです。
+以下の説明は荒いので、詳細は <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">4.3.1 The Set Builtin</a> を参照してください。</p>
+<ul>
+<li><code>-e</code>: コマンド実行が失敗した場合にスクリプトを直ちに終了する</li>
+<li><code>-u</code>: 未定義の変数を参照した場合にエラーにする</li>
+<li><code>-x</code>: 実行する寸前のコマンドを標準エラーに出力する</li>
+<li><code>-o pipefail</code>: パイプで繋いだコマンド群のうち、どれか一つでも失敗した場合に全体を失敗とする</li>
+</ul>
+<blockquote>
+<p>注意：Shebang を <code>#!/bin/bash -euxo pipefail</code> とするのは、意図した動作とならないため避けましょう。</p>
+<p>そのように記述すると、例えば
+<a href="https://github.com/torvalds/linux/blob/b236920731dd90c3fba8c227aa0c4dee5351a639/fs/binfmt_script.c#L81-L85">Linux カーネルでは <code>/bin/bash</code> に一つの引数（<code>-euxo</code>）しか渡されず</a>、
+<code>pipefail</code> は無視されてしまいます。</p>
+</blockquote>
+<h3 id="変数は-var-記法で展開する">変数は <code>${var}</code> 記法で展開する</h3>
+<p>変数展開は <code>$var</code> ではなく <code>${var}</code> としましょう。<br>
+ブレース <code>{</code> <code>}</code> で境界を明示すると読みやすく、変数名の終わりが明確になります。</p>
+<p>（単文字の特殊変数 <em><code>$?</code> や <code>$#</code> など</em> は例外です）</p>
+<h4 id="変数名と後続の文字列を明確に区別できる">変数名と後続の文字列を明確に区別できる</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ブレースなしだとエラー</span>
+</span></span><span style="display:flex;"><span>prefix<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span>$prefix_file<span style="color:#e6db74">&#34;</span>  <span style="color:#75715e"># $prefix_file という変数を参照しようとしてエラー</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ブレースありで正しく動作</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">_file&#34;</span>  <span style="color:#75715e"># test_file</span>
+</span></span></code></pre></div><h4 id="デフォルト値の設定や未定義変数の検出にも使える">デフォルト値の設定や未定義変数の検出にも使える</h4>
+<p>このほかにも、ブレース記法は文字列操作など色々な用途で使えます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 変数が未定義の場合にデフォルト値を設定</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>var<span style="color:#66d9ef">:-</span>default_value<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>  <span style="color:#75715e"># var が未定義なら default_value を出力</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 変数が未定義の場合にエラーにする</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>var:?var is not defined<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>  <span style="color:#75715e"># var が未定義なら `var is not defined` と出力</span>
+</span></span></code></pre></div><h3 id="shellcheck-を使う"><code>shellcheck</code> を使う</h3>
+<p>シェルスクリプトを書いたら、とりあえず <code>shellcheck</code> コマンドに通しましょう。</p>
+<p><code>shellcheck</code> はシェルスクリプトの静的解析ツールであり、上記のスタイルガイドに反する箇所や潜在的なバグを指摘してくれます。<br>
+スクリプト実行前の安全装置として有用です。</p>
+<p>最近のエディタは LSP 経由で <code>shellcheck</code> と連携できることが多いので、設定しておきましょう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat a.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#/bin/bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span>$var<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ shellcheck a.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In a.sh line 1:
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#/bin/bash</span>
+</span></span><span style="display:flex;"><span> ^-- SC1113 <span style="color:#f92672">(</span>error<span style="color:#f92672">)</span>: Use <span style="color:#75715e">#!, not just #, for the shebang.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In a.sh line 3:
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span>$var<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      ^--^ SC2154 <span style="color:#f92672">(</span>warning<span style="color:#f92672">)</span>: var is referenced but not assigned.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For more information:
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC1113 -- Use <span style="color:#75715e">#!, not just #, for the sheba...</span>
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC2154 -- var is referenced but not assigned.
+</span></span></code></pre></div><h3 id="最後に長い処理を書くなら他の言語を検討する">最後に：長い処理を書くなら他の言語を検討する</h3>
+<p>シェルスクリプトは便利ですが、複雑で長い処理を書くには向いていません。</p>
+<p>以下のどれかに当てはまる場合は Python / Perl / Ruby / ECMAScript などの言語を使いましょう。</p>
+<ul>
+<li>100行を超える</li>
+<li>制御フローが単純でない</li>
+<li>単なるラッパー以上のことをする</li>
+<li>パフォーマンスが重要</li>
+<li>今後も保守する可能性がある</li>
+</ul>
+<h2 id="git-の扱い方">git の扱い方</h2>
+<h3 id="git-の操作に自信がない場合は-gui-で操作しよう">git の操作に自信がない場合は GUI で操作しよう</h3>
+<p>私は普段コマンドラインから git を操作していますが、わざわざそうする理由は特にありません。</p>
+<p>エディタに Visual Studio Code などを使っている方は、付属の git 操作機能を積極的に使うのが良いでしょう。
+きっと良いプラグインもあるでしょうし。</p>
+<p><strong>これ以降は、CLI で git を操作する際の tips を紹介します。</strong></p>
+<h3 id="何かがおかしいと思ったら-git-status---ignored">何かがおかしいと思ったら <code>git status --ignored</code></h3>
+<p>ビルドが上手くいかないなど、リポジトリの状態に違和感を覚えた時は <code>git status --ignored</code> を確認してみましょう。</p>
+<p>通常の <code>git status</code> は（<code>.gitignore</code> により）無視されているファイルを表示しませんが、
+<code>--ignored</code> オプションを付けると無視されているファイルも表示されます。</p>
+<p>気付かぬうちに生成物や実験結果などがコミット対象になっていることはよくあります。<br>
+そういった際は、まず落ち着いて、リポジトリがクリーンな状態かを確認しましょう。</p>
+<h3 id="過去の変更を追うなら-git-blame--c--m">過去の変更を追うなら <code>git blame -C -M</code></h3>
+<p>ある行の変更履歴を、移動やコピーも含めて追う場合は <code>git blame -C -M &lt;file&gt;</code> が便利です。</p>
+<p>リファクタリングを繰り返したリポジトリであっても、ある行の起源を辿ることが容易になります。</p>
+<p>それぞれのオプションの意味は以下の通りです。</p>
+<ul>
+<li><code>-M</code>: 同じファイル内での行の移動・コピーを追跡する</li>
+<li><code>-C</code>: 別ファイルからの移動・コピーを追跡する</li>
+</ul>
+<h3 id="マージは-non-fast-forward-で行う">マージは non fast-forward で行う</h3>
+<p>ブランチのマージは non fast-forward で行うことをおすすめします。<br>
+<code>git merge --no-ff</code> でマージするか、グローバル設定を変更（<code>git config --global merge.ff false</code>）しておきましょう。</p>
+<p>Non fast-forward マージはマージコミットを作成するため、マージが行われたことを明示的に履歴へ残すことができます。<br>
+また、これによりマージ単位のrevertが容易になります。</p>
+<h3 id="複数ブランチを同時に扱うなら-git-worktree">複数ブランチを同時に扱うなら <code>git worktree</code></h3>
+<p>複数ブランチ間を頻繁に行き来したり、同時に複数のブランチを触りたい場合は <code>git worktree</code> を使いましょう。<br>
+一つのリポジトリについて複数の作業ツリーを同時に扱うことができます。</p>
+<p>似たことは複数回の <code>git clone</code> &amp; <code>git switch</code> でも実現できますが、<code>git worktree</code> は以下の点で優れています。</p>
+<ul>
+<li>リポジトリの実体は一つだけ
+<ul>
+<li>親となるディレクトリにしか <code>.git</code> が存在しないため、作業ツリーを増やしてもあまり容量を食いません</li>
+<li><code>git fetch/remote/gc</code> といった操作を一度行えば、すべての作業ツリーに反映されます</li>
+</ul>
+</li>
+<li>一つのブランチは一つの作業ツリーにしかチェックアウトできない
+<ul>
+<li>特定ブランチが複数のディレクトリでチェックアウトされることはないため、誤った編集を防げます</li>
+</ul>
+</li>
+</ul>
+<h3 id="git-stash-を避ける"><code>git stash</code> を避ける</h3>
+<p><code>git stash</code> は気軽に使える反面、「stash したまま忘れる」ことがあるので避けた方がよいです。
+メッセージを付けたとしても、大抵役に立ちません（主観）。</p>
+<p>別の作業をしたいときは <code>git worktree</code> を使うか、素直に（ブランチを切って）Work in progressとしてコミットしましょう。<br>
+コミットしておけば、簡単に remote へ push することもできます<small>（後から force push で取り消す必要が生じますが）</small>。</p>
+<h3 id="git-add--pu-でファイルをステージングする"><code>git add -pu</code> でファイルをステージングする</h3>
+<p>誤った変更をコミットしないために、<code>git add -pu</code> を使って対話的に変更をステージングしましょう。</p>
+<p>各オプションの意味は以下の通りです。</p>
+<ul>
+<li><code>-p</code> (<code>--patch</code>): 変更を一ブロック（hunk）ずつ確認しながらステージングする</li>
+<li><code>-u</code> (<code>--update</code>): 追跡されているファイルのみ対象にする</li>
+</ul>
+<p>これらのオプションを使うことで、ファイルに複数種類の変更が混じっていても（リファクタとバグ修正など）、
+意味のある粒度でコミットを分けることができます。</p>
+<!-- ### `--ours` / `--theirs` -->
+]]></content>
+        </item>
         
         <item>
             <title>2024</title>

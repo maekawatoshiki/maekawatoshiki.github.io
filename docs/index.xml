@@ -7,7 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 28 Dec 2024 22:59:42 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Nov 2025 15:33:00 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>色々なツールを研究で使う際のtips</title>
+      <link>https://maekawatoshiki.github.io/posts/research-tool-tips/</link>
+      <pubDate>Sat, 22 Nov 2025 15:33:00 +0900</pubDate>
+      
+      <guid>https://maekawatoshiki.github.io/posts/research-tool-tips/</guid>
+      <description>これは，名工大 Advent Calendar 2025 - 11日目の記事です．
+世の中には、ソフトウェア・エンジニアリングを行う上で役立つツール（ツールと言わないものも含む）が様々あります。
+この文書では、それらのツールを研究で使う際のTipsを紹介します。
+きっと、研究に関係なく役立つ内容も多いかと思います。
+シェルスクリプトの書き方 要約: スタイルガイドに従うこと、及び shellcheck を常用することを推奨します。
+スタイルガイドに従う 誤読のなく、ポータブルなシェルスクリプトを書くためには、 Googler によるシェルスクリプトのスタイルガイドは 必読だと思います。
+以下に、私が重要だと思った部分をスタイルガイドから抜粋します。 スタイルガイドにない項目もあるかも。
+シェルとして bash を使う Shebang は #!/bin/bash で始めましょう。
+スタイルガイドはこう述べています。
+&amp;hellip; In particular, this means there is generally no need to strive for POSIX-compatibility or otherwise avoid “bashisms”.
+POSIX 準拠を目指すとかなり書きづらくなるのは想像がつきます。 Bash は実質すべてのマシンで使えますから、このあたりが妥協点なのでしょう。
+set -euxo pipefail オプションを使う Shebang の次の行に set -euxo pipefail と書きましょう。
+set はシェルのビルトインコマンドであり、シェルのオプションを変更することができます。 オプションとは -euxo pipefail （-e -u -x -o pipefail と同じ意味）の部分を指しますが、それぞれの意味は以下の通りです。 以下の説明は荒いので、詳細は 4.</description>
+    </item>
+    
     <item>
       <title>2024</title>
       <link>https://maekawatoshiki.github.io/posts/2024/</link>

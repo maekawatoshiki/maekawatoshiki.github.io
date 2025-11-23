@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="これは，名工大 Advent Calendar 2025 - 11日目の記事です．
+世の中には、ソフトウェア・エンジニアリングを行う上で役立つツール（ツールと言わないものも含む）が様々あります。
+この文書では、それらのツールを研究で使う際のTipsを紹介します。
+きっと、研究に関係なく役立つ内容も多いかと思います。
+シェルスクリプトの書き方 要約: スタイルガイドに従うこと、及び shellcheck を常用することを推奨します。
+スタイルガイドに従う 誤読のなく、ポータブルなシェルスクリプトを書くためには、 Googler によるシェルスクリプトのスタイルガイドは 必読だと思います。
+以下に、私が重要だと思った部分をスタイルガイドから抜粋します。 スタイルガイドにない項目もあるかも。
+シェルとして bash を使う Shebang は #!/bin/bash で始めましょう。
+スタイルガイドはこう述べています。
+&amp;hellip; In particular, this means there is generally no need to strive for POSIX-compatibility or otherwise avoid “bashisms”.
+POSIX 準拠を目指すとかなり書きづらくなるのは想像がつきます。 Bash は実質すべてのマシンで使えますから、このあたりが妥協点なのでしょう。
+set -euxo pipefail オプションを使う Shebang の次の行に set -euxo pipefail と書きましょう。
+set はシェルのビルトインコマンドであり、シェルのオプションを変更することができます。 オプションとは -euxo pipefail （-e -u -x -o pipefail と同じ意味）の部分を指しますが、それぞれの意味は以下の通りです。 以下の説明は荒いので、詳細は 4." />
+<meta name="keywords" content=", research" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://maekawatoshiki.github.io/posts/research-tool-tips/" />
+
+
+
+
+
+
+
+
+
+    <title>
+        
+            色々なツールを研究で使う際のtips :: Hello 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.de188b3201233c251f4fd6306dbd2cb41e408fb8846c09781b2925de7df5025c.css">
+
+
+
+
+
+
+<meta itemprop="name" content="色々なツールを研究で使う際のtips">
+<meta itemprop="description" content="これは，名工大 Advent Calendar 2025 - 11日目の記事です．
+世の中には、ソフトウェア・エンジニアリングを行う上で役立つツール（ツールと言わないものも含む）が様々あります。
+この文書では、それらのツールを研究で使う際のTipsを紹介します。
+きっと、研究に関係なく役立つ内容も多いかと思います。
+シェルスクリプトの書き方 要約: スタイルガイドに従うこと、及び shellcheck を常用することを推奨します。
+スタイルガイドに従う 誤読のなく、ポータブルなシェルスクリプトを書くためには、 Googler によるシェルスクリプトのスタイルガイドは 必読だと思います。
+以下に、私が重要だと思った部分をスタイルガイドから抜粋します。 スタイルガイドにない項目もあるかも。
+シェルとして bash を使う Shebang は #!/bin/bash で始めましょう。
+スタイルガイドはこう述べています。
+&hellip; In particular, this means there is generally no need to strive for POSIX-compatibility or otherwise avoid “bashisms”.
+POSIX 準拠を目指すとかなり書きづらくなるのは想像がつきます。 Bash は実質すべてのマシンで使えますから、このあたりが妥協点なのでしょう。
+set -euxo pipefail オプションを使う Shebang の次の行に set -euxo pipefail と書きましょう。
+set はシェルのビルトインコマンドであり、シェルのオプションを変更することができます。 オプションとは -euxo pipefail （-e -u -x -o pipefail と同じ意味）の部分を指しますが、それぞれの意味は以下の通りです。 以下の説明は荒いので、詳細は 4."><meta itemprop="datePublished" content="2025-11-22T15:33:00+09:00" />
+<meta itemprop="dateModified" content="2025-11-22T15:33:00+09:00" />
+<meta itemprop="wordCount" content="393"><meta itemprop="image" content="https://avatars.githubusercontent.com/u/9913176"/>
+<meta itemprop="keywords" content="research," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/9913176"/>
+
+<meta name="twitter:title" content="色々なツールを研究で使う際のtips"/>
+<meta name="twitter:description" content="これは，名工大 Advent Calendar 2025 - 11日目の記事です．
+世の中には、ソフトウェア・エンジニアリングを行う上で役立つツール（ツールと言わないものも含む）が様々あります。
+この文書では、それらのツールを研究で使う際のTipsを紹介します。
+きっと、研究に関係なく役立つ内容も多いかと思います。
+シェルスクリプトの書き方 要約: スタイルガイドに従うこと、及び shellcheck を常用することを推奨します。
+スタイルガイドに従う 誤読のなく、ポータブルなシェルスクリプトを書くためには、 Googler によるシェルスクリプトのスタイルガイドは 必読だと思います。
+以下に、私が重要だと思った部分をスタイルガイドから抜粋します。 スタイルガイドにない項目もあるかも。
+シェルとして bash を使う Shebang は #!/bin/bash で始めましょう。
+スタイルガイドはこう述べています。
+&hellip; In particular, this means there is generally no need to strive for POSIX-compatibility or otherwise avoid “bashisms”.
+POSIX 準拠を目指すとかなり書きづらくなるのは想像がつきます。 Bash は実質すべてのマシンで使えますから、このあたりが妥協点なのでしょう。
+set -euxo pipefail オプションを使う Shebang の次の行に set -euxo pipefail と書きましょう。
+set はシェルのビルトインコマンドであり、シェルのオプションを変更することができます。 オプションとは -euxo pipefail （-e -u -x -o pipefail と同じ意味）の部分を指しますが、それぞれの意味は以下の通りです。 以下の説明は荒いので、詳細は 4."/>
+
+
+
+    <meta property="og:title" content="色々なツールを研究で使う際のtips" />
+<meta property="og:description" content="これは，名工大 Advent Calendar 2025 - 11日目の記事です．
+世の中には、ソフトウェア・エンジニアリングを行う上で役立つツール（ツールと言わないものも含む）が様々あります。
+この文書では、それらのツールを研究で使う際のTipsを紹介します。
+きっと、研究に関係なく役立つ内容も多いかと思います。
+シェルスクリプトの書き方 要約: スタイルガイドに従うこと、及び shellcheck を常用することを推奨します。
+スタイルガイドに従う 誤読のなく、ポータブルなシェルスクリプトを書くためには、 Googler によるシェルスクリプトのスタイルガイドは 必読だと思います。
+以下に、私が重要だと思った部分をスタイルガイドから抜粋します。 スタイルガイドにない項目もあるかも。
+シェルとして bash を使う Shebang は #!/bin/bash で始めましょう。
+スタイルガイドはこう述べています。
+&hellip; In particular, this means there is generally no need to strive for POSIX-compatibility or otherwise avoid “bashisms”.
+POSIX 準拠を目指すとかなり書きづらくなるのは想像がつきます。 Bash は実質すべてのマシンで使えますから、このあたりが妥協点なのでしょう。
+set -euxo pipefail オプションを使う Shebang の次の行に set -euxo pipefail と書きましょう。
+set はシェルのビルトインコマンドであり、シェルのオプションを変更することができます。 オプションとは -euxo pipefail （-e -u -x -o pipefail と同じ意味）の部分を指しますが、それぞれの意味は以下の通りです。 以下の説明は荒いので、詳細は 4." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://maekawatoshiki.github.io/posts/research-tool-tips/" /><meta property="og:image" content="https://avatars.githubusercontent.com/u/9913176"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-11-22T15:33:00+09:00" />
+<meta property="article:modified_time" content="2025-11-22T15:33:00+09:00" /><meta property="og:site_name" content="Hello" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2025-11-22 15:33:00 &#43;0900 JST" />
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59523618-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-59523618-3');
+</script>
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">uint256_t&#39;s blog</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/qr">QR</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        2 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://maekawatoshiki.github.io/posts/research-tool-tips/">色々なツールを研究で使う際のtips</a>
+      </h1>
+
+      
+
+      
+        <hr />
+        <aside id="toc">
+          <div class="toc-title">Table of Contents</div>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#シェルスクリプトの書き方">シェルスクリプトの書き方</a>
+      <ul>
+        <li><a href="#スタイルガイドに従う">スタイルガイドに従う</a></li>
+        <li><a href="#シェルとして-bash-を使う">シェルとして <code>bash</code> を使う</a></li>
+        <li><a href="#set--euxo-pipefail-オプションを使う"><code>set -euxo pipefail</code> オプションを使う</a></li>
+        <li><a href="#変数は-var-記法で展開する">変数は <code>${var}</code> 記法で展開する</a></li>
+        <li><a href="#shellcheck-を使う"><code>shellcheck</code> を使う</a></li>
+        <li><a href="#最後に長い処理を書くなら他の言語を検討する">最後に：長い処理を書くなら他の言語を検討する</a></li>
+      </ul>
+    </li>
+    <li><a href="#git-の扱い方">git の扱い方</a>
+      <ul>
+        <li><a href="#git-の操作に自信がない場合は-gui-で操作しよう">git の操作に自信がない場合は GUI で操作しよう</a></li>
+        <li><a href="#何かがおかしいと思ったら-git-status---ignored">何かがおかしいと思ったら <code>git status --ignored</code></a></li>
+        <li><a href="#過去の変更を追うなら-git-blame--c--m">過去の変更を追うなら <code>git blame -C -M</code></a></li>
+        <li><a href="#マージは-non-fast-forward-で行う">マージは non fast-forward で行う</a></li>
+        <li><a href="#複数ブランチを同時に扱うなら-git-worktree">複数ブランチを同時に扱うなら <code>git worktree</code></a></li>
+        <li><a href="#git-stash-を避ける"><code>git stash</code> を避ける</a></li>
+        <li><a href="#git-add--pu-でファイルをステージングする"><code>git add -pu</code> でファイルをステージングする</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </aside>
+        <hr />
+
+      <div class="post-content">
+        <p><strong>これは，<a href="https://qiita.com/advent-calendar/2025/nitech">名工大 Advent Calendar 2025</a> - 11日目の記事です．</strong></p>
+<hr>
+<p>世の中には、ソフトウェア・エンジニアリングを行う上で役立つツール<small>（ツールと言わないものも含む）</small>が様々あります。</p>
+<p>この文書では、それらのツールを研究で使う際のTipsを紹介します。</p>
+<p>きっと、研究に関係なく役立つ内容も多いかと思います。</p>
+<!-- 特に、一般的な使い方とは異なる、研究活動ならではの使い方に焦点を当てます。 -->
+<h2 id="シェルスクリプトの書き方">シェルスクリプトの書き方</h2>
+<p>要約: スタイルガイドに従うこと、及び shellcheck を常用することを推奨します。</p>
+<h3 id="スタイルガイドに従う">スタイルガイドに従う</h3>
+<p>誤読のなく、ポータブルなシェルスクリプトを書くためには、
+<a href="https://google.github.io/styleguide/shellguide.html">Googler によるシェルスクリプトのスタイルガイド</a>は
+必読だと思います。</p>
+<p>以下に、私が重要だと思った部分をスタイルガイドから抜粋します。
+<small>スタイルガイドにない項目もあるかも</small>。</p>
+<h3 id="シェルとして-bash-を使う">シェルとして <code>bash</code> を使う</h3>
+<p>Shebang は <code>#!/bin/bash</code> で始めましょう。</p>
+<p>スタイルガイドはこう述べています。</p>
+<blockquote>
+<p>&hellip; In particular, this means there is generally no need to strive for POSIX-compatibility or otherwise avoid “bashisms”.</p>
+</blockquote>
+<p>POSIX 準拠を目指すとかなり書きづらくなるのは想像がつきます。
+Bash は実質すべてのマシンで使えますから、このあたりが妥協点なのでしょう。</p>
+<h3 id="set--euxo-pipefail-オプションを使う"><code>set -euxo pipefail</code> オプションを使う</h3>
+<p>Shebang の次の行に <code>set -euxo pipefail</code> と書きましょう。</p>
+<p><code>set</code> はシェルのビルトインコマンドであり、シェルのオプションを変更することができます。
+オプションとは <code>-euxo pipefail</code> （<code>-e -u -x -o pipefail</code> と同じ意味）の部分を指しますが、それぞれの意味は以下の通りです。
+以下の説明は荒いので、詳細は <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">4.3.1 The Set Builtin</a> を参照してください。</p>
+<ul>
+<li><code>-e</code>: コマンド実行が失敗した場合にスクリプトを直ちに終了する</li>
+<li><code>-u</code>: 未定義の変数を参照した場合にエラーにする</li>
+<li><code>-x</code>: 実行する寸前のコマンドを標準エラーに出力する</li>
+<li><code>-o pipefail</code>: パイプで繋いだコマンド群のうち、どれか一つでも失敗した場合に全体を失敗とする</li>
+</ul>
+<blockquote>
+<p>注意：Shebang を <code>#!/bin/bash -euxo pipefail</code> とするのは、意図した動作とならないため避けましょう。</p>
+<p>そのように記述すると、例えば
+<a href="https://github.com/torvalds/linux/blob/b236920731dd90c3fba8c227aa0c4dee5351a639/fs/binfmt_script.c#L81-L85">Linux カーネルでは <code>/bin/bash</code> に一つの引数（<code>-euxo</code>）しか渡されず</a>、
+<code>pipefail</code> は無視されてしまいます。</p>
+</blockquote>
+<h3 id="変数は-var-記法で展開する">変数は <code>${var}</code> 記法で展開する</h3>
+<p>変数展開は <code>$var</code> ではなく <code>${var}</code> としましょう。<br>
+ブレース <code>{</code> <code>}</code> で境界を明示すると読みやすく、変数名の終わりが明確になります。</p>
+<p>（単文字の特殊変数 <em><code>$?</code> や <code>$#</code> など</em> は例外です）</p>
+<h4 id="変数名と後続の文字列を明確に区別できる">変数名と後続の文字列を明確に区別できる</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ブレースなしだとエラー</span>
+</span></span><span style="display:flex;"><span>prefix<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span>$prefix_file<span style="color:#e6db74">&#34;</span>  <span style="color:#75715e"># $prefix_file という変数を参照しようとしてエラー</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ブレースありで正しく動作</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">_file&#34;</span>  <span style="color:#75715e"># test_file</span>
+</span></span></code></pre></div><h4 id="デフォルト値の設定や未定義変数の検出にも使える">デフォルト値の設定や未定義変数の検出にも使える</h4>
+<p>このほかにも、ブレース記法は文字列操作など色々な用途で使えます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 変数が未定義の場合にデフォルト値を設定</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>var<span style="color:#66d9ef">:-</span>default_value<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>  <span style="color:#75715e"># var が未定義なら default_value を出力</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 変数が未定義の場合にエラーにする</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>var:?var is not defined<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>  <span style="color:#75715e"># var が未定義なら `var is not defined` と出力</span>
+</span></span></code></pre></div><h3 id="shellcheck-を使う"><code>shellcheck</code> を使う</h3>
+<p>シェルスクリプトを書いたら、とりあえず <code>shellcheck</code> コマンドに通しましょう。</p>
+<p><code>shellcheck</code> はシェルスクリプトの静的解析ツールであり、上記のスタイルガイドに反する箇所や潜在的なバグを指摘してくれます。<br>
+スクリプト実行前の安全装置として有用です。</p>
+<p>最近のエディタは LSP 経由で <code>shellcheck</code> と連携できることが多いので、設定しておきましょう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat a.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#/bin/bash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span>$var<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ shellcheck a.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In a.sh line 1:
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#/bin/bash</span>
+</span></span><span style="display:flex;"><span> ^-- SC1113 <span style="color:#f92672">(</span>error<span style="color:#f92672">)</span>: Use <span style="color:#75715e">#!, not just #, for the shebang.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In a.sh line 3:
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span>$var<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>      ^--^ SC2154 <span style="color:#f92672">(</span>warning<span style="color:#f92672">)</span>: var is referenced but not assigned.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For more information:
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC1113 -- Use <span style="color:#75715e">#!, not just #, for the sheba...</span>
+</span></span><span style="display:flex;"><span>  https://www.shellcheck.net/wiki/SC2154 -- var is referenced but not assigned.
+</span></span></code></pre></div><h3 id="最後に長い処理を書くなら他の言語を検討する">最後に：長い処理を書くなら他の言語を検討する</h3>
+<p>シェルスクリプトは便利ですが、複雑で長い処理を書くには向いていません。</p>
+<p>以下のどれかに当てはまる場合は Python / Perl / Ruby / ECMAScript などの言語を使いましょう。</p>
+<ul>
+<li>100行を超える</li>
+<li>制御フローが単純でない</li>
+<li>単なるラッパー以上のことをする</li>
+<li>パフォーマンスが重要</li>
+<li>今後も保守する可能性がある</li>
+</ul>
+<h2 id="git-の扱い方">git の扱い方</h2>
+<h3 id="git-の操作に自信がない場合は-gui-で操作しよう">git の操作に自信がない場合は GUI で操作しよう</h3>
+<p>私は普段コマンドラインから git を操作していますが、わざわざそうする理由は特にありません。</p>
+<p>エディタに Visual Studio Code などを使っている方は、付属の git 操作機能を積極的に使うのが良いでしょう。
+きっと良いプラグインもあるでしょうし。</p>
+<p><strong>これ以降は、CLI で git を操作する際の tips を紹介します。</strong></p>
+<h3 id="何かがおかしいと思ったら-git-status---ignored">何かがおかしいと思ったら <code>git status --ignored</code></h3>
+<p>ビルドが上手くいかないなど、リポジトリの状態に違和感を覚えた時は <code>git status --ignored</code> を確認してみましょう。</p>
+<p>通常の <code>git status</code> は（<code>.gitignore</code> により）無視されているファイルを表示しませんが、
+<code>--ignored</code> オプションを付けると無視されているファイルも表示されます。</p>
+<p>気付かぬうちに生成物や実験結果などがコミット対象になっていることはよくあります。<br>
+そういった際は、まず落ち着いて、リポジトリがクリーンな状態かを確認しましょう。</p>
+<h3 id="過去の変更を追うなら-git-blame--c--m">過去の変更を追うなら <code>git blame -C -M</code></h3>
+<p>ある行の変更履歴を、移動やコピーも含めて追う場合は <code>git blame -C -M &lt;file&gt;</code> が便利です。</p>
+<p>リファクタリングを繰り返したリポジトリであっても、ある行の起源を辿ることが容易になります。</p>
+<p>それぞれのオプションの意味は以下の通りです。</p>
+<ul>
+<li><code>-M</code>: 同じファイル内での行の移動・コピーを追跡する</li>
+<li><code>-C</code>: 別ファイルからの移動・コピーを追跡する</li>
+</ul>
+<h3 id="マージは-non-fast-forward-で行う">マージは non fast-forward で行う</h3>
+<p>ブランチのマージは non fast-forward で行うことをおすすめします。<br>
+<code>git merge --no-ff</code> でマージするか、グローバル設定を変更（<code>git config --global merge.ff false</code>）しておきましょう。</p>
+<p>Non fast-forward マージはマージコミットを作成するため、マージが行われたことを明示的に履歴へ残すことができます。<br>
+また、これによりマージ単位のrevertが容易になります。</p>
+<h3 id="複数ブランチを同時に扱うなら-git-worktree">複数ブランチを同時に扱うなら <code>git worktree</code></h3>
+<p>複数ブランチ間を頻繁に行き来したり、同時に複数のブランチを触りたい場合は <code>git worktree</code> を使いましょう。<br>
+一つのリポジトリについて複数の作業ツリーを同時に扱うことができます。</p>
+<p>似たことは複数回の <code>git clone</code> &amp; <code>git switch</code> でも実現できますが、<code>git worktree</code> は以下の点で優れています。</p>
+<ul>
+<li>リポジトリの実体は一つだけ
+<ul>
+<li>親となるディレクトリにしか <code>.git</code> が存在しないため、作業ツリーを増やしてもあまり容量を食いません</li>
+<li><code>git fetch/remote/gc</code> といった操作を一度行えば、すべての作業ツリーに反映されます</li>
+</ul>
+</li>
+<li>一つのブランチは一つの作業ツリーにしかチェックアウトできない
+<ul>
+<li>特定ブランチが複数のディレクトリでチェックアウトされることはないため、誤った編集を防げます</li>
+</ul>
+</li>
+</ul>
+<h3 id="git-stash-を避ける"><code>git stash</code> を避ける</h3>
+<p><code>git stash</code> は気軽に使える反面、「stash したまま忘れる」ことがあるので避けた方がよいです。
+メッセージを付けたとしても、大抵役に立ちません（主観）。</p>
+<p>別の作業をしたいときは <code>git worktree</code> を使うか、素直に（ブランチを切って）Work in progressとしてコミットしましょう。<br>
+コミットしておけば、簡単に remote へ push することもできます<small>（後から force push で取り消す必要が生じますが）</small>。</p>
+<h3 id="git-add--pu-でファイルをステージングする"><code>git add -pu</code> でファイルをステージングする</h3>
+<p>誤った変更をコミットしないために、<code>git add -pu</code> を使って対話的に変更をステージングしましょう。</p>
+<p>各オプションの意味は以下の通りです。</p>
+<ul>
+<li><code>-p</code> (<code>--patch</code>): 変更を一ブロック（hunk）ずつ確認しながらステージングする</li>
+<li><code>-u</code> (<code>--update</code>): 追跡されているファイルのみ対象にする</li>
+</ul>
+<p>これらのオプションを使うことで、ファイルに複数種類の変更が混じっていても（リファクタとバグ修正など）、
+意味のある粒度でコミットを分けることができます。</p>
+<!-- ### `--ours` / `--theirs` -->
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://maekawatoshiki.github.io/tags/research/">research</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        393 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2025-11-22 15:33
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+
+          
+            <span class="button next">
+              <a href="https://maekawatoshiki.github.io/posts/2024/">
+                <span class="button__text">2024</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2025</span>
+            
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span><span><a href="https://maekawatoshiki.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+          </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.8d7489314e5e17deefb28c0dc01699f35b89fed0c3748ade7d90114f12f4b4bf4faa837c3ce0d8c0c933ca89b210b48f201bff13782c74a5b21ddf9f5df61edd.js" integrity="sha512-jXSJMU5eF97vsowNwBaZ81uJ/tDDdIrefZARTxL0tL9PqoN8PODYwMkzyomyELSPIBv/E3gsdKWyHd&#43;fXfYe3Q=="></script>
+
+
+
+    </body>
+</html>
