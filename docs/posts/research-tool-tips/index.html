@@ -66,7 +66,7 @@ POSIX 準拠を目指すとかなり書きづらくなるのは想像がつき�
 set -euxo pipefail オプションを使う Shebang の次の行に set -euxo pipefail と書きましょう。
 set はシェルのビルトインコマンドであり、シェルのオプションを変更することができます。 オプションとは -euxo pipefail （-e -u -x -o pipefail と同じ意味）の部分を指しますが、それぞれの意味は以下の通りです。 以下の説明は荒いので、詳細は 4."><meta itemprop="datePublished" content="2025-11-22T15:33:00+09:00" />
 <meta itemprop="dateModified" content="2025-11-22T15:33:00+09:00" />
-<meta itemprop="wordCount" content="393"><meta itemprop="image" content="https://avatars.githubusercontent.com/u/9913176"/>
+<meta itemprop="wordCount" content="395"><meta itemprop="image" content="https://avatars.githubusercontent.com/u/9913176"/>
 <meta itemprop="keywords" content="research," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/9913176"/>
@@ -222,6 +222,7 @@ set はシェルのビルトインコマンドであり、シェルのオプシ�
         <li><a href="#複数ブランチを同時に扱うなら-git-worktree">複数ブランチを同時に扱うなら <code>git worktree</code></a></li>
         <li><a href="#git-stash-を避ける"><code>git stash</code> を避ける</a></li>
         <li><a href="#git-add--pu-でファイルをステージングする"><code>git add -pu</code> でファイルをステージングする</a></li>
+        <li><a href="#最後にとりあえずコミットプッシュしておこう">最後に：とりあえずコミット・プッシュしておこう</a></li>
       </ul>
     </li>
   </ul>
@@ -367,7 +368,7 @@ Bash は実質すべてのマシンで使えますから、このあたりが妥
 <p><code>git stash</code> は気軽に使える反面、「stash したまま忘れる」ことがあるので避けた方がよいです。
 メッセージを付けたとしても、大抵役に立ちません（主観）。</p>
 <p>別の作業をしたいときは <code>git worktree</code> を使うか、素直に（ブランチを切って）Work in progressとしてコミットしましょう。<br>
-コミットしておけば、簡単に remote へ push することもできます<small>（後から force push で取り消す必要が生じますが）</small>。</p>
+コミットしておけば、簡単に remote へプッシュすることもできます<small>（後から force push で取り消す必要が生じますが）</small>。</p>
 <h3 id="git-add--pu-でファイルをステージングする"><code>git add -pu</code> でファイルをステージングする</h3>
 <p>誤った変更をコミットしないために、<code>git add -pu</code> を使って対話的に変更をステージングしましょう。</p>
 <p>各オプションの意味は以下の通りです。</p>
@@ -377,6 +378,10 @@ Bash は実質すべてのマシンで使えますから、このあたりが妥
 </ul>
 <p>これらのオプションを使うことで、ファイルに複数種類の変更が混じっていても（リファクタとバグ修正など）、
 意味のある粒度でコミットを分けることができます。</p>
+<h3 id="最後にとりあえずコミットプッシュしておこう">最後に：とりあえずコミット・プッシュしておこう</h3>
+<p>昼食前、帰宅前など、一区切りついたタイミングでとりあえず変更をコミット・プッシュしておきましょう。<br>
+前日までの進捗を明示的にまとめられますし、バックアップにもなります。</p>
+<p>最終的には適切な粒度でコミットし直すことをお忘れなく。</p>
 <!-- ### `--ours` / `--theirs` -->
 
       </div>
@@ -403,7 +408,7 @@ Bash は実質すべてのマシンで使えますから、このあたりが妥
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        393 Words
+        395 Words
       </p>
 
       <p>
