@@ -7,7 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 22 Nov 2025 15:33:00 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Dec 2025 10:44:29 +0900</lastBuildDate><atom:link href="https://maekawatoshiki.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025</title>
+      <link>https://maekawatoshiki.github.io/posts/2025/</link>
+      <pubDate>Fri, 26 Dec 2025 10:44:29 +0900</pubDate>
+      
+      <guid>https://maekawatoshiki.github.io/posts/2025/</guid>
+      <description>去年 掲げていた「来年の目標」 健康でいる
+あまり良くなかった。
+今はまぁまぁ。
+研究の最終ゴールを定める
+右往左往しつつ、一ヶ所に落ち着いたと思っている。
+なにかしらの尺度で、自立する
+ダメだね。
+今年 明日は横浜行こうかなぁ
+&amp;mdash; uint256_t (@uint256_t) January 24, 2025 横浜の技書博へ行った。
+分岐予測むずかしすぎませんか
+&amp;mdash; uint256_t (@uint256_t) February 10, 2025 分岐予測に苦戦。
+そもそも現代のプロセッサをよくわかっていなかった。
+AsiaLLVM に来ています pic.twitter.com/tdN3MniUoA
+&amp;mdash; uint256_t (@uint256_t) June 9, 2025 AsiaLLVM に参加した。
+最近会っていなかった人と話せて良かった。
+念願の、Chris Lattner とのツーショットも撮れた。
+Championship Branch Prediction 2025 で 1st place でした pic.twitter.com/jMOe6j7IK9
+&amp;mdash; uint256_t (@uint256_t) June 21, 2025 私たちの分岐予測器が、性能を競うコンペティションで優勝（まさしく state of the art）した。
+素晴らしいメンバーに恵まれたと思う。
+論文: RUNLTS: Register-value-aware Predictor Utilizing Nested Large TableS</description>
+    </item>
+    
     <item>
       <title>色々なツールを研究で使う際のtips</title>
       <link>https://maekawatoshiki.github.io/posts/research-tool-tips/</link>

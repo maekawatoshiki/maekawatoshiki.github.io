@@ -6,8 +6,103 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-jp</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Sat, 22 Nov 2025 15:33:00 +0900</lastBuildDate>
+        <lastBuildDate>Fri, 26 Dec 2025 10:44:29 +0900</lastBuildDate>
         <atom:link href="https://maekawatoshiki.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>2025</title>
+            <link>https://maekawatoshiki.github.io/posts/2025/</link>
+            <pubDate>Fri, 26 Dec 2025 10:44:29 +0900</pubDate>
+            
+            <guid>https://maekawatoshiki.github.io/posts/2025/</guid>
+            <description>去年 掲げていた「来年の目標」 健康でいる
+あまり良くなかった。
+今はまぁまぁ。
+研究の最終ゴールを定める
+右往左往しつつ、一ヶ所に落ち着いたと思っている。
+なにかしらの尺度で、自立する
+ダメだね。
+今年 明日は横浜行こうかなぁ
+&amp;mdash; uint256_t (@uint256_t) January 24, 2025 横浜の技書博へ行った。
+分岐予測むずかしすぎませんか
+&amp;mdash; uint256_t (@uint256_t) February 10, 2025 分岐予測に苦戦。
+そもそも現代のプロセッサをよくわかっていなかった。
+AsiaLLVM に来ています pic.twitter.com/tdN3MniUoA
+&amp;mdash; uint256_t (@uint256_t) June 9, 2025 AsiaLLVM に参加した。
+最近会っていなかった人と話せて良かった。
+念願の、Chris Lattner とのツーショットも撮れた。
+Championship Branch Prediction 2025 で 1st place でした pic.twitter.com/jMOe6j7IK9
+&amp;mdash; uint256_t (@uint256_t) June 21, 2025 私たちの分岐予測器が、性能を競うコンペティションで優勝（まさしく state of the art）した。
+素晴らしいメンバーに恵まれたと思う。
+論文: RUNLTS: Register-value-aware Predictor Utilizing Nested Large TableS</description>
+            <content type="html"><![CDATA[<h1 id="去年httpsmaekawatoshikigithubioposts2024-掲げていた来年の目標"><a href="https://maekawatoshiki.github.io/posts/2024/">去年</a> 掲げていた「来年の目標」</h1>
+<blockquote>
+<p>健康でいる</p>
+</blockquote>
+<p>あまり良くなかった。<br>
+今はまぁまぁ。</p>
+<blockquote>
+<p>研究の最終ゴールを定める</p>
+</blockquote>
+<p>右往左往しつつ、一ヶ所に落ち着いたと思っている。</p>
+<blockquote>
+<p>なにかしらの尺度で、自立する</p>
+</blockquote>
+<p>ダメだね。</p>
+<h1 id="今年">今年</h1>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">明日は横浜行こうかなぁ</p>&mdash; uint256_t (@uint256_t) <a href="https://twitter.com/uint256_t/status/1882753976975917466?ref_src=twsrc%5Etfw">January 24, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>横浜の技書博へ行った。</p>
+<hr>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">分岐予測むずかしすぎませんか</p>&mdash; uint256_t (@uint256_t) <a href="https://twitter.com/uint256_t/status/1888872862641262640?ref_src=twsrc%5Etfw">February 10, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>分岐予測に苦戦。<br>
+そもそも現代のプロセッサをよくわかっていなかった。</p>
+<hr>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">AsiaLLVM に来ています <a href="https://t.co/tdN3MniUoA">pic.twitter.com/tdN3MniUoA</a></p>&mdash; uint256_t (@uint256_t) <a href="https://twitter.com/uint256_t/status/1932222112904991204?ref_src=twsrc%5Etfw">June 9, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>AsiaLLVM に参加した。<br>
+最近会っていなかった人と話せて良かった。</p>
+<p>念願の、Chris Lattner とのツーショットも撮れた。</p>
+<hr>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Championship Branch Prediction 2025 で 1st place でした <a href="https://t.co/jMOe6j7IK9">pic.twitter.com/jMOe6j7IK9</a></p>&mdash; uint256_t (@uint256_t) <a href="https://twitter.com/uint256_t/status/1936276666902544417?ref_src=twsrc%5Etfw">June 21, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>私たちの分岐予測器が、性能を競うコンペティションで優勝（まさしく state of the art）した。<br>
+素晴らしいメンバーに恵まれたと思う。</p>
+<p>論文: <a href="https://ericrotenberg.wordpress.ncsu.edu/files/2025/06/cbp2025-final44-Koizumi.pdf">RUNLTS: Register-value-aware Predictor Utilizing Nested Large TableS</a></p>
+<hr>
+<p>このあたりで仕事をすべてやめて、研究に専念し始めた。</p>
+<hr>
+<blockquote class="twitter-tweet"><p lang="zxx" dir="ltr"><a href="https://t.co/gbem29OHAi">pic.twitter.com/gbem29OHAi</a></p>&mdash; uint256_t (@uint256_t) <a href="https://twitter.com/uint256_t/status/1951891969917022649?ref_src=twsrc%5Etfw">August 3, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>研究会で高松へ行った。</p>
+<hr>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">情報処理学会の山下記念研究賞を受賞しました.<a href="https://t.co/YD5op6DRT5">https://t.co/YD5op6DRT5</a></p>&mdash; uint256_t (@uint256_t) <a href="https://twitter.com/uint256_t/status/1962794235008307600?ref_src=twsrc%5Etfw">September 2, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p><a href="https://www.ipsj.or.jp/award/yamasita2025-detail.html">情報処理学会の山下記念研究賞</a>を受賞した。</p>
+<hr>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">こんなに大きな会議で話したのは初めてでした. <a href="https://t.co/zFUXGcBgfI">pic.twitter.com/zFUXGcBgfI</a></p>&mdash; uint256_t (@uint256_t) <a href="https://twitter.com/uint256_t/status/1981937493202350365?ref_src=twsrc%5Etfw">October 25, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>58th IEEE/ACM International Symposium on Microarchitecture (MICRO) の<a href="https://sarchlab.org/cams25">ワークショップ (CAMS25)</a>に参加した。</p>
+<h1 id="今年の所感">今年の所感</h1>
+<ul>
+<li>論文を書くときに，トップダウンで考えることを意識できた
+<ul>
+<li>去年よりは構成が上手になったと思っている</li>
+</ul>
+</li>
+<li>分岐予測器に詳しくなった
+<ul>
+<li>久しぶりに酷いコードを読む能力を使った気がする</li>
+</ul>
+</li>
+<li>かなりいろんな場所へ行けて楽しかった
+<ul>
+<li>日本各地だけでなく韓国にも行った</li>
+</ul>
+</li>
+</ul>
+<h1 id="来年の目標">来年の目標</h1>
+<ul>
+<li>健康でいる</li>
+<li>自立する</li>
+<li>自分の手で、ものを作る</li>
+</ul>
+]]></content>
+        </item>
         
         <item>
             <title>色々なツールを研究で使う際のtips</title>
