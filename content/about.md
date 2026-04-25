@@ -14,7 +14,7 @@ comments: false
 - Misskey: @uint256_t@misskey.io
 - Qiita: [uint256_t](https://qiita.com/uint256_t)
 - Zenn.dev: [uint256_t](https://zenn.dev/uint256_t)
-- Graduate student at Nagoya Institute of Technology
+- Software (Compiler & Runtime) Engineer in Tokyo 
 
 # $ interests
 
