@@ -28,6 +28,7 @@ I strongly love systems programming, especially making compilers.
 - [rapidus](https://github.com/maekawatoshiki/rapidus) − JavaScript engine implementation in Rust
 - [sericum (renamed from *cilk*)](https://github.com/maekawatoshiki/sericum) − An experimental compiler infrastructure
 - [altius](https://github.com/maekawatoshiki/altius) − A small runtime for deep neural networks, written in Rust
+- [Phalanx](https://github.com/phalanx-sim/phalanx) − A processor simulator for microarchitecture research (see publications)
 
 ... and more at [GitHub](https://github.com/maekawatoshiki)
 
