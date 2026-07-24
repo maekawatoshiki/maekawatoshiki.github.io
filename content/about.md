@@ -50,7 +50,7 @@ I strongly love systems programming, especially making compilers.
 - Toru Koizumi, <u>Toshiki Maekawa</u>, et al. *RUNLTS: Register-value-aware predictor Utilizing Nested Large TableS.* [The 6th Championship Branch Prediction (in conjunction with ISCA 2025)](https://ericrotenberg.wordpress.ncsu.edu/cbp2025/).
     - **We won 1st place!**
 - <u>Toshiki Maekawa</u>, Akihiko Odaki, Toru Koizumi, Tomoaki Tsumura, and Ryota Shioya. *Phalanx: A Processor Simulator Based on the Entity Component System Architecture.* [The 3rd Workshop on Computer Architecture Modeling and Simulation (CAMS25)](https://sarchlab.org/cams25) in conjunction with IEEE/ACM MICRO 2025, Seoul, Republic of Korea, October 18, 2025.
-- ... and more to come.
+- Toru Koizumi, <u>Toshiki Maekawa</u>, Masanari Mizuno, Maru Kuroki, Tomoaki Tsumura, Ryota Shioya. *RUNLTS: Branch Prediction with Register-Value Correlations and Hierarchical Table Orchestration.* In Proceedings of the 2026 ACM/IEEE 53rd Annual International Symposium on Computer Architecture (ISCA '26), pp. 543–558, 2026.
 
 # $ wishlist
 
